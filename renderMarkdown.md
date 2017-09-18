@@ -1,7 +1,7 @@
 R scripts can be rendered!
 ================
 Mark Blackmore
-2017-09-12
+2017-09-18
 
 This is an exrperiment in rendering an R script to arkdown. We'll use the built-in dataset `VADeaths`.
 
@@ -24,4 +24,4 @@ More prose. I can use markdown syntax to make thingss **bold** or *italics*. Let
 dotchart(VADeaths, main = "Death Rates in Virginia - 1940")
 ```
 
-![](renderMarkdown_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](renderMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)

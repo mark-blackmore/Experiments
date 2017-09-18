@@ -13,3 +13,6 @@ summary(VADeaths)
 #' More prose. I can use markdown syntax to make thingss **bold** or *italics*. Let's make
 #' a Cleveland dot plot from the `VADeaths` data.
 dotchart(VADeaths, main = "Death Rates in Virginia - 1940")
+
+#' render with the following command
+#' rmarkdown::render("renderMarkdown.R")

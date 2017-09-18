@@ -35,3 +35,18 @@ d
 d + scale_x_continuous(limits = c(0, 1))
 d + coord_cartesian(xlim = c(0, 1))
 
+### Using Aesthetics
+qplot(depth, data = diamonds, binwidth = 0.2)
+qplot(depth, data = diamonds, binwidth = 0.2,
+      fill = cut) + xlim(55, 70)
+qplot(depth, data = diamonds, binwidth = 0.2) + 
+  xlim(55, 70) + facet_wrap(~ cut)
+
+qplot(price, data = diamonds)
+resolution(diamonds$price)
+qplot(price, data = diamonds, binwidth = 1)
+qplot(price, data = diamonds, binwidth = 10)
+qplot(price, data = diamonds, binwidth = 100)
+qplot(price, data = diamonds, binwidth = 1000)
+qplot(price, data = diamonds, binwidth = 100) + 
+  coord_cartesian(xlim = c(0, 5000))
