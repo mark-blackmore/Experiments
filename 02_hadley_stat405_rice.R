@@ -42,6 +42,7 @@ qplot(depth, data = diamonds, binwidth = 0.2,
 qplot(depth, data = diamonds, binwidth = 0.2) + 
   xlim(55, 70) + facet_wrap(~ cut)
 
+### Exercise: Expriment with binwidth and aesthetics
 qplot(price, data = diamonds)
 resolution(diamonds$price)
 qplot(price, data = diamonds, binwidth = 1)
@@ -50,3 +51,15 @@ qplot(price, data = diamonds, binwidth = 100)
 qplot(price, data = diamonds, binwidth = 1000)
 qplot(price, data = diamonds, binwidth = 100) + 
   coord_cartesian(xlim = c(0, 5000))
+qplot(price, data = diamonds, binwidth = 500) + 
+  scale_x_continuous(limits = c(0, 5000))
+qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ color)
+qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ cut)
+qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ clarity)
+
+### Preferable to use density for comparions vs count
+qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ cut)
+qplot(price, ..density.., data = diamonds, binwidth = 500,
+      geom = "freqpoly", colour = cut)
+qplot(price, ..density.., data = diamonds, binwidth = 500,
+      geom = "histogram") + facet_wrap(~ cut)
