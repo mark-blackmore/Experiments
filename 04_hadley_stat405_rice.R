@@ -121,5 +121,6 @@ z_big <- diamonds$z > 20
 diamonds$z[y_big] <- NA
 qplot(x, y, data = diamonds)
 
-
+## Clean up
+rm(list = ls())
               
