@@ -1,4 +1,4 @@
-# Lecture 2 for Hadley Wickhams' STAT 405 at Rice University
+# Lecture 2 for Hadley Wickham's STAT 405 at Rice University
 library(ggplot2)
 
 ## Five ways to explore the data

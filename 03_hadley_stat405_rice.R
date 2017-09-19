@@ -1,4 +1,4 @@
-# Lecture 3 for Hadley Wickhams' STAT 405 at Rice University
+# Lecture 3 for Hadley Wickham's STAT 405 at Rice University
 library(ggplot2)
 library(plyr)
 summary(diamonds)
