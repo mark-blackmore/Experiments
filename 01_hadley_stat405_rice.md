@@ -1,10 +1,9 @@
-01\_hadley\_stat405\_rice.R
+Lecture 1 for Hadley Wickham's STAT 405 at Rice U.
 ================
-Mark
-Mon Sep 18 19:37:13 2017
+Mark Blackmore
+2017-09-19
 
 ``` r
-# Lecture 1 for Hadley Wickham's STAT 405 at Rice University
 library(ggplot2)
 
 ## Five ways to explore the data

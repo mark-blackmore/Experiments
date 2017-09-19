@@ -1,10 +1,9 @@
-03\_hadley\_stat405\_rice.R
+Lecture 3 for Hadley Wickham's STAT 405 at Rice U.
 ================
-Mark
-Mon Sep 18 19:39:47 2017
+Mark Blackmore
+2017-09-19
 
 ``` r
-# Lecture 3 for Hadley Wickham's STAT 405 at Rice University
 library(ggplot2)
 library(plyr)
 summary(diamonds)
@@ -144,7 +143,7 @@ y <- setNames(x, letters[1:10])
 x[1:4]
 ```
 
-    ## [1]  3  2  5 10
+    ## [1] 6 4 7 9
 
 ``` r
 x[x == 5]
@@ -156,45 +155,45 @@ x[x == 5]
 y[order(y)]
 ```
 
-    ##  h  b  a  i  c  f  e  j  g  d 
+    ##  i  j  f  b  e  a  c  g  d  h 
     ##  1  2  3  4  5  6  7  8  9 10
 
 ``` r
 x[]
 ```
 
-    ##  [1]  3  2  5 10  7  6  9  1  4  8
+    ##  [1]  6  4  7  9  5  3  8 10  1  2
 
 ``` r
 x[-1]
 ```
 
-    ## [1]  2  5 10  7  6  9  1  4  8
+    ## [1]  4  7  9  5  3  8 10  1  2
 
 ``` r
 y["a"]
 ```
 
     ## a 
-    ## 3
+    ## 6
 
 ``` r
 x[x]
 ```
 
-    ##  [1]  5  2  7  8  9  6  4  3 10  1
+    ##  [1]  3  9  8  1  5  7 10  2  6  4
 
 ``` r
 x[x > 2 & x < 9]
 ```
 
-    ## [1] 3 5 7 6 4 8
+    ## [1] 6 4 7 5 3 8
 
 ``` r
 x[sample(10)]
 ```
 
-    ##  [1]  1  2  3  9 10  4  7  8  6  5
+    ##  [1]  5  6  1  4  7  8  2  3  9 10
 
 ``` r
 x[order(x)]
@@ -206,7 +205,7 @@ x[order(x)]
 x[-(1:5)]
 ```
 
-    ## [1] 6 9 1 4 8
+    ## [1]  3  8 10  1  2
 
 ``` r
 x["a"]
@@ -219,13 +218,13 @@ y[letters[10:1]]
 ```
 
     ##  j  i  h  g  f  e  d  c  b  a 
-    ##  8  4  1  9  6  7 10  5  2  3
+    ##  2  1 10  8  3  5  9  7  4  6
 
 ``` r
 x[x < 2 | x >= 8]
 ```
 
-    ## [1] 10  9  1  8
+    ## [1]  9  8 10  1
 
 ``` r
 # x[-1:5]

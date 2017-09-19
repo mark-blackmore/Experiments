@@ -1,4 +1,10 @@
-# Lecture 1 for Hadley Wickham's STAT 405 at Rice University
+#' ---
+#' title: "Lecture 1 for Hadley Wickham's STAT 405 at Rice U."
+#' author: "Mark Blackmore"
+#' date: "`r format(Sys.Date())`"
+#' output: github_document
+#' ---
+
 library(ggplot2)
 
 ## Five ways to explore the data

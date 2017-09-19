@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="data:text/css;charset=utf-8,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0Acode%20%3E%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%3E%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%3E%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%3E%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%3E%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%3E%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%3E%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%3E%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%3E%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%3E%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%3E%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%3E%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%3E%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="lecture-4-for-hadley-wickhams-stat-405-at-rice-u.">Lecture 4 for Hadley Wickham's STAT 405 at Rice U.</h1>
+<p>Mark Blackmore<br />
+2017-09-19</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+## Subsetting
+diamonds[diamonds$x &gt;<span class="st"> </span><span class="dv">10</span>, ]</code></pre></div>
+<pre><code>##       carat       cut color clarity depth table price     x     y    z
+## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
+## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
+## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
+## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
+## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds[<span class="dv">1</span>:<span class="dv">10</span>, <span class="kw">c</span>(<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;cut&quot;</span>)]</code></pre></div>
+<pre><code>##    carat       cut
+## 1   0.23     Ideal
+## 2   0.21   Premium
+## 3   0.23      Good
+## 4   0.29   Premium
+## 5   0.31      Good
+## 6   0.24 Very Good
+## 7   0.24 Very Good
+## 8   0.26 Very Good
+## 9   0.22      Fair
+## 10  0.23 Very Good</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Blank
+<span class="kw">str</span>(diamonds[, ])</code></pre></div>
+<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    53940 obs. of  10 variables:
+##  $ carat  : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+##  $ cut    : Ord.factor w/ 5 levels &quot;Fair&quot;&lt;&quot;Good&quot;&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
+##  $ color  : Ord.factor w/ 7 levels &quot;D&quot;&lt;&quot;E&quot;&lt;&quot;F&quot;&lt;&quot;G&quot;&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
+##  $ clarity: Ord.factor w/ 8 levels &quot;I1&quot;&lt;&quot;SI2&quot;&lt;&quot;SI1&quot;&lt;..: 2 3 5 4 2 6 7 3 4 5 ...
+##  $ depth  : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+##  $ table  : num  55 61 65 58 58 57 57 55 61 61 ...
+##  $ price  : int  326 326 327 334 335 336 336 337 337 338 ...
+##  $ x      : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Positive integers &amp; nothing
+diamonds[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># same as head(diamonds)</span></code></pre></div>
+<pre><code>##   carat       cut color clarity depth table price    x    y    z
+## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># diamonds[, 1:4] # watch out!</span>
+
+### Two positive integers in rows &amp; columns
+diamonds[<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
+<pre><code>##    carat       cut color clarity
+## 1   0.23     Ideal     E     SI2
+## 2   0.21   Premium     E     SI1
+## 3   0.23      Good     E     VS1
+## 4   0.29   Premium     I     VS2
+## 5   0.31      Good     J     SI2
+## 6   0.24 Very Good     J    VVS2
+## 7   0.24 Very Good     I    VVS1
+## 8   0.26 Very Good     H     SI1
+## 9   0.22      Fair     E     VS2
+## 10  0.23 Very Good     H     VS1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Repeating input repeats output
+diamonds[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="dv">1</span>:<span class="dv">4</span>]</code></pre></div>
+<pre><code>##     carat     cut color clarity
+## 1    0.23   Ideal     E     SI2
+## 1.1  0.23   Ideal     E     SI2
+## 1.2  0.23   Ideal     E     SI2
+## 2    0.21 Premium     E     SI1
+## 2.1  0.21 Premium     E     SI1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Negative integers
+diamonds[-(<span class="dv">1</span>:<span class="dv">53900</span>), -<span class="dv">1</span>]</code></pre></div>
+<pre><code>##             cut color clarity depth table price    x    y    z
+## 53901     Ideal     H     VS2  62.5    58  2752 5.71 5.75 3.58
+## 53902   Premium     E     VS1  61.6    58  2753 5.36 5.33 3.29
+## 53903 Very Good     E     SI2  59.9    61  2753 5.98 6.01 3.59
+## 53904 Very Good     E     SI1  62.9    57  2753 5.79 5.84 3.66
+## 53905   Premium     E     SI1  61.3    58  2753 5.68 5.71 3.49
+## 53906   Premium     E     SI1  60.0    59  2753 5.75 5.79 3.46
+## 53907 Very Good     E     SI1  63.0    55  2753 5.76 5.79 3.64
+## 53908 Very Good     E     SI1  61.0    57  2753 5.68 5.73 3.48
+## 53909 Very Good     E     SI1  61.2    57  2753 5.68 5.73 3.49
+## 53910 Very Good     E     SI1  62.7    59  2753 5.63 5.67 3.54
+## 53911   Premium     E     SI1  60.5    58  2753 5.74 5.77 3.48
+## 53912   Premium     E      IF  59.8    60  2753 5.43 5.38 3.23
+## 53913   Premium     F    VVS1  61.8    59  2753 5.48 5.40 3.36
+## 53914      Good     G     VS2  64.2    58  2753 5.84 5.81 3.74
+## 53915      Good     I     VS1  63.7    59  2753 5.94 5.90 3.77
+## 53916     Ideal     E     SI2  62.1    56  2753 5.84 5.86 3.63
+## 53917      Good     D     SI1  63.1    59  2753 5.71 5.74 3.61
+## 53918 Very Good     J     SI1  63.2    60  2753 6.12 6.09 3.86
+## 53919   Premium     I     VS1  59.3    62  2753 5.93 5.85 3.49
+## 53920     Ideal     I    VVS1  62.2    55  2753 5.89 5.87 3.66
+## 53921 Very Good     E     VS2  62.4    60  2755 5.57 5.61 3.49
+## 53922 Very Good     E     VS2  62.8    60  2755 5.59 5.65 3.53
+## 53923 Very Good     D     VS1  63.1    59  2755 5.67 5.58 3.55
+## 53924     Ideal     I     VS2  61.3    56  2756 5.80 5.84 3.57
+## 53925     Ideal     I     VS2  61.6    55  2756 5.82 5.84 3.59
+## 53926     Ideal     I     SI1  61.6    56  2756 5.95 5.97 3.67
+## 53927     Ideal     E     SI1  61.9    56  2756 5.71 5.73 3.54
+## 53928      Good     F     SI1  58.1    59  2756 6.06 6.13 3.54
+## 53929   Premium     E     SI2  61.4    58  2756 6.03 5.96 3.68
+## 53930     Ideal     G     VS1  61.4    56  2756 5.76 5.73 3.53
+## 53931   Premium     E     SI1  60.5    55  2756 5.79 5.74 3.49
+## 53932   Premium     F     SI1  59.8    62  2756 5.74 5.73 3.43
+## 53933 Very Good     E     VS2  60.5    59  2757 5.71 5.76 3.47
+## 53934 Very Good     E     VS2  61.2    59  2757 5.69 5.72 3.49
+## 53935   Premium     D     SI1  62.7    59  2757 5.69 5.73 3.58
+## 53936     Ideal     D     SI1  60.8    57  2757 5.75 5.76 3.50
+## 53937      Good     D     SI1  63.1    55  2757 5.69 5.75 3.61
+## 53938 Very Good     D     SI1  62.8    60  2757 5.66 5.68 3.56
+## 53939   Premium     H     SI2  61.0    58  2757 6.15 6.12 3.74
+## 53940     Ideal     D     SI2  62.2    55  2757 5.83 5.87 3.64</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Logical
+x_big &lt;-<span class="st"> </span>diamonds$x &gt;<span class="st"> </span><span class="dv">10</span>
+<span class="kw">head</span>(x_big)</code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(x_big)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x_big)</code></pre></div>
+<pre><code>## [1] 9.269559e-05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(x_big)</code></pre></div>
+<pre><code>## x_big
+## FALSE  TRUE 
+## 53935     5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds$x[x_big]</code></pre></div>
+<pre><code>## [1] 10.14 10.02 10.01 10.74 10.23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds[x_big, ]</code></pre></div>
+<pre><code>##       carat       cut color clarity depth table price     x     y    z
+## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
+## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
+## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
+## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
+## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Logical vectors
+small &lt;-<span class="st"> </span>diamonds[diamonds$carat &lt;<span class="st"> </span><span class="dv">1</span>, ]
+lowqual &lt;-<span class="st"> </span>diamonds[diamonds$clarity
+                    %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I1&quot;</span>, <span class="st">&quot;SI2&quot;</span>, <span class="st">&quot;SI1&quot;</span>), ]
+
+### Boolean operators: &amp; | !
+small &lt;-<span class="st"> </span>diamonds$carat &lt;<span class="st"> </span><span class="dv">1</span> &amp;<span class="st"> </span>diamonds$price &gt;<span class="st"> </span><span class="dv">500</span>
+lowqual &lt;-<span class="st"> </span>diamonds$color ==<span class="st"> &quot;D&quot;</span> |<span class="st"> </span>diamonds$cut ==<span class="st"> &quot;Fair&quot;</span>
+notcolor &lt;-<span class="st"> </span>diamonds[!diamonds$color %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>), ]
+
+### Character subsetting
+diamonds[<span class="dv">1</span>:<span class="dv">5</span>, <span class="kw">c</span>(<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;cut&quot;</span>, <span class="st">&quot;color&quot;</span>)]</code></pre></div>
+<pre><code>##   carat     cut color
+## 1  0.23   Ideal     E
+## 2  0.21 Premium     E
+## 3  0.23    Good     E
+## 4  0.29 Premium     I
+## 5  0.31    Good     J</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds[<span class="dv">1</span>:<span class="dv">5</span>, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">3</span>)]</code></pre></div>
+<pre><code>##   clarity    y color
+## 1     SI2 3.98     E
+## 2     SI1 3.84     E
+## 3     VS1 4.07     E
+## 4     VS2 4.23     I
+## 5     SI2 4.35     J</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Useful technique: change labelling
+labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fair&quot;</span> =<span class="st"> &quot;C&quot;</span>, <span class="st">&quot;Good&quot;</span> =<span class="st"> &quot;B&quot;</span>, <span class="st">&quot;Very Good&quot;</span> =<span class="st"> &quot;B+&quot;</span>, <span class="st">&quot;Premium&quot;</span> =<span class="st"> &quot;A&quot;</span>,
+            <span class="st">&quot;Ideal&quot;</span> =<span class="st"> &quot;A+&quot;</span>)
+labels</code></pre></div>
+<pre><code>##      Fair      Good Very Good   Premium     Ideal 
+##       &quot;C&quot;       &quot;B&quot;      &quot;B+&quot;       &quot;A&quot;      &quot;A+&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels[<span class="st">&quot;Fair&quot;</span>]</code></pre></div>
+<pre><code>## Fair 
+##  &quot;C&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels[<span class="st">&quot;Very Good&quot;</span>]</code></pre></div>
+<pre><code>## Very Good 
+##      &quot;B+&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first_10 &lt;-<span class="st"> </span>diamonds$cut[<span class="dv">1</span>:<span class="dv">10</span>]
+first_10</code></pre></div>
+<pre><code>##  [1] Ideal     Premium   Good      Premium   Good      Very Good Very Good
+##  [8] Very Good Fair      Very Good
+## Levels: Fair &lt; Good &lt; Very Good &lt; Premium &lt; Ideal</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels[first_10]</code></pre></div>
+<pre><code>##     Ideal   Premium      Good   Premium      Good Very Good Very Good 
+##      &quot;A+&quot;       &quot;A&quot;       &quot;B&quot;       &quot;A&quot;       &quot;B&quot;      &quot;B+&quot;      &quot;B+&quot; 
+## Very Good      Fair Very Good 
+##      &quot;B+&quot;       &quot;C&quot;      &quot;B+&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all &lt;-<span class="st"> </span>labels[diamonds$cut]
+<span class="kw">table</span>(all)</code></pre></div>
+<pre><code>## all
+##     A    A+     B    B+     C 
+## 13791 21551  4906 12082  1610</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(diamonds$cut)</code></pre></div>
+<pre><code>## 
+##      Fair      Good Very Good   Premium     Ideal 
+##      1610      4906     12082     13791     21551</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Can also be used to collapse levels
+<span class="kw">table</span>(<span class="kw">c</span>(<span class="st">&quot;Fair&quot;</span> =<span class="st"> &quot;C&quot;</span>, <span class="st">&quot;Good&quot;</span> =<span class="st"> &quot;B&quot;</span>, <span class="st">&quot;Very Good&quot;</span> =
+<span class="st">          &quot;B&quot;</span>, <span class="st">&quot;Premium&quot;</span> =<span class="st"> &quot;A&quot;</span>, <span class="st">&quot;Ideal&quot;</span> =<span class="st"> &quot;A&quot;</span>)[diamonds$cut])</code></pre></div>
+<pre><code>## 
+##     A     B     C 
+## 35342 16988  1610</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">#### If you're confused by a big statement, break it up in to smaller pieces
+grades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fair&quot;</span> =<span class="st"> &quot;C&quot;</span>, <span class="st">&quot;Good&quot;</span> =<span class="st"> &quot;B&quot;</span>, <span class="st">&quot;Very Good&quot;</span>
+            =<span class="st"> &quot;B&quot;</span>, <span class="st">&quot;Premium&quot;</span> =<span class="st"> &quot;A&quot;</span>, <span class="st">&quot;Ideal&quot;</span> =<span class="st"> &quot;A&quot;</span>)
+grades</code></pre></div>
+<pre><code>##      Fair      Good Very Good   Premium     Ideal 
+##       &quot;C&quot;       &quot;B&quot;       &quot;B&quot;       &quot;A&quot;       &quot;A&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cuts &lt;-<span class="st"> </span>diamonds$cut
+<span class="kw">head</span>(grades[cuts])</code></pre></div>
+<pre><code>##     Ideal   Premium      Good   Premium      Good Very Good 
+##       &quot;A&quot;       &quot;A&quot;       &quot;B&quot;       &quot;A&quot;       &quot;B&quot;       &quot;B&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(grades[cuts])</code></pre></div>
+<pre><code>## 
+##     A     B     C 
+## 35342 16988  1610</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?cut <span class="co"># continuous equivalent</span>
+
+### Exercise
+<span class="kw">head</span>(mpg)</code></pre></div>
+<pre><code>##   manufacturer model displ year cyl      trans drv cty hwy fl   class
+## 1         audi    a4   1.8 1999   4   auto(l5)   f  18  29  p compact
+## 2         audi    a4   1.8 1999   4 manual(m5)   f  21  29  p compact
+## 3         audi    a4   2.0 2008   4 manual(m6)   f  20  31  p compact
+## 4         audi    a4   2.0 2008   4   auto(av)   f  21  30  p compact
+## 5         audi    a4   2.8 1999   6   auto(l5)   f  16  26  p compact
+## 6         audi    a4   2.8 1999   6 manual(m5)   f  18  26  p compact</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(mpg)</code></pre></div>
+<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    234 obs. of  11 variables:
+##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...
+##  $ model       : chr  &quot;a4&quot; &quot;a4&quot; &quot;a4&quot; &quot;a4&quot; ...
+##  $ displ       : num  1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+##  $ year        : int  1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+##  $ cyl         : int  4 4 4 4 6 6 6 4 4 4 ...
+##  $ trans       : chr  &quot;auto(l5)&quot; &quot;manual(m5)&quot; &quot;manual(m6)&quot; &quot;auto(av)&quot; ...
+##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...
+##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...
+##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...
+##  $ fl          : chr  &quot;p&quot; &quot;p&quot; &quot;p&quot; &quot;p&quot; ...
+##  $ class       : chr  &quot;compact&quot; &quot;compact&quot; &quot;compact&quot; &quot;compact&quot; ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg$fl &lt;-<span class="st"> </span><span class="kw">as.character</span>(mpg$fl) 
+
+fueltype &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;r&quot;</span> =<span class="st"> &quot;regular&quot;</span>, <span class="st">&quot;d&quot;</span> =<span class="st"> &quot;other&quot;</span>, <span class="st">&quot;p&quot;</span> =<span class="st"> &quot;premium&quot;</span>, <span class="st">&quot;c&quot;</span> =<span class="st"> &quot;other&quot;</span>,
+              <span class="st">&quot;e&quot;</span> =<span class="st"> &quot;other&quot;</span>)
+<span class="kw">table</span>(fueltype[mpg$fl])</code></pre></div>
+<pre><code>## 
+##   other premium regular 
+##      14      52     168</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Missing Values</code></pre></div>
+
+</body>
+</html>
