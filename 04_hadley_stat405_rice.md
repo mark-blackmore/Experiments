@@ -1,4 +1,4 @@
-Lecture 4 for Hadley Wickham's STAT 405 at Rice U.
+Lecture 4 for Hadley Wickham's STAT 405 at Rice U. Subsetting
 ================
 Mark Blackmore
 2017-09-19
@@ -11,11 +11,19 @@ diamonds[diamonds$x > 10, ]
 ```
 
     ##       carat       cut color clarity depth table price     x     y    z
+    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.3     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
     ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
+    ## NA.4     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
     ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
+    ## NA.5     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
+    ## NA.6     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.7     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
 
 ``` r
 diamonds[1:10, c("carat", "cut")]
@@ -153,13 +161,13 @@ head(x_big)
 sum(x_big)
 ```
 
-    ## [1] 5
+    ## [1] NA
 
 ``` r
 mean(x_big)
 ```
 
-    ## [1] 9.269559e-05
+    ## [1] NA
 
 ``` r
 table(x_big)
@@ -167,24 +175,33 @@ table(x_big)
 
     ## x_big
     ## FALSE  TRUE 
-    ## 53935     5
+    ## 53927     5
 
 ``` r
 diamonds$x[x_big]
 ```
 
-    ## [1] 10.14 10.02 10.01 10.74 10.23
+    ##  [1]    NA    NA    NA    NA 10.14 10.02    NA 10.01 10.74    NA 10.23
+    ## [12]    NA    NA
 
 ``` r
 diamonds[x_big, ]
 ```
 
     ##       carat       cut color clarity depth table price     x     y    z
+    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.3     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
     ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
+    ## NA.4     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
     ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
+    ## NA.5     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
+    ## NA.6     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.7     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
 
 ``` r
 ### Logical vectors
@@ -359,5 +376,102 @@ table(fueltype[mpg$fl])
     ##      14      52     168
 
 ``` r
-## Missing Values
+## Missing Values & Outliers
+qplot(x, y, data = diamonds)
 ```
+
+    ## Warning: Removed 10 rows containing missing values (geom_point).
+
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
+
+``` r
+qplot(x, z, data = diamonds)
+```
+
+    ## Warning: Removed 22 rows containing missing values (geom_point).
+
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-2.png)
+
+``` r
+y_big <- diamonds$y > 20
+z_big <- diamonds$z > 20
+x_zero <- diamonds$x == 0
+y_zero <- diamonds$y == 0
+z_zero <- diamonds$z == 0
+zeros <- x_zero | y_zero | z_zero
+bad <- y_big | z_big | zeros
+good <- diamonds[!bad, ]
+
+qplot(x, y, data = good)
+```
+
+    ## Warning: Removed 22 rows containing missing values (geom_point).
+
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-3.png)
+
+``` r
+qplot(x, y, data = good, alpha = I(1/100))
+```
+
+    ## Warning: Removed 22 rows containing missing values (geom_point).
+
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-4.png)
+
+``` r
+### Guess what happens
+5 + NA
+```
+
+    ## [1] NA
+
+``` r
+NA / 2
+```
+
+    ## [1] NA
+
+``` r
+sum(c(5, NA))
+```
+
+    ## [1] NA
+
+``` r
+mean(c(5, NA))
+```
+
+    ## [1] NA
+
+``` r
+NA < 3
+```
+
+    ## [1] NA
+
+``` r
+NA == 3
+```
+
+    ## [1] NA
+
+``` r
+NA == NA # uses is.na() to check for missing values
+```
+
+    ## [1] NA
+
+``` r
+### Can use subsetting + <- to change individual values
+diamonds$x[diamonds$x == 0] <- NA
+diamonds$y[diamonds$y == 0] <- NA
+diamonds$z[diamonds$z == 0] <- NA
+y_big <- diamonds$y > 20
+diamonds$y[y_big] <- NA
+z_big <- diamonds$z > 20
+diamonds$z[y_big] <- NA
+qplot(x, y, data = diamonds)
+```
+
+    ## Warning: Removed 10 rows containing missing values (geom_point).
+
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-5.png)

@@ -1,4 +1,4 @@
-Lecture 1 for Hadley Wickham's STAT 405 at Rice U.
+Lecture 1 for Hadley Wickham's STAT 405 at Rice U. Introductions, R & ggplot2
 ================
 Mark Blackmore
 2017-09-19

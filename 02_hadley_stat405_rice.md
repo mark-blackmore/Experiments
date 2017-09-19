@@ -1,4 +1,4 @@
-Lecture 2 for Hadley Wickham's STAT 405 at Rice U.
+Lecture 2 for Hadley Wickham's STAT 405 at Rice U. Distributions
 ================
 Mark Blackmore
 2017-09-19
@@ -48,21 +48,21 @@ summary(diamonds)
     ##  Max.   :5.0100                     I: 5422   VVS1   : 3655  
     ##                                     J: 2808   (Other): 2531  
     ##      depth           table           price             x         
-    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 0.000  
+    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 3.730  
     ##  1st Qu.:61.00   1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710  
     ##  Median :61.80   Median :57.00   Median : 2401   Median : 5.700  
-    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.731  
+    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.732  
     ##  3rd Qu.:62.50   3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540  
     ##  Max.   :79.00   Max.   :95.00   Max.   :18823   Max.   :10.740  
-    ##                                                                  
-    ##        y                z         
-    ##  Min.   : 0.000   Min.   : 0.000  
-    ##  1st Qu.: 4.720   1st Qu.: 2.910  
-    ##  Median : 5.710   Median : 3.530  
-    ##  Mean   : 5.735   Mean   : 3.539  
-    ##  3rd Qu.: 6.540   3rd Qu.: 4.040  
-    ##  Max.   :58.900   Max.   :31.800  
-    ## 
+    ##                                                  NA's   :8       
+    ##        y                z        
+    ##  Min.   : 3.680   Min.   : 1.07  
+    ##  1st Qu.: 4.720   1st Qu.: 2.91  
+    ##  Median : 5.710   Median : 3.53  
+    ##  Mean   : 5.734   Mean   : 3.54  
+    ##  3rd Qu.: 6.540   3rd Qu.: 4.04  
+    ##  Max.   :10.540   Max.   :31.80  
+    ##  NA's   :9        NA's   :22
 
 ``` r
 qplot(reorder(cut, price, median), log(price), data = diamonds, geom = "boxplot")

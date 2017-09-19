@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 4 for Hadley Wickham's STAT 405 at Rice U."
+#' title: "Lecture 4 for Hadley Wickham's STAT 405 at Rice U. \t Subsetting"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
@@ -86,5 +86,40 @@ fueltype <- c("r" = "regular", "d" = "other", "p" = "premium", "c" = "other",
               "e" = "other")
 table(fueltype[mpg$fl])
 
-## Missing Values
+## Missing Values & Outliers
+qplot(x, y, data = diamonds)
+qplot(x, z, data = diamonds)
+
+y_big <- diamonds$y > 20
+z_big <- diamonds$z > 20
+x_zero <- diamonds$x == 0
+y_zero <- diamonds$y == 0
+z_zero <- diamonds$z == 0
+zeros <- x_zero | y_zero | z_zero
+bad <- y_big | z_big | zeros
+good <- diamonds[!bad, ]
+
+qplot(x, y, data = good)
+qplot(x, y, data = good, alpha = I(1/100))
+
+### Guess what happens
+5 + NA
+NA / 2
+sum(c(5, NA))
+mean(c(5, NA))
+NA < 3
+NA == 3
+NA == NA # uses is.na() to check for missing values
+
+### Can use subsetting + <- to change individual values
+diamonds$x[diamonds$x == 0] <- NA
+diamonds$y[diamonds$y == 0] <- NA
+diamonds$z[diamonds$z == 0] <- NA
+y_big <- diamonds$y > 20
+diamonds$y[y_big] <- NA
+z_big <- diamonds$z > 20
+diamonds$z[y_big] <- NA
+qplot(x, y, data = diamonds)
+
+
               

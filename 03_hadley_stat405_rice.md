@@ -1,4 +1,4 @@
-Lecture 3 for Hadley Wickham's STAT 405 at Rice U.
+Lecture 3 for Hadley Wickham's STAT 405 at Rice U. Scatterplots for Big Data, Subsetting
 ================
 Mark Blackmore
 2017-09-19
@@ -18,21 +18,21 @@ summary(diamonds)
     ##  Max.   :5.0100                     I: 5422   VVS1   : 3655  
     ##                                     J: 2808   (Other): 2531  
     ##      depth           table           price             x         
-    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 0.000  
+    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 3.730  
     ##  1st Qu.:61.00   1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710  
     ##  Median :61.80   Median :57.00   Median : 2401   Median : 5.700  
-    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.731  
+    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.732  
     ##  3rd Qu.:62.50   3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540  
     ##  Max.   :79.00   Max.   :95.00   Max.   :18823   Max.   :10.740  
-    ##                                                                  
-    ##        y                z         
-    ##  Min.   : 0.000   Min.   : 0.000  
-    ##  1st Qu.: 4.720   1st Qu.: 2.910  
-    ##  Median : 5.710   Median : 3.530  
-    ##  Mean   : 5.735   Mean   : 3.539  
-    ##  3rd Qu.: 6.540   3rd Qu.: 4.040  
-    ##  Max.   :58.900   Max.   :31.800  
-    ## 
+    ##                                                  NA's   :8       
+    ##        y                z        
+    ##  Min.   : 3.680   Min.   : 1.07  
+    ##  1st Qu.: 4.720   1st Qu.: 2.91  
+    ##  Median : 5.710   Median : 3.53  
+    ##  Mean   : 5.734   Mean   : 3.54  
+    ##  3rd Qu.: 6.540   3rd Qu.: 4.04  
+    ##  Max.   :10.540   Max.   :31.80  
+    ##  NA's   :9        NA's   :22
 
 ``` r
 ## Why are poorer cuts more expensive
@@ -143,7 +143,7 @@ y <- setNames(x, letters[1:10])
 x[1:4]
 ```
 
-    ## [1] 6 4 7 9
+    ## [1]  8  9 10  1
 
 ``` r
 x[x == 5]
@@ -155,45 +155,45 @@ x[x == 5]
 y[order(y)]
 ```
 
-    ##  i  j  f  b  e  a  c  g  d  h 
+    ##  d  i  h  j  g  e  f  a  b  c 
     ##  1  2  3  4  5  6  7  8  9 10
 
 ``` r
 x[]
 ```
 
-    ##  [1]  6  4  7  9  5  3  8 10  1  2
+    ##  [1]  8  9 10  1  6  7  5  3  2  4
 
 ``` r
 x[-1]
 ```
 
-    ## [1]  4  7  9  5  3  8 10  1  2
+    ## [1]  9 10  1  6  7  5  3  2  4
 
 ``` r
 y["a"]
 ```
 
     ## a 
-    ## 6
+    ## 8
 
 ``` r
 x[x]
 ```
 
-    ##  [1]  3  9  8  1  5  7 10  2  6  4
+    ##  [1]  3  2  4  8  7  5  6 10  9  1
 
 ``` r
 x[x > 2 & x < 9]
 ```
 
-    ## [1] 6 4 7 5 3 8
+    ## [1] 8 6 7 5 3 4
 
 ``` r
 x[sample(10)]
 ```
 
-    ##  [1]  5  6  1  4  7  8  2  3  9 10
+    ##  [1]  8  4  7  5 10  2  3  6  9  1
 
 ``` r
 x[order(x)]
@@ -205,7 +205,7 @@ x[order(x)]
 x[-(1:5)]
 ```
 
-    ## [1]  3  8 10  1  2
+    ## [1] 7 5 3 2 4
 
 ``` r
 x["a"]
@@ -218,13 +218,13 @@ y[letters[10:1]]
 ```
 
     ##  j  i  h  g  f  e  d  c  b  a 
-    ##  2  1 10  8  3  5  9  7  4  6
+    ##  4  2  3  5  7  6  1 10  9  8
 
 ``` r
 x[x < 2 | x >= 8]
 ```
 
-    ## [1]  9  8 10  1
+    ## [1]  8  9 10  1
 
 ``` r
 # x[-1:5]
@@ -608,13 +608,13 @@ head(x_big)
 sum(x_big)
 ```
 
-    ## [1] 5
+    ## [1] NA
 
 ``` r
 mean(x_big)
 ```
 
-    ## [1] 9.269559e-05
+    ## [1] NA
 
 ``` r
 table(x_big)
@@ -622,24 +622,33 @@ table(x_big)
 
     ## x_big
     ## FALSE  TRUE 
-    ## 53935     5
+    ## 53927     5
 
 ``` r
 diamonds$x[x_big]
 ```
 
-    ## [1] 10.14 10.02 10.01 10.74 10.23
+    ##  [1]    NA    NA    NA    NA 10.14 10.02    NA 10.01 10.74    NA 10.23
+    ## [12]    NA    NA
 
 ``` r
 diamonds[x_big, ]
 ```
 
     ##       carat       cut color clarity depth table price     x     y    z
+    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.3     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
     ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
+    ## NA.4     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
     ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
+    ## NA.5     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
+    ## NA.6     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+    ## NA.7     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
 
 ``` r
 small <- diamonds[diamonds$carat < 1, ]
@@ -662,5 +671,6 @@ diamonds[logical_answer,]
     ## 41856  0.61   Premium     G     SI1  60.8    60  1255 5.42 5.42 3.31
     ## 42128  0.48     Ideal     F     VS2  62.4    54  1279 5.03 5.03 3.15
     ## 43491  0.51   Premium     F     SI1  61.4    59  1421 5.13 5.13 3.16
-    ## 49557  0.71      Good     F     SI2  64.1    60  2130 0.00 0.00 0.00
-    ## 49558  0.71      Good     F     SI2  64.1    60  2130 0.00 0.00 0.00
+    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA   NA   NA   NA
+    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA   NA   NA   NA
+    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA   NA   NA   NA

@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 2 for Hadley Wickham's STAT 405 at Rice U."
+#' title: "Lecture 2 for Hadley Wickham's STAT 405 at Rice U. \t Distributions"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
