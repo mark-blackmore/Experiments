@@ -23,9 +23,9 @@ qplot(table / depth, data = diamonds,
 # Also tried: 0.05, 0.005, 0.002
 
 #' ## Exercise: rewrite the following with proper style
-#' x < - c( 1,-2,3,-4,5,NA )
-#' y < - x * - 1
-#' y[ y>0 ]
+x <- c( 1,-2,3,-4,5,NA )
+y <- x * - 1
+y[ y>0 ]
 
 #' ### Answer
 x <- c(1, -2, 3, -4, 5, NA)

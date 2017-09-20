@@ -57,7 +57,15 @@ qplot(table / depth, data = diamonds,
 Exercise: rewrite the following with proper style
 -------------------------------------------------
 
-x &lt; - c( 1,-2,3,-4,5,NA ) y &lt; - x \* - 1 y\[ y&gt;0 \] \#\#\# Answer
+``` r
+x <- c( 1,-2,3,-4,5,NA )
+y <- x * - 1
+y[ y>0 ]
+```
+
+    ## [1]  2  4 NA
+
+### Answer
 
 ``` r
 x <- c(1, -2, 3, -4, 5, NA)
