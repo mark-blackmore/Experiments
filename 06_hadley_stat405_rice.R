@@ -8,7 +8,7 @@
 library(ggplot2)
 library(plyr)
 
-## Example: Good code presentation
+#' ## Example: Good code presentation
 # Table and depth -------------------------
 qplot(table, depth, data = diamonds)
 qplot(table, depth, data = diamonds) +
@@ -22,12 +22,12 @@ qplot(table / depth, data = diamonds,
   xlim(0.8, 1.2)
 # Also tried: 0.05, 0.005, 0.002
 
-## Exercise: rewrite the following with proper style
-x < - c( 1,-2,3,-4,5,NA )
-y < - x * - 1
-y[ y>0 ]
+#' ## Exercise: rewrite the following with proper style
+#' x < - c( 1,-2,3,-4,5,NA )
+#' y < - x * - 1
+#' y[ y>0 ]
 
-### Answer
+#' ### Answer
 x <- c(1, -2, 3, -4, 5, NA)
 y <- x * -1
 y[y > 0]

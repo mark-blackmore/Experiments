@@ -1,13 +1,17 @@
 Lecture 2 for Hadley Wickham's STAT 405 at Rice U. Distributions
 ================
 Mark Blackmore
-2017-09-19
+2017-09-20
 
 ``` r
 library(ggplot2)
+```
 
-## Five ways to explore the data
-?diamonds
+Five ways to explore the data
+-----------------------------
+
+``` r
+# ?diamonds
 head(diamonds)
 ```
 
@@ -48,62 +52,66 @@ summary(diamonds)
     ##  Max.   :5.0100                     I: 5422   VVS1   : 3655  
     ##                                     J: 2808   (Other): 2531  
     ##      depth           table           price             x         
-    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 3.730  
+    ##  Min.   :43.00   Min.   :43.00   Min.   :  326   Min.   : 0.000  
     ##  1st Qu.:61.00   1st Qu.:56.00   1st Qu.:  950   1st Qu.: 4.710  
     ##  Median :61.80   Median :57.00   Median : 2401   Median : 5.700  
-    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.732  
+    ##  Mean   :61.75   Mean   :57.46   Mean   : 3933   Mean   : 5.731  
     ##  3rd Qu.:62.50   3rd Qu.:59.00   3rd Qu.: 5324   3rd Qu.: 6.540  
     ##  Max.   :79.00   Max.   :95.00   Max.   :18823   Max.   :10.740  
-    ##                                                  NA's   :8       
-    ##        y                z        
-    ##  Min.   : 3.680   Min.   : 1.07  
-    ##  1st Qu.: 4.720   1st Qu.: 2.91  
-    ##  Median : 5.710   Median : 3.53  
-    ##  Mean   : 5.734   Mean   : 3.54  
-    ##  3rd Qu.: 6.540   3rd Qu.: 4.04  
-    ##  Max.   :10.540   Max.   :31.80  
-    ##  NA's   :9        NA's   :22
+    ##                                                                  
+    ##        y                z         
+    ##  Min.   : 0.000   Min.   : 0.000  
+    ##  1st Qu.: 4.720   1st Qu.: 2.910  
+    ##  Median : 5.710   Median : 3.530  
+    ##  Mean   : 5.735   Mean   : 3.539  
+    ##  3rd Qu.: 6.540   3rd Qu.: 4.040  
+    ##  Max.   :58.900   Max.   :31.800  
+    ## 
 
 ``` r
 qplot(reorder(cut, price, median), log(price), data = diamonds, geom = "boxplot")
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
+
+Examine distributions
+---------------------
+
+### Categorical variable generates barplot
 
 ``` r
-## Examine distributions 
-### Categorical variable generates barplot 
 qplot(cut, data = diamonds)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-2.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+
+### Continuous variable generates histogram
 
 ``` r
-### Continuous variable generates histogram
 qplot(carat, data = diamonds)
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-3.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 ``` r
 qplot(carat, data = diamonds, binwidth = 1)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-4.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-2.png)
 
 ``` r
 qplot(carat, data = diamonds, binwidth = 0.1)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-5.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-3.png)
 
 ``` r
 qplot(carat, data = diamonds, binwidth = 0.01)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-6.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-4.png)
 
 ``` r
 resolution(diamonds$carat)
@@ -117,14 +125,15 @@ last_plot() + xlim(0, 3)
 
     ## Warning: Removed 32 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-7.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-5.png)
+
+### Always play with binwidth
 
 ``` r
-### Always play with binwidth
 qplot(table, data = diamonds, binwidth = 1)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-8.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ``` r
 qplot(table, data = diamonds, binwidth = 1) +
@@ -133,7 +142,7 @@ qplot(table, data = diamonds, binwidth = 1) +
 
     ## Warning: Removed 12 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-9.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
 
 ``` r
 qplot(table, data = diamonds, binwidth = 0.1) +
@@ -142,7 +151,7 @@ qplot(table, data = diamonds, binwidth = 0.1) +
 
     ## Warning: Removed 12 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-10.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-3.png)
 
 ``` r
 qplot(table, data = diamonds, binwidth = 0.1) +
@@ -151,16 +160,18 @@ qplot(table, data = diamonds, binwidth = 0.1) +
 
     ## Warning: Removed 12 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-11.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-4.png)
+
+### Different ways to zoon
 
 ``` r
-?coord_cartesian
+# ?coord_cartesian
 d <- ggplot(diamonds, aes(carat, price)) +
   stat_bin2d(bins = 25, colour = "white")
 d
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-12.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 ``` r
 d + scale_x_continuous(limits = c(0, 1))
@@ -168,20 +179,21 @@ d + scale_x_continuous(limits = c(0, 1))
 
     ## Warning: Removed 17502 rows containing non-finite values (stat_bin2d).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-13.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-2.png)
 
 ``` r
 d + coord_cartesian(xlim = c(0, 1))
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-14.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-3.png)
+
+### Using Aesthetics
 
 ``` r
-### Using Aesthetics
 qplot(depth, data = diamonds, binwidth = 0.2)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-15.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
 ``` r
 qplot(depth, data = diamonds, binwidth = 0.2,
@@ -190,7 +202,7 @@ qplot(depth, data = diamonds, binwidth = 0.2,
 
     ## Warning: Removed 45 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-16.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
 
 ``` r
 qplot(depth, data = diamonds, binwidth = 0.2) + 
@@ -199,16 +211,17 @@ qplot(depth, data = diamonds, binwidth = 0.2) +
 
     ## Warning: Removed 45 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-17.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-3.png)
+
+### Exercise: Expriment with binwidth and aesthetics
 
 ``` r
-### Exercise: Expriment with binwidth and aesthetics
 qplot(price, data = diamonds)
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-18.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
 ``` r
 resolution(diamonds$price)
@@ -220,32 +233,32 @@ resolution(diamonds$price)
 qplot(price, data = diamonds, binwidth = 1)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-19.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-2.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 10)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-20.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-3.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 100)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-21.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-4.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 1000)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-22.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-5.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 100) + 
   coord_cartesian(xlim = c(0, 5000))
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-23.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-6.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 500) + 
@@ -254,43 +267,44 @@ qplot(price, data = diamonds, binwidth = 500) +
 
     ## Warning: Removed 14714 rows containing non-finite values (stat_bin).
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-24.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-7.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ color)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-25.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-8.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ cut)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-26.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-9.png)
 
 ``` r
 qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ clarity)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-27.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-10.png)
+
+### Preferable to use density for comparions vs count
 
 ``` r
-### Preferable to use density for comparions vs count
 qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ cut)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-28.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
 ``` r
 qplot(price, ..density.., data = diamonds, binwidth = 500,
       geom = "freqpoly", colour = cut)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-29.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-2.png)
 
 ``` r
 qplot(price, ..density.., data = diamonds, binwidth = 500,
       geom = "histogram") + facet_wrap(~ cut)
 ```
 
-![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-30.png)
+![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-3.png)

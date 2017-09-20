@@ -1,29 +1,25 @@
 Lecture 4 for Hadley Wickham's STAT 405 at Rice U. Subsetting
 ================
 Mark Blackmore
-2017-09-19
+2017-09-20
 
 ``` r
 library(ggplot2)
+```
 
-## Subsetting
+Subsetting
+----------
+
+``` r
 diamonds[diamonds$x > 10, ]
 ```
 
     ##       carat       cut color clarity depth table price     x     y    z
-    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.3     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
     ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
-    ## NA.4     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
     ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
-    ## NA.5     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
-    ## NA.6     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.7     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
 
 ``` r
 diamonds[1:10, c("carat", "cut")]
@@ -41,8 +37,9 @@ diamonds[1:10, c("carat", "cut")]
     ## 9   0.22      Fair
     ## 10  0.23 Very Good
 
-``` r
 ### Blank
+
+``` r
 str(diamonds[, ])
 ```
 
@@ -58,8 +55,9 @@ str(diamonds[, ])
     ##  $ y      : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
     ##  $ z      : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
 
-``` r
 ### Positive integers & nothing
+
+``` r
 diamonds[1:6, ] # same as head(diamonds)
 ```
 
@@ -73,8 +71,11 @@ diamonds[1:6, ] # same as head(diamonds)
 
 ``` r
 # diamonds[, 1:4] # watch out!
+```
 
 ### Two positive integers in rows & columns
+
+``` r
 diamonds[1:10, 1:4]
 ```
 
@@ -90,8 +91,9 @@ diamonds[1:10, 1:4]
     ## 9   0.22      Fair     E     VS2
     ## 10  0.23 Very Good     H     VS1
 
-``` r
 ### Repeating input repeats output
+
+``` r
 diamonds[c(1,1,1,2,2), 1:4]
 ```
 
@@ -102,8 +104,9 @@ diamonds[c(1,1,1,2,2), 1:4]
     ## 2    0.21 Premium     E     SI1
     ## 2.1  0.21 Premium     E     SI1
 
-``` r
 ### Negative integers
+
+``` r
 diamonds[-(1:53900), -1]
 ```
 
@@ -149,8 +152,9 @@ diamonds[-(1:53900), -1]
     ## 53939   Premium     H     SI2  61.0    58  2757 6.15 6.12 3.74
     ## 53940     Ideal     D     SI2  62.2    55  2757 5.83 5.87 3.64
 
-``` r
 ### Logical
+
+``` r
 x_big <- diamonds$x > 10
 head(x_big)
 ```
@@ -161,13 +165,13 @@ head(x_big)
 sum(x_big)
 ```
 
-    ## [1] NA
+    ## [1] 5
 
 ``` r
 mean(x_big)
 ```
 
-    ## [1] NA
+    ## [1] 9.269559e-05
 
 ``` r
 table(x_big)
@@ -175,46 +179,44 @@ table(x_big)
 
     ## x_big
     ## FALSE  TRUE 
-    ## 53927     5
+    ## 53935     5
 
 ``` r
 diamonds$x[x_big]
 ```
 
-    ##  [1]    NA    NA    NA    NA 10.14 10.02    NA 10.01 10.74    NA 10.23
-    ## [12]    NA    NA
+    ## [1] 10.14 10.02 10.01 10.74 10.23
 
 ``` r
 diamonds[x_big, ]
 ```
 
     ##       carat       cut color clarity depth table price     x     y    z
-    ## NA       NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.1     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.2     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.3     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
     ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
-    ## NA.4     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
     ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
-    ## NA.5     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
     ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
-    ## NA.6     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
-    ## NA.7     NA      <NA>  <NA>    <NA>    NA    NA    NA    NA    NA   NA
+
+### Logical vectors
 
 ``` r
-### Logical vectors
 small <- diamonds[diamonds$carat < 1, ]
 lowqual <- diamonds[diamonds$clarity
                     %in% c("I1", "SI2", "SI1"), ]
+```
 
 ### Boolean operators: & | !
+
+``` r
 small <- diamonds$carat < 1 & diamonds$price > 500
-lowqual <- diamonds$color == "D" | diamonds$cut == "Fair"
+lowqual  <- diamonds$color == "D" | diamonds$cut == "Fair"
 notcolor <- diamonds[!diamonds$color %in% c("D", "E", "F"), ]
+```
 
 ### Character subsetting
+
+``` r
 diamonds[1:5, c("carat", "cut", "color")]
 ```
 
@@ -236,8 +238,9 @@ diamonds[1:5, c(4, 9, 3)]
     ## 4     VS2 4.23     I
     ## 5     SI2 4.35     J
 
-``` r
 ### Useful technique: change labelling
+
+``` r
 labels <- c("Fair" = "C", "Good" = "B", "Very Good" = "B+", "Premium" = "A",
             "Ideal" = "A+")
 labels
@@ -295,8 +298,9 @@ table(diamonds$cut)
     ##      Fair      Good Very Good   Premium     Ideal 
     ##      1610      4906     12082     13791     21551
 
-``` r
 ### Can also be used to collapse levels
+
+``` r
 table(c("Fair" = "C", "Good" = "B", "Very Good" =
           "B", "Premium" = "A", "Ideal" = "A")[diamonds$cut])
 ```
@@ -305,8 +309,9 @@ table(c("Fair" = "C", "Good" = "B", "Very Good" =
     ##     A     B     C 
     ## 35342 16988  1610
 
-``` r
 #### If you're confused by a big statement, break it up in to smaller pieces
+
+``` r
 grades <- c("Fair" = "C", "Good" = "B", "Very Good"
             = "B", "Premium" = "A", "Ideal" = "A")
 grades
@@ -332,9 +337,12 @@ table(grades[cuts])
     ## 35342 16988  1610
 
 ``` r
-?cut # continuous equivalent
+# ?cut # continuous equivalent
+```
 
 ### Exercise
+
+``` r
 head(mpg)
 ```
 
@@ -375,22 +383,20 @@ table(fueltype[mpg$fl])
     ##   other premium regular 
     ##      14      52     168
 
+Missing Values & Outliers
+-------------------------
+
 ``` r
-## Missing Values & Outliers
 qplot(x, y, data = diamonds)
 ```
 
-    ## Warning: Removed 10 rows containing missing values (geom_point).
-
-![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-16-1.png)
 
 ``` r
 qplot(x, z, data = diamonds)
 ```
 
-    ## Warning: Removed 22 rows containing missing values (geom_point).
-
-![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-2.png)
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-16-2.png)
 
 ``` r
 y_big <- diamonds$y > 20
@@ -405,20 +411,17 @@ good <- diamonds[!bad, ]
 qplot(x, y, data = good)
 ```
 
-    ## Warning: Removed 22 rows containing missing values (geom_point).
-
-![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-3.png)
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-16-3.png)
 
 ``` r
 qplot(x, y, data = good, alpha = I(1/100))
 ```
 
-    ## Warning: Removed 22 rows containing missing values (geom_point).
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-16-4.png)
 
-![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-4.png)
+### Guess what happens
 
 ``` r
-### Guess what happens
 5 + NA
 ```
 
@@ -460,8 +463,9 @@ NA == NA # uses is.na() to check for missing values
 
     ## [1] NA
 
+### Can use subsetting + &lt;- to change individual values
+
 ``` r
-### Can use subsetting + <- to change individual values
 diamonds$x[diamonds$x == 0] <- NA
 diamonds$y[diamonds$y == 0] <- NA
 diamonds$z[diamonds$z == 0] <- NA
@@ -474,4 +478,9 @@ qplot(x, y, data = diamonds)
 
     ## Warning: Removed 10 rows containing missing values (geom_point).
 
-![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-5.png)
+![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-18-1.png)
+
+``` r
+## Clean up
+rm(list = ls())
+```

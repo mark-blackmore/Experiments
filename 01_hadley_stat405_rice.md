@@ -1,13 +1,17 @@
 Lecture 1 for Hadley Wickham's STAT 405 at Rice U. Introductions, R & ggplot2
 ================
 Mark Blackmore
-2017-09-19
+2017-09-20
 
 ``` r
 library(ggplot2)
+```
 
-## Five ways to explore the data
-?mpg
+Five ways to explore the data
+-----------------------------
+
+``` r
+# ?mpg
 head(mpg)
 ```
 
@@ -66,76 +70,80 @@ summary(mpg)
 qplot(displ, hwy, data = mpg)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
+
+Quick plots
+-----------
 
 ``` r
-## Quick plots
 qplot(displ, hwy, colour = class, data = mpg)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-2.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 
 ``` r
 qplot(displ, hwy, data = mpg) +
   facet_grid(. ~ cyl)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-3.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-2.png)
 
 ``` r
 qplot(displ, hwy, data = mpg) +
   facet_grid(drv ~ .)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-4.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-3.png)
 
 ``` r
 qplot(displ, hwy, data = mpg) +
   facet_grid(drv ~ cyl)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-5.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-4.png)
 
 ``` r
 qplot(displ, hwy, data = mpg) +
   facet_wrap(~ class)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-6.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-5.png)
 
 ``` r
 qplot(cty, hwy, data = mpg, geom = "jitter")
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-7.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-6.png)
 
 ``` r
 qplot(class, hwy, data = mpg)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-8.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-7.png)
+
+Quick Plots - change plot order with reorder()
+----------------------------------------------
 
 ``` r
-## Quick Plots - change plot order with reorder()
 qplot(reorder(class, hwy), hwy, data = mpg)
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-9.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 ``` r
 qplot(reorder(class, hwy), hwy, data = mpg, geom = "boxplot")
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-10.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-2.png)
 
 ``` r
 qplot(reorder(class, hwy, median), hwy, data = mpg, geom = "boxplot")
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-11.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-3.png)
 
 ``` r
 qplot(reorder(class, hwy, median), hwy, data = mpg, geom = c("boxplot", "jitter"))
 ```
 
-![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-12.png)
+![](01_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-4.png)
