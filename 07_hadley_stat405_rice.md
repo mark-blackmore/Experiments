@@ -165,6 +165,8 @@ head(slots_clean)
 
 ### Variable Names
 
+This is a very common pattern
+
 ``` r
 names(slots)
 ```
@@ -179,4 +181,62 @@ dput(names(slots))
 
     ## c("w1", "w2", "w3", "prize", "night")
 
-This is a very common pattern \#\# Strings & Factors
+Strings and Factors
+-------------------
+
+By default, strings converted to factors when loading data frames. I think this is the wrong default - you should always explicitly convert strings to factors. Use stringsAsFactors = F to avoid this. For one data frame:
+
+``` r
+# read.csv("mpg.csv.bz2", stringsAsFactors = F)
+```
+
+For entire session:
+
+``` r
+# options(stringsAsFactors = F)
+```
+
+### Creating a factor
+
+``` r
+x <- sample(5, 20, rep = T)
+a <- factor(x)
+b <- factor(x, levels = 1:10)
+c <- factor(x, labels = letters[1:5])
+levels(a); levels(b); levels(c)
+```
+
+    ## [1] "1" "2" "3" "4" "5"
+
+    ##  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
+
+    ## [1] "a" "b" "c" "d" "e"
+
+``` r
+table(a); table(b); table(c)
+```
+
+    ## a
+    ## 1 2 3 4 5 
+    ## 3 5 2 3 7
+
+    ## b
+    ##  1  2  3  4  5  6  7  8  9 10 
+    ##  3  5  2  3  7  0  0  0  0  0
+
+    ## c
+    ## a b c d e 
+    ## 3 5 2 3 7
+
+### Create factors on slots data
+
+``` r
+slots <- read.delim("./data/slots.txt", sep = " ", header = F,
+                    stringsAsFactors = F)
+names(slots) <- c("w1", "w2", "w3", "prize", "night")
+levels <- c(0, 1, 2, 3, 5, 6, 7)
+labels <- c("0", "B", "BB", "BBB", "DD", "C", "7")
+slots$w1 <- factor(slots$w1, levels = levels, labels = labels)
+slots$w2 <- factor(slots$w2, levels = levels, labels = labels)
+slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
+```
