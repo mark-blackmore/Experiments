@@ -1,7 +1,7 @@
 Lecture 7 for Hadley Wickham's STAT 405 at Rice U. More About Data
 ================
 Mark Blackmore
-2017-09-20
+2017-09-23
 
 ``` r
 library(ggplot2)
@@ -218,15 +218,15 @@ table(a); table(b); table(c)
 
     ## a
     ## 1 2 3 4 5 
-    ## 3 5 2 3 7
+    ## 2 3 5 5 5
 
     ## b
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  3  5  2  3  7  0  0  0  0  0
+    ##  2  3  5  5  5  0  0  0  0  0
 
     ## c
     ## a b c d e 
-    ## 3 5 2 3 7
+    ## 2 3 5 5 5
 
 ### Create factors on slots data
 
@@ -240,3 +240,243 @@ slots$w1 <- factor(slots$w1, levels = levels, labels = labels)
 slots$w2 <- factor(slots$w2, levels = levels, labels = labels)
 slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
 ```
+
+### Subsets: by default levels are preserved
+
+``` r
+b2 <- b[1:5]
+levels(b2)
+```
+
+    ##  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10"
+
+``` r
+table(b2)
+```
+
+    ## b2
+    ##  1  2  3  4  5  6  7  8  9 10 
+    ##  0  2  1  0  2  0  0  0  0  0
+
+#### Remove extra levels
+
+``` r
+b2[, drop = TRUE]
+```
+
+    ## [1] 3 5 5 2 2
+    ## Levels: 2 3 5
+
+``` r
+factor(b2)
+```
+
+    ## [1] 3 5 5 2 2
+    ## Levels: 2 3 5
+
+#### But usually better to convert to character
+
+``` r
+b3 <- as.character(b)
+table(b3)
+```
+
+    ## b3
+    ## 1 2 3 4 5 
+    ## 2 3 5 5 5
+
+``` r
+table(b3[1:5])
+```
+
+    ## 
+    ## 2 3 5 
+    ## 2 1 2
+
+### Factors behave like integers when subsetting, not characters!
+
+``` r
+x <- c(a = "1", b = "2", c = "3")
+y <- factor(c("c", "b", "a"), levels = c("c","b","a"))
+x[y]
+```
+
+    ##   a   b   c 
+    ## "1" "2" "3"
+
+``` r
+x[as.character(y)]
+```
+
+    ##   c   b   a 
+    ## "3" "2" "1"
+
+``` r
+x[as.integer(y)]
+```
+
+    ##   a   b   c 
+    ## "1" "2" "3"
+
+### Be careful when converting factors to numbers!
+
+``` r
+x <- sample(5, 20, rep = T)
+d <- factor(x, labels = 2^(1:5))
+as.numeric(d)
+```
+
+    ##  [1] 5 2 5 1 2 4 2 1 3 5 2 4 2 4 3 4 3 2 4 5
+
+``` r
+as.character(d)
+```
+
+    ##  [1] "32" "4"  "32" "2"  "4"  "16" "4"  "2"  "8"  "32" "4"  "16" "4"  "16"
+    ## [15] "8"  "16" "8"  "4"  "16" "32"
+
+``` r
+as.numeric(as.character(d))
+```
+
+    ##  [1] 32  4 32  2  4 16  4  2  8 32  4 16  4 16  8 16  8  4 16 32
+
+Saving Data
+-----------
+
+### Examples
+
+``` r
+write.csv(slots, "slots-2.csv")
+slots2 <- read.csv("slots-2.csv")
+head(slots)
+```
+
+    ##   w1 w2 w3 prize night
+    ## 1 BB  0  0     0     1
+    ## 2  0 DD  B     0     1
+    ## 3  0  0  0     0     1
+    ## 4 BB  0  0     0     1
+    ## 5  0  0  0     0     1
+    ## 6  0  0  B     0     1
+
+``` r
+head(slots2)
+```
+
+    ##   X w1 w2 w3 prize night
+    ## 1 1 BB  0  0     0     1
+    ## 2 2  0 DD  B     0     1
+    ## 3 3  0  0  0     0     1
+    ## 4 4 BB  0  0     0     1
+    ## 5 5  0  0  0     0     1
+    ## 6 6  0  0  B     0     1
+
+``` r
+str(slots)
+```
+
+    ## 'data.frame':    345 obs. of  5 variables:
+    ##  $ w1   : Factor w/ 7 levels "0","B","BB","BBB",..: 3 1 1 3 1 1 2 1 2 1 ...
+    ##  $ w2   : Factor w/ 7 levels "0","B","BB","BBB",..: 1 5 1 1 1 1 1 1 3 1 ...
+    ##  $ w3   : Factor w/ 7 levels "0","B","BB","BBB",..: 1 2 1 1 1 2 2 1 2 2 ...
+    ##  $ prize: int  0 0 0 0 0 0 0 0 5 0 ...
+    ##  $ night: int  1 1 1 1 1 1 1 1 1 1 ...
+
+``` r
+str(slots2)
+```
+
+    ## 'data.frame':    345 obs. of  6 variables:
+    ##  $ X    : int  1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ w1   : Factor w/ 7 levels "0","7","B","BB",..: 4 1 1 4 1 1 3 1 3 1 ...
+    ##  $ w2   : Factor w/ 7 levels "0","7","B","BB",..: 1 7 1 1 1 1 1 1 4 1 ...
+    ##  $ w3   : Factor w/ 7 levels "0","7","B","BB",..: 1 3 1 1 1 3 3 1 3 3 ...
+    ##  $ prize: int  0 0 0 0 0 0 0 0 5 0 ...
+    ##  $ night: int  1 1 1 1 1 1 1 1 1 1 ...
+
+### Better, but still loses factor levels
+
+``` r
+write.csv(slots, file = "slots-3.csv", row.names = F)
+slots3 <- read.csv("slots-3.csv")
+head(slots3)
+```
+
+    ##   w1 w2 w3 prize night
+    ## 1 BB  0  0     0     1
+    ## 2  0 DD  B     0     1
+    ## 3  0  0  0     0     1
+    ## 4 BB  0  0     0     1
+    ## 5  0  0  0     0     1
+    ## 6  0  0  B     0     1
+
+``` r
+str(slots3)
+```
+
+    ## 'data.frame':    345 obs. of  5 variables:
+    ##  $ w1   : Factor w/ 7 levels "0","7","B","BB",..: 4 1 1 4 1 1 3 1 3 1 ...
+    ##  $ w2   : Factor w/ 7 levels "0","7","B","BB",..: 1 7 1 1 1 1 1 1 4 1 ...
+    ##  $ w3   : Factor w/ 7 levels "0","7","B","BB",..: 1 3 1 1 1 3 3 1 3 3 ...
+    ##  $ prize: int  0 0 0 0 0 0 0 0 5 0 ...
+    ##  $ night: int  1 1 1 1 1 1 1 1 1 1 ...
+
+### For long-term storage
+
+``` r
+write.csv(slots, file = "slots.csv",
+          row.names = FALSE)
+```
+
+### For short-term caching
+
+Preserves factors etc. Can be used with any R object.
+
+``` r
+saveRDS(slots, "slots.rds")
+slots2 <- readRDS("slots.rds")
+head(slots2)
+```
+
+    ##   w1 w2 w3 prize night
+    ## 1 BB  0  0     0     1
+    ## 2  0 DD  B     0     1
+    ## 3  0  0  0     0     1
+    ## 4 BB  0  0     0     1
+    ## 5  0  0  0     0     1
+    ## 6  0  0  B     0     1
+
+``` r
+str(slots2)
+```
+
+    ## 'data.frame':    345 obs. of  5 variables:
+    ##  $ w1   : Factor w/ 7 levels "0","B","BB","BBB",..: 3 1 1 3 1 1 2 1 2 1 ...
+    ##  $ w2   : Factor w/ 7 levels "0","B","BB","BBB",..: 1 5 1 1 1 1 1 1 3 1 ...
+    ##  $ w3   : Factor w/ 7 levels "0","B","BB","BBB",..: 1 2 1 1 1 2 2 1 2 2 ...
+    ##  $ prize: int  0 0 0 0 0 0 0 0 5 0 ...
+    ##  $ night: int  1 1 1 1 1 1 1 1 1 1 ...
+
+### Easy to store compressed files to save space:
+
+``` r
+write.csv(slots, file = bzfile("slots.csv.bz2"),
+          row.names = FALSE)
+```
+
+Reading is even easier:
+
+``` r
+slots4 <- read.csv("slots.csv.bz2")
+str(slots4)
+```
+
+    ## 'data.frame':    345 obs. of  5 variables:
+    ##  $ w1   : Factor w/ 7 levels "0","7","B","BB",..: 4 1 1 4 1 1 3 1 3 1 ...
+    ##  $ w2   : Factor w/ 7 levels "0","7","B","BB",..: 1 7 1 1 1 1 1 1 4 1 ...
+    ##  $ w3   : Factor w/ 7 levels "0","7","B","BB",..: 1 3 1 1 1 3 3 1 3 3 ...
+    ##  $ prize: int  0 0 0 0 0 0 0 0 5 0 ...
+    ##  $ night: int  1 1 1 1 1 1 1 1 1 1 ...
+
+Files stored with saveRDS() are automatically compressed.

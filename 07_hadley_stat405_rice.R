@@ -98,3 +98,61 @@ slots$w1 <- factor(slots$w1, levels = levels, labels = labels)
 slots$w2 <- factor(slots$w2, levels = levels, labels = labels)
 slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
 
+#' ### Subsets: by default levels are preserved
+b2 <- b[1:5]
+levels(b2)
+table(b2)
+#' #### Remove extra levels
+b2[, drop = TRUE]
+factor(b2)
+#' #### But usually better to convert to character
+b3 <- as.character(b)
+table(b3)
+table(b3[1:5])
+
+#' ### Factors behave like integers when subsetting, not characters!
+x <- c(a = "1", b = "2", c = "3")
+y <- factor(c("c", "b", "a"), levels = c("c","b","a"))
+x[y]
+x[as.character(y)]
+x[as.integer(y)]
+
+#'### Be careful when converting factors to numbers!
+x <- sample(5, 20, rep = T)
+d <- factor(x, labels = 2^(1:5))
+as.numeric(d)
+as.character(d)
+as.numeric(as.character(d))
+
+#' ## Saving Data
+#' ### Examples  
+write.csv(slots, "slots-2.csv")
+slots2 <- read.csv("slots-2.csv")
+head(slots)
+head(slots2)
+str(slots)
+str(slots2)
+#' ### Better, but still loses factor levels
+write.csv(slots, file = "slots-3.csv", row.names = F)
+slots3 <- read.csv("slots-3.csv")
+head(slots3)
+str(slots3)
+
+
+#' ### For long-term storage
+write.csv(slots, file = "slots.csv",
+          row.names = FALSE)
+#' ### For short-term caching
+#' Preserves factors etc. Can be used with any R object.
+saveRDS(slots, "slots.rds")
+slots2 <- readRDS("slots.rds")
+head(slots2)
+str(slots2)
+
+#' ### Easy to store compressed files to save space:
+write.csv(slots, file = bzfile("slots.csv.bz2"),
+          row.names = FALSE)
+#' Reading is even easier:
+slots4 <- read.csv("slots.csv.bz2")
+str(slots4)
+#' Files stored with saveRDS() are automatically compressed.

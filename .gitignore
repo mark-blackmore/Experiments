@@ -3,3 +3,9 @@
 .RData
 .Ruserdata
 renderMarkdown.html
+.csv
+slots-2.csv
+slots.csv
+slots-3.csv
+slots.csv.bz2
+slots.rds
