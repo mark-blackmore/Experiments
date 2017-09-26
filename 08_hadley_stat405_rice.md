@@ -1,7 +1,7 @@
 Lecture 8 for Hadley Wickham's STAT 405 at Rice U. Problem Solving
 ================
 Mark Blackmore
-2017-09-23
+2017-09-26
 
 Problem Solving
 ---------------
@@ -159,7 +159,7 @@ str(slots3)
 ### For long-term storage
 
 ``` r
-write.csv(slots, file = "slots.csv",
+write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
 ```
 
@@ -168,8 +168,8 @@ write.csv(slots, file = "slots.csv",
 Preserves factors etc.
 
 ``` r
-saveRDS(slots, "slots.rds")
-slots2 <- readRDS("slots.rds")
+saveRDS(slots, "./data/slots.rds")
+slots2 <- readRDS("./data/slots.rds")
 head(slots2)
 ```
 

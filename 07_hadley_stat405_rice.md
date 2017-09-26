@@ -1,7 +1,7 @@
 Lecture 7 for Hadley Wickham's STAT 405 at Rice U. More About Data
 ================
 Mark Blackmore
-2017-09-23
+2017-09-26
 
 ``` r
 library(ggplot2)
@@ -47,8 +47,9 @@ download.file(fileUrl_4, destfile = "./data/tricky-4.csv")
 list.files("./data")
 ```
 
-    ## [1] "mpg2.csv.bz2" "slots.csv"    "slots.txt"    "tricky-1.csv"
-    ## [5] "tricky-2.csv" "tricky-3.csv" "tricky-4.csv"
+    ##  [1] "mpg2.csv.bz2"  "slots-2.csv"   "slots-3.csv"   "slots.csv"    
+    ##  [5] "slots.csv.bz2" "slots.rds"     "slots.txt"     "tricky-1.csv" 
+    ##  [9] "tricky-2.csv"  "tricky-3.csv"  "tricky-4.csv"
 
 Load files into workspace
 
@@ -218,15 +219,15 @@ table(a); table(b); table(c)
 
     ## a
     ## 1 2 3 4 5 
-    ## 2 3 5 5 5
+    ## 5 4 3 6 2
 
     ## b
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  2  3  5  5  5  0  0  0  0  0
+    ##  5  4  3  6  2  0  0  0  0  0
 
     ## c
     ## a b c d e 
-    ## 2 3 5 5 5
+    ## 5 4 3 6 2
 
 ### Create factors on slots data
 
@@ -256,7 +257,7 @@ table(b2)
 
     ## b2
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  0  2  1  0  2  0  0  0  0  0
+    ##  0  1  1  3  0  0  0  0  0  0
 
 #### Remove extra levels
 
@@ -264,15 +265,15 @@ table(b2)
 b2[, drop = TRUE]
 ```
 
-    ## [1] 3 5 5 2 2
-    ## Levels: 2 3 5
+    ## [1] 2 4 3 4 4
+    ## Levels: 2 3 4
 
 ``` r
 factor(b2)
 ```
 
-    ## [1] 3 5 5 2 2
-    ## Levels: 2 3 5
+    ## [1] 2 4 3 4 4
+    ## Levels: 2 3 4
 
 #### But usually better to convert to character
 
@@ -283,15 +284,15 @@ table(b3)
 
     ## b3
     ## 1 2 3 4 5 
-    ## 2 3 5 5 5
+    ## 5 4 3 6 2
 
 ``` r
 table(b3[1:5])
 ```
 
     ## 
-    ## 2 3 5 
-    ## 2 1 2
+    ## 2 3 4 
+    ## 1 1 3
 
 ### Factors behave like integers when subsetting, not characters!
 
@@ -326,20 +327,20 @@ d <- factor(x, labels = 2^(1:5))
 as.numeric(d)
 ```
 
-    ##  [1] 5 2 5 1 2 4 2 1 3 5 2 4 2 4 3 4 3 2 4 5
+    ##  [1] 5 2 3 3 1 3 3 2 1 4 4 4 3 1 1 1 4 4 1 5
 
 ``` r
 as.character(d)
 ```
 
-    ##  [1] "32" "4"  "32" "2"  "4"  "16" "4"  "2"  "8"  "32" "4"  "16" "4"  "16"
-    ## [15] "8"  "16" "8"  "4"  "16" "32"
+    ##  [1] "32" "4"  "8"  "8"  "2"  "8"  "8"  "4"  "2"  "16" "16" "16" "8"  "2" 
+    ## [15] "2"  "2"  "16" "16" "2"  "32"
 
 ``` r
 as.numeric(as.character(d))
 ```
 
-    ##  [1] 32  4 32  2  4 16  4  2  8 32  4 16  4 16  8 16  8  4 16 32
+    ##  [1] 32  4  8  8  2  8  8  4  2 16 16 16  8  2  2  2 16 16  2 32
 
 Saving Data
 -----------
@@ -347,8 +348,8 @@ Saving Data
 ### Examples
 
 ``` r
-write.csv(slots, "slots-2.csv")
-slots2 <- read.csv("slots-2.csv")
+write.csv(slots, "./data/slots-2.csv")
+slots2 <- read.csv("./data/slots-2.csv")
 head(slots)
 ```
 
@@ -398,8 +399,8 @@ str(slots2)
 ### Better, but still loses factor levels
 
 ``` r
-write.csv(slots, file = "slots-3.csv", row.names = F)
-slots3 <- read.csv("slots-3.csv")
+write.csv(slots, file = "./data/slots-3.csv", row.names = F)
+slots3 <- read.csv("./data/slots-3.csv")
 head(slots3)
 ```
 
@@ -425,7 +426,7 @@ str(slots3)
 ### For long-term storage
 
 ``` r
-write.csv(slots, file = "slots.csv",
+write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
 ```
 
@@ -434,8 +435,8 @@ write.csv(slots, file = "slots.csv",
 Preserves factors etc. Can be used with any R object.
 
 ``` r
-saveRDS(slots, "slots.rds")
-slots2 <- readRDS("slots.rds")
+saveRDS(slots, "./data/slots.rds")
+slots2 <- readRDS("./data/slots.rds")
 head(slots2)
 ```
 
@@ -461,14 +462,14 @@ str(slots2)
 ### Easy to store compressed files to save space:
 
 ``` r
-write.csv(slots, file = bzfile("slots.csv.bz2"),
+write.csv(slots, file = bzfile("./data/slots.csv.bz2"),
           row.names = FALSE)
 ```
 
 Reading is even easier:
 
 ``` r
-slots4 <- read.csv("slots.csv.bz2")
+slots4 <- read.csv("./data/slots.csv.bz2")
 str(slots4)
 ```
 

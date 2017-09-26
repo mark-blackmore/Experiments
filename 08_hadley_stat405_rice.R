@@ -51,12 +51,12 @@ str(slots)
 str(slots3)
 
 #' ### For long-term storage
-write.csv(slots, file = "slots.csv",
+write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
 #' ### For short-term caching
 #' Preserves factors etc.
-saveRDS(slots, "slots.rds")
-slots2 <- readRDS("slots.rds")
+saveRDS(slots, "./data/slots.rds")
+slots2 <- readRDS("./data/slots.rds")
 head(slots2)
 str(slots2)
 

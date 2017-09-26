@@ -126,33 +126,33 @@ as.numeric(as.character(d))
 
 #' ## Saving Data
 #' ### Examples  
-write.csv(slots, "slots-2.csv")
-slots2 <- read.csv("slots-2.csv")
+write.csv(slots, "./data/slots-2.csv")
+slots2 <- read.csv("./data/slots-2.csv")
 head(slots)
 head(slots2)
 str(slots)
 str(slots2)
 #' ### Better, but still loses factor levels
-write.csv(slots, file = "slots-3.csv", row.names = F)
-slots3 <- read.csv("slots-3.csv")
+write.csv(slots, file = "./data/slots-3.csv", row.names = F)
+slots3 <- read.csv("./data/slots-3.csv")
 head(slots3)
 str(slots3)
 
 
 #' ### For long-term storage
-write.csv(slots, file = "slots.csv",
+write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
 #' ### For short-term caching
 #' Preserves factors etc. Can be used with any R object.
-saveRDS(slots, "slots.rds")
-slots2 <- readRDS("slots.rds")
+saveRDS(slots, "./data/slots.rds")
+slots2 <- readRDS("./data/slots.rds")
 head(slots2)
 str(slots2)
 
 #' ### Easy to store compressed files to save space:
-write.csv(slots, file = bzfile("slots.csv.bz2"),
+write.csv(slots, file = bzfile("./data/slots.csv.bz2"),
           row.names = FALSE)
 #' Reading is even easier:
-slots4 <- read.csv("slots.csv.bz2")
+slots4 <- read.csv("./data/slots.csv.bz2")
 str(slots4)
 #' Files stored with saveRDS() are automatically compressed.
