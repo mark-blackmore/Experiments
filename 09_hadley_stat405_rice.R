@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 8 for Hadley Wickham's STAT 405 at Rice U. \t Functions $ for loops" 
+#' title: "Lecture 9 for Hadley Wickham's STAT 405 at Rice U. \t Functions $ for loops" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
@@ -65,12 +65,13 @@ prize
 # calculate_prize(c("B", "7", "C"))
 
 calculate_prize <- function(windows) {
+  prize <- NA 
   payoffs <- c("DD" = 800, "7" = 80, "BBB" = 40,
                "BB" = 25, "B" = 10, "C" = 10, "0" = 0)
   same <- length(unique(windows)) == 1
   allbars <- all(windows %in% c("B", "BB", "BBB"))
   if (same) {
-    prize <- payoffs[windows[1]]
+    prize <- unname(payoffs[windows[1]]) 
   } else if (allbars) {
     prize <- 5
   } else {
@@ -81,6 +82,11 @@ calculate_prize <- function(windows) {
   }
   prize
 }
+
+calculate_prize(c("DD", "DD", "DD"))
+calculate_prize(c("B", "BBB", "BB"))
+calculate_prize(c("B", "7", "C"))
+
 
 #' ### Functions: Default values
 mean <- function(x) {
@@ -119,10 +125,8 @@ my_var <- function(x) {
   sum((x - xbar) ^ 2) / (n - 1)
 }
 
-#' Clean Up
-rm(list = ls())
-
-#' ## For Loops  
+#' ## For Loops
+rm("diamonds")  
 library(ggplot2)
 cuts <- levels(diamonds$cut)
 for(cut in cuts) {
@@ -167,5 +171,40 @@ for(i in seq_len(n)) {
 results <- data.frame(colours, mprice, mcarat)
 knitr::kable(results)
 
+#' ## Back to slots...
+#' For each row, calculate the prize and save
+#' it, then compare calculated prize to actual
+#' prize. 
+#'  
+#' Question: given a row, how can we
+#' extract the slots in the right form for the
+#' function?
+#'  
+#' ### Recall: Loss of factor levels
+slots <- read.csv("./data/slots.csv")
+str(slots)
+i <- 334
+slots[i, ]
+slots[i, 1:3]
+str(slots[i, 1:3])
+as.character(slots[i, 1:3])
+c(as.character(slots[i, 1]), as.character(slots[i, 2]),
+  as.character(slots[i, 3])) 
 
+#' ### Recall: soloution to this issue
+slots <- read.csv("./data/slots.csv", stringsAsFactors = F)
+str(slots[i, 1:3])
+as.character(slots[i, 1:3])
+calculate_prize(as.character(slots[i, 1:3]))
 
+#' ### Create space to put the results
+slots$check <- NA
+#' For each row, calculate the prize
+for(i in seq_len(nrow(slots))) {
+  w <- as.character(slots[i, 1:3])
+  slots$check[i] <- calculate_prize(w)
+}
+
+#' ### Check with known answers
+subset(slots, prize != check)
+#' Uh oh!  Check doesn't match known answers!
