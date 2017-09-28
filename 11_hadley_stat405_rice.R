@@ -155,3 +155,44 @@ sum(garrett$n)
 summarise(garrett, n = sum(n))
 #' But how could we do this for every name?
 
+#' Split
+pieces <- split(bnames2, list(bnames$name))
+
+#' Apply
+results <- vector("list", length(pieces))
+for(i in seq_along(pieces)) {
+  piece <- pieces[[i]]
+  results[[i]] <- summarise(piece,
+                            name = name[1], n = sum(n))
+}
+#' Combine
+result <- do.call("rbind", results)
+kable(head(result))
+
+#' Or equivalently
+counts <- ddply(bnames2, "name", summarise,
+                n = sum(n))
+kable(head(counts))
+
+#' Or, using dplyr
+count_pipe <- bnames2 %>% group_by(name) %>% summarise(n = sum(n))
+kable(head(count_pipe))
+
+#' ### Exercise
+#' Repeat the same operation, but use
+#' soundex instead of name. What is the
+#' most common sound? What name does
+#' it correspond to? (Hint: use join)
+scounts <- ddply(bnames2, "soundex", summarise,
+                 n = sum(n))
+scounts <- arrange(scounts, desc(n))
+kable(head(scounts))
+
+#' Combine with names. When there are multiple
+#' possible matches, picks first
+scounts <- join(
+  scounts, bnames2[, c("soundex", "name")],
+  by = "soundex", match = "first")
+kable(head(scounts, 10))
+
+subset(bnames, soundex == "L600")
