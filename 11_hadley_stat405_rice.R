@@ -18,8 +18,10 @@ file_births <- "http://stat405.had.co.nz/data/births.csv"
 library(plyr)
 library(ggplot2)
 options(stringsAsFactors = FALSE)
+#+ eval = FALSE
 download.file(file_bnames, destfile = "./data/bnames2.csv.bz2")
 download.file(file_births, destfile = "./data/births.csv")
+#+ eval = TRUE
 bnames <- read.csv("./data/bnames2.csv.bz2")
 births <- read.csv("./data/births.csv")
 
@@ -38,9 +40,10 @@ qplot(year, prop, data = mark, color = sex, geom = "line")
 sheryl <- subset(bnames, name == "Sheryl")
 qplot(year, prop, data = sheryl, geom = "line")
 
-garrett <- subset(bnames, name == "garrett")
+garret <- subset(bnames, name == "Garret")
+qplot(year, prop, data = garret, geom = "line")
+
 hadley <- subset(bnames, name == "Hadley")
-qplot(year, prop, data = garrett, geom = "line")
 qplot(year, prop, data = hadley, color = sex,
       geom = "line")
 
@@ -73,15 +76,15 @@ head(arrange(mark, desc(prop)),1)
 head(arrange(mark, prop),1)     
 head(mutate(mark, per1000 = prop*1000))
 
-summarise(garrett,
+summarise(garret,
           least = year[prop == min(prop)],
           most = year[prop == max(prop)])
 # OR
-summarise(garrett,
+summarise(garret,
           least = year[which.min(prop)],
           most = year[which.max(prop)])
-head(arrange(garrett, desc(prop)))
-head(mutate(garrett, per1000 = round(1000 * prop)))
+head(arrange(garret, desc(prop)))
+head(mutate(garret, per1000 = round(1000 * prop)))
 
 #' ## Merging Data
 library(knitr)
@@ -118,6 +121,8 @@ tail(bnames2)
 
 head(arrange(bnames2, desc(n)))
 
+#' Do the same with `dplyr`
+#+ message = FALSE
 library(dplyr)
 bnames2 %>% filter(name == "Mark") %>% arrange(desc(n)) %>% head()
 
@@ -125,7 +130,7 @@ bnames2 %>% filter(name == "Mark") %>% arrange(desc(n)) %>% head()
 qplot(year, births, data = births, geom = "line",
       color = sex)
 
-#' ### Add to Beatles data.  How could we combine what_player & members now?
+#' ### Add to Beatles data.  How could we combine `what_player` & `members` now?
 members$instrument <- c("vocals", "vocals", "backup",
                         "backup", "manager")
 
@@ -174,7 +179,7 @@ counts <- ddply(bnames2, "name", summarise,
                 n = sum(n))
 kable(head(counts))
 
-#' Or, using dplyr
+#' Or, using `dplyr``
 count_pipe <- bnames2 %>% group_by(name) %>% summarise(n = sum(n))
 kable(head(count_pipe))
 

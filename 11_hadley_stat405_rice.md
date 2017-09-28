@@ -1,7 +1,7 @@
 Lecture 11 for Hadley Wickham's STAT 405 Advanced Data Manipulation
 ================
 Mark Blackmore
-2017-09-27
+2017-09-28
 
 Baby names data
 ---------------
@@ -16,8 +16,14 @@ file_births <- "http://stat405.had.co.nz/data/births.csv"
 library(plyr)
 library(ggplot2)
 options(stringsAsFactors = FALSE)
+```
+
+``` r
 download.file(file_bnames, destfile = "./data/bnames2.csv.bz2")
 download.file(file_births, destfile = "./data/births.csv")
+```
+
+``` r
 bnames <- read.csv("./data/bnames2.csv.bz2")
 births <- read.csv("./data/births.csv")
 
@@ -81,29 +87,29 @@ mark <- subset(bnames, name == "Mark")
 qplot(year, prop, data = mark, color = sex, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 ``` r
 sheryl <- subset(bnames, name == "Sheryl")
 qplot(year, prop, data = sheryl, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-2.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-2.png)
 
 ``` r
-garrett <- subset(bnames, name == "garrett")
-hadley <- subset(bnames, name == "Hadley")
-qplot(year, prop, data = garrett, geom = "line")
+garret <- subset(bnames, name == "Garret")
+qplot(year, prop, data = garret, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-3.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-3.png)
 
 ``` r
+hadley <- subset(bnames, name == "Hadley")
 qplot(year, prop, data = hadley, color = sex,
       geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-4.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-4.png)
 
 ### Exercise:
 
@@ -114,27 +120,27 @@ mark_soundex <- subset(bnames, soundex == "M620")
 qplot(year, prop, data = mark_soundex, color = name, group = sex, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ``` r
 glike <- subset(bnames, soundex == "G630")
 qplot(year, prop, data = glike)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-2.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-3.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-3.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
       colour = sex)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-4.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-4.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
@@ -144,14 +150,14 @@ qplot(year, prop, data = glike, geom = "line",
     ## geom_path: Each group consists of only one observation. Do you need to
     ## adjust the group aesthetic?
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-5.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-5.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
       colour = sex, group = interaction(sex, name))
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-6.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-6.png)
 
 ### Exercise
 
@@ -184,41 +190,47 @@ head(mutate(mark, per1000 = prop*1000))
     ## 5178 1885 Mark 0.000638 boy    M620   0.638
 
 ``` r
-summarise(garrett,
+summarise(garret,
           least = year[prop == min(prop)],
           most = year[prop == max(prop)])
 ```
 
-    ## Warning in min(prop): no non-missing arguments to min; returning Inf
-
-    ## Warning in max(prop): no non-missing arguments to max; returning -Inf
-
-    ## [1] least most 
-    ## <0 rows> (or 0-length row.names)
+    ##   least most
+    ## 1  1960 2000
 
 ``` r
 # OR
-summarise(garrett,
+summarise(garret,
           least = year[which.min(prop)],
           most = year[which.max(prop)])
 ```
 
-    ## [1] least most 
-    ## <0 rows> (or 0-length row.names)
+    ##   least most
+    ## 1  1960 2000
 
 ``` r
-head(arrange(garrett, desc(prop)))
+head(arrange(garret, desc(prop)))
 ```
 
-    ## [1] year    name    prop    sex     soundex
-    ## <0 rows> (or 0-length row.names)
+    ##   year   name     prop sex soundex
+    ## 1 2000 Garret 0.000283 boy    G630
+    ## 2 1999 Garret 0.000259 boy    G630
+    ## 3 1997 Garret 0.000239 boy    G630
+    ## 4 1992 Garret 0.000237 boy    G630
+    ## 5 1993 Garret 0.000235 boy    G630
+    ## 6 1996 Garret 0.000227 boy    G630
 
 ``` r
-head(mutate(garrett, per1000 = round(1000 * prop)))
+head(mutate(garret, per1000 = round(1000 * prop)))
 ```
 
-    ## [1] year    name    prop    sex     soundex per1000
-    ## <0 rows> (or 0-length row.names)
+    ##       year   name    prop sex soundex per1000
+    ## 1812  1881 Garret 5.5e-05 boy    G630       0
+    ## 3950  1883 Garret 4.4e-05 boy    G630       0
+    ## 80991 1960 Garret 2.8e-05 boy    G630       0
+    ## 81968 1961 Garret 2.9e-05 boy    G630       0
+    ## 82796 1962 Garret 4.4e-05 boy    G630       0
+    ## 83756 1963 Garret 5.0e-05 boy    G630       0
 
 Merging Data
 ------------
@@ -370,27 +382,10 @@ head(arrange(bnames2, desc(n)))
     ## 5 1947  Robert 0.049360  boy    R163 1855892 91607
     ## 6 1949   Linda 0.051835 girl    L530 1754263 90932
 
+Do the same with `dplyr`
+
 ``` r
 library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:plyr':
-    ## 
-    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-    ##     summarize
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 bnames2 %>% filter(name == "Mark") %>% arrange(desc(n)) %>% head()
 ```
 
@@ -409,9 +404,9 @@ qplot(year, births, data = births, geom = "line",
       color = sex)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
 
-### Add to Beatles data. How could we combine what\_player & members now?
+### Add to Beatles data. How could we combine `what_player` & `members` now?
 
 ``` r
 members$instrument <- c("vocals", "vocals", "backup",
@@ -578,7 +573,7 @@ kable(head(counts))
 | Ab      |      25|
 | Abagail |    2682|
 
-Or, using dplyr
+Or, using \`dplyr\`\`
 
 ``` r
 count_pipe <- bnames2 %>% group_by(name) %>% summarise(n = sum(n))
