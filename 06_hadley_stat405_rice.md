@@ -1,18 +1,20 @@
 Lecture 6 for Hadley Wickham's STAT 405 at Rice U. Statistical Reports
 ================
 Mark Blackmore
-2017-09-20
+2017-09-29
 
 ``` r
 library(ggplot2)
 library(plyr)
+library(knitr)
 ```
 
 Example: Good code presentation
 -------------------------------
 
+Table and depth -------------------------
+
 ``` r
-# Table and depth -------------------------
 qplot(table, depth, data = diamonds)
 ```
 
@@ -27,18 +29,20 @@ qplot(table, depth, data = diamonds) +
 
 ![](06_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-2.png)
 
+Is there a linear relationship?
+
 ``` r
-# Is there a linear relationship?
 qplot(table - depth, data = diamonds,
       geom = "histogram")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](06_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-3.png)
+![](06_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+
+This bin width seems the most revealing
 
 ``` r
-# This bin width seems the most revealing
 qplot(table / depth, data = diamonds,
       geom = "histogram", binwidth = 0.01) +
   xlim(0.8, 1.2)
@@ -48,7 +52,7 @@ qplot(table / depth, data = diamonds,
 
     ## Warning: Removed 1 rows containing missing values (geom_bar).
 
-![](06_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-4.png)
+![](06_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 ``` r
 # Also tried: 0.05, 0.005, 0.002

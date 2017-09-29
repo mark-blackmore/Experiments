@@ -7,19 +7,24 @@
 
 library(ggplot2)
 library(plyr)
+library(knitr)
 
-#' ## Example: Good code presentation
-# Table and depth -------------------------
+#' ## Example: Good code presentation  
+
+#' Table and depth -------------------------
 qplot(table, depth, data = diamonds)
 qplot(table, depth, data = diamonds) +
   xlim(50, 70) + ylim(50, 70)
-# Is there a linear relationship?
+
+#' Is there a linear relationship?
 qplot(table - depth, data = diamonds,
       geom = "histogram")
-# This bin width seems the most revealing
+
+#' This bin width seems the most revealing
 qplot(table / depth, data = diamonds,
       geom = "histogram", binwidth = 0.01) +
   xlim(0.8, 1.2)
+
 # Also tried: 0.05, 0.005, 0.002
 
 #' ## Exercise: rewrite the following with proper style
