@@ -1,12 +1,13 @@
 Lecture 12 for Hadley Wickham's STAT 405 at Rice Groupwise Operation
 ================
 Mark Blackmore
-2017-09-28
+2017-09-29
 
 Getting started
 ---------------
 
 ``` r
+library(ggplot2)
 library(plyr)
 library(stringr)
 library(dplyr)
@@ -320,4 +321,166 @@ kable(head(bnames))
 Challenges
 ----------
 
-You now have all the tools to solve 95% of data manipulation problems in R. It's just a matter of figuring out which tools to use, and how to combine them. The following challenges will give you some practice. \#\#\# Warmups Which names were most popular in 1999? Work out the average yearly usage of each name. List the 10 names with the highest average proportions.
+You now have all the tools to solve 95% of data manipulation problems in R. It's just a matter of figuring out which tools to use, and how to combine them. The following challenges will give you some practice. \#\#\# Warmups Which names were most popular in 1999?
+
+``` r
+bnames %>% filter(year == 1999) %>% arrange(desc(prop)) %>% head() %>% kable
+```
+
+|  year| name        |      prop| sex  | soundex |  rank|
+|-----:|:------------|---------:|:-----|:--------|-----:|
+|  1999| Jacob       |  0.017346| boy  | J210    |     1|
+|  1999| Michael     |  0.016637| boy  | M240    |     2|
+|  1999| Matthew     |  0.014928| boy  | M300    |     3|
+|  1999| Emily       |  0.013645| girl | E540    |     1|
+|  1999| Joshua      |  0.013375| boy  | J200    |     4|
+|  1999| Christopher |  0.012631| boy  | C623    |     5|
+
+Or
+
+``` r
+# subset(bnames, year == 1999 & rank < 10)
+n1999 <- subset(bnames, year == 1999)
+head(arrange(n1999, desc(prop)), 10) %>% kable
+```
+
+|  year| name        |      prop| sex  | soundex |  rank|
+|-----:|:------------|---------:|:-----|:--------|-----:|
+|  1999| Jacob       |  0.017346| boy  | J210    |     1|
+|  1999| Michael     |  0.016637| boy  | M240    |     2|
+|  1999| Matthew     |  0.014928| boy  | M300    |     3|
+|  1999| Emily       |  0.013645| girl | E540    |     1|
+|  1999| Joshua      |  0.013375| boy  | J200    |     4|
+|  1999| Christopher |  0.012631| boy  | C623    |     5|
+|  1999| Nicholas    |  0.012582| boy  | N242    |     6|
+|  1999| Andrew      |  0.011705| boy  | A536    |     7|
+|  1999| Joseph      |  0.011384| boy  | J210    |     8|
+|  1999| Hannah      |  0.011134| girl | H500    |     2|
+
+Work out the average yearly usage of each name.
+
+``` r
+bnames %>% group_by(name) %>% summarize(ave_yearly = mean(prop)) %>% head() %>% kable
+```
+
+| name    |  ave\_yearly|
+|:--------|------------:|
+| Aaden   |    0.0004420|
+| Aaliyah |    0.0013165|
+| Aarav   |    0.0001010|
+| Aaron   |    0.0021239|
+| Ab      |    0.0000436|
+| Abagail |    0.0001326|
+
+Or
+
+``` r
+# Average usage
+overall <- ddply(bnames, "name", summarise,
+                 prop1 = mean(prop),
+                 prop2 = sum(prop) / 129)
+kable(head(overall))
+```
+
+| name    |      prop1|      prop2|
+|:--------|----------:|----------:|
+| Aaden   |  0.0004420|  0.0000034|
+| Aaliyah |  0.0013165|  0.0001531|
+| Aarav   |  0.0001010|  0.0000008|
+| Aaron   |  0.0021239|  0.0022721|
+| Ab      |  0.0000436|  0.0000017|
+| Abagail |  0.0001326|  0.0000103|
+
+List the 10 names with the highest average proportions.
+
+``` r
+bnames %>% group_by(name) %>% summarize(ave_yearly = mean(prop)) %>% 
+  arrange(desc(ave_yearly)) %>% 
+  head(10) %>% kable
+```
+
+| name    |  ave\_yearly|
+|:--------|------------:|
+| John    |    0.0223545|
+| Mary    |    0.0204239|
+| James   |    0.0192211|
+| William |    0.0186690|
+| Robert  |    0.0163265|
+| Michael |    0.0127792|
+| Charles |    0.0113902|
+| David   |    0.0111060|
+| Joseph  |    0.0106967|
+| George  |    0.0102795|
+
+Or
+
+``` r
+head(arrange(overall, desc(prop1)), 10) %>% kable
+```
+
+| name    |      prop1|      prop2|
+|:--------|----------:|----------:|
+| John    |  0.0223545|  0.0412431|
+| Mary    |  0.0204239|  0.0351482|
+| James   |  0.0192211|  0.0356112|
+| William |  0.0186690|  0.0342989|
+| Robert  |  0.0163265|  0.0297420|
+| Michael |  0.0127792|  0.0184259|
+| Charles |  0.0113902|  0.0196017|
+| David   |  0.0111060|  0.0167881|
+| Joseph  |  0.0106967|  0.0178279|
+| George  |  0.0102795|  0.0163356|
+
+### Challenge 1
+
+How has the total proportion of babies with names in the top 1000 changed over time?
+
+``` r
+top_oneK <- bnames %>% group_by(year, sex) %>% summarize(prop = sum(prop))
+qplot(year, prop, data = top_oneK, colour = sex,
+      geom = "line")
+```
+
+![](12_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-23-1.png)
+
+Or
+
+``` r
+sy <- ddply(bnames, c("year","sex"), summarise,
+            prop = sum(prop),
+            npop = sum(prop > 1/1000))
+qplot(year, prop, data = sy, colour = sex,
+      geom = "line")
+```
+
+![](12_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-24-1.png)
+
+``` r
+# qplot(year, npop, data = sy, colour = sex,
+#      geom = "line")  # does not work
+```
+
+How has the popularity of different initials changed over time?
+
+``` r
+first_init <- bnames2 %>% group_by(year, first) %>% summarise(prop = sum(prop))
+qplot(year, prop, data = first_init, colour = first,
+      geom = "line")
+```
+
+![](12_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-25-1.png)
+
+Or, Hadley's solution - different
+
+``` r
+init <- ddply(bnames2, c("year","first"), summarise,
+              prop = sum(prop)/2) # divide by 2?
+qplot(year, prop, data = init, colour = first,
+      geom = "line")
+```
+
+![](12_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-26-1.png)
+
+### Challenge 2
+
+For each name, find the year in which it was most popular, and the rank in that year. (Hint: you might find which.max useful). Print all names that have been the most popular name at least once.

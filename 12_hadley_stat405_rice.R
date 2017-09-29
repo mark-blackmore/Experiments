@@ -7,6 +7,7 @@
 #'
 #' ## Getting started
 #+ message = FALSE, warning = FALSE
+library(ggplot2)
 library(plyr)
 library(stringr)
 library(dplyr)
@@ -72,7 +73,7 @@ kable(head(counts))
 sound_by_name <- bnames2 %>% group_by(soundex) %>% summarise(count = sum(n)) %>%
   arrange(desc(count))
 kable(head(sound_by_name))
-kable(head(subset(bnames, soundex == "L500"), 10))
+kable(head(subset(bnames, soundex == "J500"), 10))
 
 #' #### Hadley's solution
 scounts <- ddply(bnames2, "soundex", summarise,
@@ -199,11 +200,38 @@ qplot(year, prop, data = init, colour = first,
       geom = "line")
 
 #' ### Challenge 2  
-#'For each name, find the year in which it
+#' For each name, find the year in which it
 #' was most popular, and the rank in that
 #' year. (Hint: you might find which.max useful).
+bnames %>% group_by(name) %>% 
+  summarize(peak_year = year[which.max(prop)], rank = min(rank)) %>%
+  head() %>% kable
 
-
+#' Or, Hadley's solution
+most_pop <- ddply(bnames, "name", summarise,
+                  year = year[which.max(prop)],
+                  rank = min(rank))
+most_pop <- ddply(bnames, "name", subset,
+                  prop == max(prop))
+most_pop %>% head() %>% kable
 
 #' Print all names that have been the most
 #' popular name at least once.
+bnames %>% filter(rank == 1)
+
+#' Or, Hadley's proposed solution
+subset(most_pop, rank == 1)
+# Double challenge: Why is this last one wrong?
+
+#' ### Challenge 3
+#' What name has been in the top 10 most often?
+#' (Hint: you'll have to do this in three steps.
+#'  Think about what they are before starting)
+bnames %>% filter(rank <= 10) %>% group_by(name, sex) %>% count() %>% 
+  arrange(desc(n)) %>% head(10) %>% kable
+
+#' Or Hadley's solution
+top10 <- subset(bnames, rank <= 10)
+counts <- plyr::count(top10, c("sex", "name"))
+ddply(counts, "sex", subset, freq == max(freq))
+head(arrange(counts, desc(freq)), 10) %>% kable
