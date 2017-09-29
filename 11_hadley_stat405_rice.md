@@ -573,7 +573,7 @@ kable(head(counts))
 | Ab      |      25|
 | Abagail |    2682|
 
-Or, using \`dplyr\`\`
+Or, using `dplyr`
 
 ``` r
 count_pipe <- bnames2 %>% group_by(name) %>% summarise(n = sum(n))

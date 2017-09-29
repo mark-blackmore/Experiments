@@ -179,7 +179,7 @@ counts <- ddply(bnames2, "name", summarise,
                 n = sum(n))
 kable(head(counts))
 
-#' Or, using `dplyr``
+#' Or, using `dplyr`
 count_pipe <- bnames2 %>% group_by(name) %>% summarise(n = sum(n))
 kable(head(count_pipe))
 
