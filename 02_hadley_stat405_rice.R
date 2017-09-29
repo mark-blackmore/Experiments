@@ -62,12 +62,16 @@ qplot(price, data = diamonds, binwidth = 100) +
   coord_cartesian(xlim = c(0, 5000))
 qplot(price, data = diamonds, binwidth = 500) + 
   scale_x_continuous(limits = c(0, 5000))
-qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ color)
-qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ cut)
-qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ clarity)
+qplot(price, data = diamonds, binwidth = 500) + 
+  facet_wrap(~ color)
+qplot(price, data = diamonds, binwidth = 100) + 
+  facet_wrap(~ cut)
+qplot(price, data = diamonds, binwidth = 100) + 
+  facet_wrap(~ clarity)
 
 #' ### Preferable to use density for comparions vs count
-qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ cut)
+qplot(price, data = diamonds, binwidth = 500) + 
+  facet_wrap(~ cut)
 qplot(price, ..density.., data = diamonds, binwidth = 500,
       geom = "freqpoly", colour = cut)
 qplot(price, ..density.., data = diamonds, binwidth = 500,

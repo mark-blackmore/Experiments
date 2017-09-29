@@ -1,7 +1,7 @@
 Lecture 2 for Hadley Wickham's STAT 405 at Rice U. Distributions
 ================
 Mark Blackmore
-2017-09-20
+2017-09-29
 
 ``` r
 library(ggplot2)
@@ -270,19 +270,22 @@ qplot(price, data = diamonds, binwidth = 500) +
 ![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-7.png)
 
 ``` r
-qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ color)
+qplot(price, data = diamonds, binwidth = 500) + 
+  facet_wrap(~ color)
 ```
 
 ![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-8.png)
 
 ``` r
-qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ cut)
+qplot(price, data = diamonds, binwidth = 100) + 
+  facet_wrap(~ cut)
 ```
 
 ![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-9.png)
 
 ``` r
-qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ clarity)
+qplot(price, data = diamonds, binwidth = 100) + 
+  facet_wrap(~ clarity)
 ```
 
 ![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-10.png)
@@ -290,7 +293,8 @@ qplot(price, data = diamonds, binwidth = 100) + facet_wrap(~ clarity)
 ### Preferable to use density for comparions vs count
 
 ``` r
-qplot(price, data = diamonds, binwidth = 500) + facet_wrap(~ cut)
+qplot(price, data = diamonds, binwidth = 500) + 
+  facet_wrap(~ cut)
 ```
 
 ![](02_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
