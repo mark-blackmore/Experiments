@@ -125,3 +125,85 @@ kable(head(boys_2008))
 #' 1. Extract a single group
 #' 2. Figure out how to solve it for just that group
 #' 3. Use ddply to solve it for all groups
+
+bnames <- ddply(bnames, c("sex", "year"), mutate,
+                rank = rank(-prop, ties.method = "min"))
+#' ddply + mutate = group-wise transformation
+#' ddply + summarise = per-group summaries
+#' ddply + subset = per-group subsets
+kable(head(bnames))
+
+#' ## Challenges
+#' You now have all the tools to solve 95%
+#' of data manipulation problems in R. It's
+#' just a matter of figuring out which tools to
+#' use, and how to combine them.
+#' The following challenges will give you
+#' some practice.
+
+#' ### Warmups
+#' Which names were most popular in 1999?
+bnames %>% filter(year == 1999) %>% arrange(desc(prop)) %>% head() %>% kable
+
+#' Or
+# subset(bnames, year == 1999 & rank < 10)
+n1999 <- subset(bnames, year == 1999)
+head(arrange(n1999, desc(prop)), 10) %>% kable
+
+#' Work out the average yearly usage of each name.
+bnames %>% group_by(name) %>% summarize(ave_yearly = mean(prop)) %>% head() %>% kable
+
+#' Or
+# Average usage
+overall <- ddply(bnames, "name", summarise,
+                 prop1 = mean(prop),
+                 prop2 = sum(prop) / 129)
+kable(head(overall))
+
+#' List the 10 names with the highest average proportions.
+bnames %>% group_by(name) %>% summarize(ave_yearly = mean(prop)) %>% 
+  arrange(desc(ave_yearly)) %>% 
+  head(10) %>% kable
+
+#' Or
+head(arrange(overall, desc(prop1)), 10) %>% kable
+
+#' ### Challenge 1  
+#' How has the total proportion of babies
+#' with names in the top 1000 changed over
+#' time?
+
+top_oneK <- bnames %>% group_by(year, sex) %>% summarize(prop = sum(prop))
+qplot(year, prop, data = top_oneK, colour = sex,
+      geom = "line")
+
+#' Or 
+sy <- ddply(bnames, c("year","sex"), summarise,
+            prop = sum(prop),
+            npop = sum(prop > 1/1000))
+qplot(year, prop, data = sy, colour = sex,
+      geom = "line")
+# qplot(year, npop, data = sy, colour = sex,
+#      geom = "line")  # does not work
+
+#' How has the popularity of different initials
+#' changed over time? 
+first_init <- bnames2 %>% group_by(year, first) %>% summarise(prop = sum(prop))
+qplot(year, prop, data = first_init, colour = first,
+      geom = "line")
+
+#' Or, Hadley's solution - different
+init <- ddply(bnames2, c("year","first"), summarise,
+              prop = sum(prop)/2) # divide by 2?
+qplot(year, prop, data = init, colour = first,
+      geom = "line")
+
+#' ### Challenge 2  
+#'For each name, find the year in which it
+#' was most popular, and the rank in that
+#' year. (Hint: you might find which.max useful).
+
+
+
+#' Print all names that have been the most
+#' popular name at least once.

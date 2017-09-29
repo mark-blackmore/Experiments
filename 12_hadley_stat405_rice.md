@@ -296,3 +296,28 @@ kable(head(boys_2008))
 
 Workflow
 1. Extract a single group 2. Figure out how to solve it for just that group 3. Use ddply to solve it for all groups
+
+``` r
+bnames <- ddply(bnames, c("sex", "year"), mutate,
+                rank = rank(-prop, ties.method = "min"))
+```
+
+ddply + mutate = group-wise transformation ddply + summarise = per-group summaries ddply + subset = per-group subsets
+
+``` r
+kable(head(bnames))
+```
+
+|  year| name    |      prop| sex | soundex |  rank|
+|-----:|:--------|---------:|:----|:--------|-----:|
+|  1880| John    |  0.081541| boy | J500    |     1|
+|  1880| William |  0.080511| boy | W450    |     2|
+|  1880| James   |  0.050057| boy | J520    |     3|
+|  1880| Charles |  0.045167| boy | C642    |     4|
+|  1880| George  |  0.043292| boy | G620    |     5|
+|  1880| Frank   |  0.027380| boy | F652    |     6|
+
+Challenges
+----------
+
+You now have all the tools to solve 95% of data manipulation problems in R. It's just a matter of figuring out which tools to use, and how to combine them. The following challenges will give you some practice. \#\#\# Warmups Which names were most popular in 1999? Work out the average yearly usage of each name. List the 10 names with the highest average proportions.
