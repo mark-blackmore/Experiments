@@ -8,6 +8,7 @@
 
 library(ggplot2)
 library(plyr)
+library(knitr)
 
 #' ## Working Directories
 #' Never use setwd() in a scirpt
@@ -21,6 +22,7 @@ if (!file.exists("data")) {
   }
 
 #' Source URL
+#+ eval = FALSE
 fileUrl <- "http://stat405.had.co.nz/project/mpg2.csv.bz2"
 download.file(fileUrl, destfile = "./data/mpg2.csv.bz2")
 list.files("./data")
@@ -28,14 +30,17 @@ list.files("./data")
 #' Load file into workspace
 mpg2 <- read.csv("./data/mpg2.csv.bz2", stringsAsFactors = FALSE)
 
-#' ### Exercise
+#' ### Exercise  
 #' Plot carat vs price
 qplot(carat, price, data = diamonds)
+
 #' Uses size on screen:
 ggsave("my-plot.pdf")
 ggsave("my-plot.png")
+
 #' Specify size
 ggsave("my-plot.pdf", width = 6, height = 6)
+
 #' Plots are saved in the working directory
 list.files(pattern = "^['my']")
 
@@ -49,7 +54,7 @@ zero_dim <- diamonds$x == 0 | diamonds$y == 0 | diamonds$z == 0
 diamonds[zero_dim, ]
 subset(diamonds, x == 0 | y == 0 | z == 0)
 
-summarise(df, double = 2 * value)
+plyr::summarise(df, double = 2 * value)
 summarise(df, total = sum(value))
 
 #' ### summarise/summarize: short cut for creating a summary
@@ -60,17 +65,17 @@ biggest <- summarise(diamonds,
                      price.max = max(price),
                      carat.max = max(carat))
 
+#' ### mutate: short cut for adding new variables
 mutate(df, double = 2 * value)
 mutate(df, double = 2 * value, 
        quad = 2 * double)
 
-#' ### mutate: short cut for adding new variables
 diamonds$volume <- diamonds$x * diamonds$y * diamonds$z
 diamonds$density <- diamonds$volume / diamonds$carat
 diamonds <- mutate(diamonds,
                    volume = x * y * z,
                    density = volume / carat)
-head(diamonds)
+kable(head(diamonds))
 
 df <- data.frame(color = c(4, 1, 5, 3, 2),
                  value = c(1, 2, 3, 4, 5))
@@ -81,7 +86,7 @@ arrange(df, desc(color))
 diamonds <- diamonds[order(diamonds$price,
                            desc(diamonds$carat)), ]
 diamonds <- arrange(diamonds, price, desc(carat))
-head(diamonds)
+kable(head(diamonds))
 
 #' ### Exercise
 large_stones <- subset(diamonds, carat > 3)
@@ -94,9 +99,11 @@ qplot(depth - depth2, data = diamonds)
 
 #' ### Use with()
 with(diamonds, table(color, clarity))
+
 #' with is more general. Use in concert with other functions, 
 #' particularly those that don't have a data argument
 diamonds$volume <- with(diamonds, x * y * z)
+
 #' This won't work:
 with(diamonds, volume <- x * y * z)
 #' with only changes lookup, not assignment
@@ -154,7 +161,8 @@ diamonds_sym <- mutate(diamonds_sym,
                        sym = zapsmall(abs(x - y)))
 
 #' ### Are asymmetric diamonds worth more?
-qplot(sym, price, data = diamonds_sym) + geom_smooth()
+qplot(sym, price, data = diamonds_sym) + 
+  geom_smooth()
 qplot(sym, price, data = diamonds_sym, geom = "boxplot",
       group = sym)
 qplot(sym, carat, data = diamonds_sym, geom = "boxplot",

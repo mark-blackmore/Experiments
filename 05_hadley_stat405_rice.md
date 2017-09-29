@@ -1,11 +1,12 @@
 Lecture 5 for Hadley Wickham's STAT 405 at Rice U. Working directories, shortcuts and iteration
 ================
 Mark Blackmore
-2017-09-20
+2017-09-29
 
 ``` r
 library(ggplot2)
 library(plyr)
+library(knitr)
 ```
 
 Working Directories
@@ -26,8 +27,6 @@ fileUrl <- "http://stat405.had.co.nz/project/mpg2.csv.bz2"
 download.file(fileUrl, destfile = "./data/mpg2.csv.bz2")
 list.files("./data")
 ```
-
-    ## [1] "mpg2.csv.bz2"
 
 Load file into workspace
 
@@ -143,7 +142,7 @@ subset(diamonds, x == 0 | y == 0 | z == 0)
     ## 51507  1.12   Premium     G      I1  60.4    59  2383 6.71 6.67 0
 
 ``` r
-summarise(df, double = 2 * value)
+plyr::summarise(df, double = 2 * value)
 ```
 
     ##   double
@@ -169,7 +168,11 @@ biggest <- data.frame(
 biggest <- summarise(diamonds,
                      price.max = max(price),
                      carat.max = max(carat))
+```
 
+### mutate: short cut for adding new variables
+
+``` r
 mutate(df, double = 2 * value)
 ```
 
@@ -192,31 +195,23 @@ mutate(df, double = 2 * value,
     ## 4  blue     4      8   16
     ## 5 black     5     10   20
 
-### mutate: short cut for adding new variables
-
 ``` r
 diamonds$volume <- diamonds$x * diamonds$y * diamonds$z
 diamonds$density <- diamonds$volume / diamonds$carat
 diamonds <- mutate(diamonds,
                    volume = x * y * z,
                    density = volume / carat)
-head(diamonds)
+kable(head(diamonds))
 ```
 
-    ##   carat       cut color clarity depth table price    x    y    z   volume
-    ## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43 38.20203
-    ## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31 34.50586
-    ## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31 38.07688
-    ## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63 46.72458
-    ## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75 51.91725
-    ## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48 38.69395
-    ##    density
-    ## 1 166.0958
-    ## 2 164.3136
-    ## 3 165.5517
-    ## 4 161.1192
-    ## 5 167.4750
-    ## 6 161.2248
+|  carat| cut       | color | clarity |  depth|  table|  price|     x|     y|     z|    volume|   density|
+|------:|:----------|:------|:--------|------:|------:|------:|-----:|-----:|-----:|---------:|---------:|
+|   0.23| Ideal     | E     | SI2     |   61.5|     55|    326|  3.95|  3.98|  2.43|  38.20203|  166.0958|
+|   0.21| Premium   | E     | SI1     |   59.8|     61|    326|  3.89|  3.84|  2.31|  34.50586|  164.3136|
+|   0.23| Good      | E     | VS1     |   56.9|     65|    327|  4.05|  4.07|  2.31|  38.07688|  165.5517|
+|   0.29| Premium   | I     | VS2     |   62.4|     58|    334|  4.20|  4.23|  2.63|  46.72458|  161.1192|
+|   0.31| Good      | J     | SI2     |   63.3|     58|    335|  4.34|  4.35|  2.75|  51.91725|  167.4750|
+|   0.24| Very Good | J     | VVS2    |   62.8|     57|    336|  3.94|  3.96|  2.48|  38.69395|  161.2248|
 
 ``` r
 df <- data.frame(color = c(4, 1, 5, 3, 2),
@@ -248,23 +243,17 @@ arrange(df, desc(color))
 diamonds <- diamonds[order(diamonds$price,
                            desc(diamonds$carat)), ]
 diamonds <- arrange(diamonds, price, desc(carat))
-head(diamonds)
+kable(head(diamonds))
 ```
 
-    ##   carat       cut color clarity depth table price    x    y    z   volume
-    ## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43 38.20203
-    ## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31 34.50586
-    ## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31 38.07688
-    ## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63 46.72458
-    ## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75 51.91725
-    ## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48 38.69395
-    ##    density
-    ## 1 166.0958
-    ## 2 164.3136
-    ## 3 165.5517
-    ## 4 161.1192
-    ## 5 167.4750
-    ## 6 161.2248
+|  carat| cut       | color | clarity |  depth|  table|  price|     x|     y|     z|    volume|   density|
+|------:|:----------|:------|:--------|------:|------:|------:|-----:|-----:|-----:|---------:|---------:|
+|   0.23| Ideal     | E     | SI2     |   61.5|     55|    326|  3.95|  3.98|  2.43|  38.20203|  166.0958|
+|   0.21| Premium   | E     | SI1     |   59.8|     61|    326|  3.89|  3.84|  2.31|  34.50586|  164.3136|
+|   0.23| Good      | E     | VS1     |   56.9|     65|    327|  4.05|  4.07|  2.31|  38.07688|  165.5517|
+|   0.29| Premium   | I     | VS2     |   62.4|     58|    334|  4.20|  4.23|  2.63|  46.72458|  161.1192|
+|   0.31| Good      | J     | SI2     |   63.3|     58|    335|  4.34|  4.35|  2.75|  51.91725|  167.4750|
+|   0.24| Very Good | J     | VVS2    |   62.8|     57|    336|  3.94|  3.96|  2.48|  38.69395|  161.2248|
 
 ### Exercise
 
@@ -573,7 +562,8 @@ diamonds_sym <- mutate(diamonds_sym,
 ### Are asymmetric diamonds worth more?
 
 ``` r
-qplot(sym, price, data = diamonds_sym) + geom_smooth()
+qplot(sym, price, data = diamonds_sym) + 
+  geom_smooth()
 ```
 
     ## Warning: Removed 13 rows containing non-finite values (stat_smooth).
