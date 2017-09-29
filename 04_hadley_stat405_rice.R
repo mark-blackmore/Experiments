@@ -112,6 +112,7 @@ NA == 3
 NA == NA # uses is.na() to check for missing values
 
 #' ### Can use subsetting + <- to change individual values
+#+ warning = FALSE
 diamonds$x[diamonds$x == 0] <- NA
 diamonds$y[diamonds$y == 0] <- NA
 diamonds$z[diamonds$z == 0] <- NA

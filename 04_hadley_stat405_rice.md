@@ -1,7 +1,7 @@
 Lecture 4 for Hadley Wickham's STAT 405 at Rice U. Subsetting
 ================
 Mark Blackmore
-2017-09-20
+2017-09-29
 
 ``` r
 library(ggplot2)
@@ -475,8 +475,6 @@ z_big <- diamonds$z > 20
 diamonds$z[y_big] <- NA
 qplot(x, y, data = diamonds)
 ```
-
-    ## Warning: Removed 10 rows containing missing values (geom_point).
 
 ![](04_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-18-1.png)
 
