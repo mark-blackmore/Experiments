@@ -1,7 +1,7 @@
 Lecture 3 for Hadley Wickham's STAT 405 at Rice U. Scatterplots for Big Data, Subsetting
 ================
 Mark Blackmore
-2017-09-20
+2017-09-29
 
 ``` r
 library(ggplot2)
@@ -36,7 +36,8 @@ qplot(carat, price, data= diamonds, color = cut, geom = c("point", "smooth"))
 ![](03_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 ``` r
-qplot(carat, price, data= diamonds, color = cut) + geom_smooth()
+qplot(carat, price, data= diamonds, color = cut) + 
+  geom_smooth()
 ```
 
 ![](03_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-2.png)
@@ -81,7 +82,9 @@ qplot(carat, price, data = diamonds, alpha = I(1/250))
 
 ![](03_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-4.png)
 
-### Need to specify grouping variable: what determines which observations go into each boxplot
+### Need to specify grouping variable
+
+what determines which observations go into each boxplot
 
 ``` r
 qplot(table, price, data = diamonds)
@@ -132,7 +135,7 @@ y <- setNames(x, letters[1:10])
 x[1:4]
 ```
 
-    ## [1] 2 1 6 4
+    ## [1] 1 9 8 6
 
 ``` r
 x[x == 5]
@@ -144,45 +147,45 @@ x[x == 5]
 y[order(y)]
 ```
 
-    ##  b  a  g  d  i  c  e  j  f  h 
+    ##  a  h  j  f  i  d  g  c  b  e 
     ##  1  2  3  4  5  6  7  8  9 10
 
 ``` r
 x[]
 ```
 
-    ##  [1]  2  1  6  4  7  9  3 10  5  8
+    ##  [1]  1  9  8  6 10  4  7  2  5  3
 
 ``` r
 x[-1]
 ```
 
-    ## [1]  1  6  4  7  9  3 10  5  8
+    ## [1]  9  8  6 10  4  7  2  5  3
 
 ``` r
 y["a"]
 ```
 
     ## a 
-    ## 2
+    ## 1
 
 ``` r
 x[x]
 ```
 
-    ##  [1]  1  2  9  4  3  5  6  8  7 10
+    ##  [1]  1  5  2  4  3  6  7  9 10  8
 
 ``` r
 x[x > 2 & x < 9]
 ```
 
-    ## [1] 6 4 7 3 5 8
+    ## [1] 8 6 4 7 5 3
 
 ``` r
 x[sample(10)]
 ```
 
-    ##  [1]  6  8  3  2  4 10  5  9  1  7
+    ##  [1]  7  8  5  4 10  2  6  3  9  1
 
 ``` r
 x[order(x)]
@@ -194,7 +197,7 @@ x[order(x)]
 x[-(1:5)]
 ```
 
-    ## [1]  9  3 10  5  8
+    ## [1] 4 7 2 5 3
 
 ``` r
 x["a"]
@@ -207,13 +210,13 @@ y[letters[10:1]]
 ```
 
     ##  j  i  h  g  f  e  d  c  b  a 
-    ##  8  5 10  3  9  7  4  6  1  2
+    ##  3  5  2  7  4 10  6  8  9  1
 
 ``` r
 x[x < 2 | x >= 8]
 ```
 
-    ## [1]  1  9 10  8
+    ## [1]  1  9  8 10
 
 ``` r
 # x[-1:5]
