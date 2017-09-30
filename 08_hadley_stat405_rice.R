@@ -7,9 +7,11 @@
 #' 
 #' ## Problem Solving
 library(ggplot2)
+library(knitr)
+
 mpg2 <- read.csv("./data/mpg2.csv.bz2", stringsAsFactors = FALSE)
 
-#' ### Be sceptical
+#' ### Be sceptical  
 recent <- subset(mpg2, year >= 1998 &
                    fueltype %in% c("CNG", "Diesel", "Regular", "Premium"))
 qplot(year, cty, data = recent, colour = fueltype,
@@ -17,7 +19,7 @@ qplot(year, cty, data = recent, colour = fueltype,
 qplot(year, cty, data = recent, colour = fueltype,
       geom = "jitter")
 
-#' ### Be curious
+#' ### Be curious  
 qplot(year, cty, data = recent, geom = "boxplot", group = year) +
   facet_wrap(~ fueltype) +
   geom_smooth(colour = "red")
@@ -37,39 +39,40 @@ slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
 #' ### How to save work
 write.csv(slots, "slots-2.csv")
 slots2 <- read.csv("slots-2.csv")
-head(slots)
-head(slots2)
+kable(head(slots))
+kable(head(slots2))
 str(slots)
 str(slots2)
 
 #' ### Better, but still loses factor levels
 write.csv(slots, file = "slots-3.csv", row.names = F)
 slots3 <- read.csv("slots-3.csv")
-head(slots)
-head(slots3)
+kable(head(slots))
+kable(head(slots3))
 str(slots)
 str(slots3)
 
 #' ### For long-term storage
 write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
-#' ### For short-term caching
+
+#' ### For short-term caching  
 #' Preserves factors etc.
 saveRDS(slots, "./data/slots.rds")
 slots2 <- readRDS("./data/slots.rds")
-head(slots2)
+kable(head(slots2))
 str(slots2)
 
-#' ## Slot Machine Payoffs
+#' ## Slot Machine Payoffs  
 #' Casino claims that slot machines have prize payout of 92%. Is this claim true?
 mean(slots$prize)
 t.test(slots$prize, mu = 0.92)
 qplot(prize, data = slots, binwidth = 1)
-#'#### How can we do better?
+#' How can we do better?
 
-#' ### # Challenge: given e.g.
+#' ### # Challenge: given the following
 windows <- c("7", "C", "C")
-#" how can we calculate thepayoff in R?
+#' how can we calculate thepayoff in R?
 
 #' ### Using Conditionals to check all cases
 x <- 5
@@ -101,7 +104,7 @@ allbars <- windows %in% c("B", "BB", "BBB")
 allbars[1] & allbars[2] & allbars[3]
 all(allbars)
 
-#' ### Exercise
+#' ### Exercise  
 #'  Complete the previous code so that the correct value of prize is set if all the
 #' windows are the same, or they are all bars
 payoffs <- c("DD" = 800, "7" = 80, "BBB" = 40,

@@ -5,7 +5,7 @@
 #' output: github_document
 #' ---
 #' 
-#' ## Slots Strategy
+#' ## Slots Strategy  
 #' How can we determine if all of the windows are B, BB, or BBB?
 windows <- c("7", "C", "C") 
 windows[1] %in% c("B", "BB", "BBB")
@@ -156,7 +156,7 @@ seq_along(1:10)
 1:10 * 2
 seq_along(1:10 * 2)
 
-#' ### Exercise
+#' ### Exercise  
 #' For each diamond colour, calculate the
 #' median price and carat size
 colours <- levels(diamonds$color)
@@ -171,7 +171,7 @@ for(i in seq_len(n)) {
 results <- data.frame(colours, mprice, mcarat)
 knitr::kable(results)
 
-#' ## Back to slots...
+#' ## Back to slots...  
 #' For each row, calculate the prize and save
 #' it, then compare calculated prize to actual
 #' prize. 

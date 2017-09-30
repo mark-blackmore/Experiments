@@ -1,13 +1,15 @@
 Lecture 8 for Hadley Wickham's STAT 405 at Rice U. Problem Solving
 ================
 Mark Blackmore
-2017-09-26
+2017-09-29
 
 Problem Solving
 ---------------
 
 ``` r
 library(ggplot2)
+library(knitr)
+
 mpg2 <- read.csv("./data/mpg2.csv.bz2", stringsAsFactors = FALSE)
 ```
 
@@ -60,28 +62,30 @@ slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
 ``` r
 write.csv(slots, "slots-2.csv")
 slots2 <- read.csv("slots-2.csv")
-head(slots)
+kable(head(slots))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
-head(slots2)
+kable(head(slots2))
 ```
 
-    ##   X w1 w2 w3 prize night
-    ## 1 1 BB  0  0     0     1
-    ## 2 2  0 DD  B     0     1
-    ## 3 3  0  0  0     0     1
-    ## 4 4 BB  0  0     0     1
-    ## 5 5  0  0  0     0     1
-    ## 6 6  0  0  B     0     1
+|    X| w1  | w2  | w3  |  prize|  night|
+|----:|:----|:----|:----|------:|------:|
+|    1| BB  | 0   | 0   |      0|      1|
+|    2| 0   | DD  | B   |      0|      1|
+|    3| 0   | 0   | 0   |      0|      1|
+|    4| BB  | 0   | 0   |      0|      1|
+|    5| 0   | 0   | 0   |      0|      1|
+|    6| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots)
@@ -111,28 +115,30 @@ str(slots2)
 ``` r
 write.csv(slots, file = "slots-3.csv", row.names = F)
 slots3 <- read.csv("slots-3.csv")
-head(slots)
+kable(head(slots))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
-head(slots3)
+kable(head(slots3))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots)
@@ -170,16 +176,17 @@ Preserves factors etc.
 ``` r
 saveRDS(slots, "./data/slots.rds")
 slots2 <- readRDS("./data/slots.rds")
-head(slots2)
+kable(head(slots2))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots2)
@@ -225,16 +232,13 @@ qplot(prize, data = slots, binwidth = 1)
 
 ![](08_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
-#### How can we do better?
-
-### \# Challenge: given e.g.
+How can we do better? \#\#\# \# Challenge: given the following
 
 ``` r
 windows <- c("7", "C", "C")
-#" how can we calculate thepayoff in R?
 ```
 
-### Using Conditionals to check all cases
+how can we calculate thepayoff in R? \#\#\# Using Conditionals to check all cases
 
 ``` r
 x <- 5
