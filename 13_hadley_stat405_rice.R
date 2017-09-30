@@ -58,3 +58,110 @@ cat(contents[1], "\n")
 #' * `\t` = tab
 #' * ?Quotes for more
 #' 
+#' ### Exercise
+#' Create a string for each of the following strings:
+#' :-\
+#' (^_^")
+#' @_'-'
+#' \m/
+#' Create a multiline string.
+#' Compare the output from print() and cat()
+
+a <- ":-\\"
+print(a) 
+cat(a, "\n")
+
+b <- "(^_^\")"
+print(b)
+cat(b, "\n")
+
+c <- "@_'-'"
+print(c)
+cat(c, "\n")
+
+d <- "\\m/"
+print(d)
+cat(d, "\n")
+
+e <- "Create\na\nmultiline\nstring."
+print(e)
+cat(e, "\n")
+
+#' ## Stringr
+# install.packages("stringr")
+
+library(stringr)
+
+help(package = "stringr")
+#' lists all functions in a package
+#' all functions in stringr start with str_
+
+apropos("str_")
+#' lists all functions with names containing
+#' specified characters 
+
+#' ### Header vs. Content
+#' Need to split the string into two pieces,
+#' based on the the location of double line
+#' break:
+#'   str_locate(string, pattern)
+#' Need two substrings, one to the right and
+#' one to the left:
+#'   str_sub(string, start, end)
+#'   
+#' #### Examples
+str_locate("great", "a")
+str_locate("fantastic", "a")
+str_locate("super", "a")
+
+superlatives <- c("great", "fantastic", "super")
+res <- str_locate(superlatives, "a")
+str(res) # matrix
+
+str(str_locate_all(superlatives, "a")) # list
+str_sub("testing", 1, 3)
+str_sub("testing", start = 4) # by default goes to end
+str_sub("testing", end = 4) # by default starts at 1
+
+input <- c("abc", "defg")
+str_sub(input, c(2, 3)) # item 1 - start at 2, item 2 - start at 3
+
+#' ### Exercise
+#' Use str_locate() to identify the location
+#' of the blank line. (Hint: a blank line is a newline
+#'                     immediately followed by another newline)
+#' Split the emails into header and content
+#' with str_sub()
+#'  Make sure to check your results.
+breaks <- str_locate(contents, "\n\n")
+
+#' Extract headers and bodies
+header <- str_sub(contents, end = breaks[, 1])
+body <- str_sub(contents, start = breaks[, 2])
+
+#' Is everything ok with breaks?
+
+#' ### Headers
+#' Each header starts at the beginning of a new line
+#' Each header is composed of a name
+#' and contents, separated by a colon 
+h <- header[2]
+
+#' Does this work?
+str_split(h, "\n")[[1]]
+
+#' Fix the issue
+lines <- str_split(h, "\n")
+#' because str_split returns a list with one element
+#' for each input string
+lines <- lines[[1]]
+continued <- str_sub(lines, 1, 1) %in% c(" ", "\t")
+
+#' This is a useful trick!
+groups <- cumsum(!continued)
+fields <- rep(NA, max(groups))
+for (i in seq_along(fields)) {
+  fields[i] <- str_c(lines[groups == i], collapse = "\n")
+}
+#' Or
+tapply(lines, groups, str_c, collapse = "\n")

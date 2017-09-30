@@ -1,7 +1,7 @@
 Lecture 13 for Hadley Wickham's STAT 405 at Rice String Processing
 ================
 Mark Blackmore
-2017-09-29
+2017-09-30
 
 String Processing
 -----------------
@@ -198,3 +198,311 @@ cat(contents[1], "\n")
 -   `\\` = `\`
 -   `\t` = tab
 -   ?Quotes for more
+
+### Exercise
+
+Create a string for each of the following strings: :-
+(^\_^") @\_'-' / Create a multiline string. Compare the output from print() and cat()
+
+``` r
+a <- ":-\\"
+print(a) 
+```
+
+    ## [1] ":-\\"
+
+``` r
+cat(a, "\n")
+```
+
+    ## :-\
+
+``` r
+b <- "(^_^\")"
+print(b)
+```
+
+    ## [1] "(^_^\")"
+
+``` r
+cat(b, "\n")
+```
+
+    ## (^_^")
+
+``` r
+c <- "@_'-'"
+print(c)
+```
+
+    ## [1] "@_'-'"
+
+``` r
+cat(c, "\n")
+```
+
+    ## @_'-'
+
+``` r
+d <- "\\m/"
+print(d)
+```
+
+    ## [1] "\\m/"
+
+``` r
+cat(d, "\n")
+```
+
+    ## \m/
+
+``` r
+e <- "Create\na\nmultiline\nstring."
+print(e)
+```
+
+    ## [1] "Create\na\nmultiline\nstring."
+
+``` r
+cat(e, "\n")
+```
+
+    ## Create
+    ## a
+    ## multiline
+    ## string.
+
+Stringr
+-------
+
+``` r
+# install.packages("stringr")
+
+library(stringr)
+```
+
+    ## Warning: package 'stringr' was built under R version 3.3.3
+
+``` r
+help(package = "stringr")
+```
+
+lists all functions in a package all functions in stringr start with str\_
+
+``` r
+apropos("str_")
+```
+
+    ##  [1] "str_c"           "str_conv"        "str_count"      
+    ##  [4] "str_detect"      "str_dup"         "str_extract"    
+    ##  [7] "str_extract_all" "str_interp"      "str_join"       
+    ## [10] "str_length"      "str_locate"      "str_locate_all" 
+    ## [13] "str_match"       "str_match_all"   "str_order"      
+    ## [16] "str_pad"         "str_replace"     "str_replace_all"
+    ## [19] "str_replace_na"  "str_sort"        "str_split"      
+    ## [22] "str_split_fixed" "str_sub"         "str_sub<-"      
+    ## [25] "str_subset"      "str_to_lower"    "str_to_title"   
+    ## [28] "str_to_upper"    "str_trim"        "str_trunc"      
+    ## [31] "str_view"        "str_view_all"    "str_which"      
+    ## [34] "str_wrap"
+
+lists all functions with names containing specified characters \#\#\# Header vs. Content Need to split the string into two pieces, based on the the location of double line break: str\_locate(string, pattern) Need two substrings, one to the right and one to the left: str\_sub(string, start, end)
+
+#### Examples
+
+``` r
+str_locate("great", "a")
+```
+
+    ##      start end
+    ## [1,]     4   4
+
+``` r
+str_locate("fantastic", "a")
+```
+
+    ##      start end
+    ## [1,]     2   2
+
+``` r
+str_locate("super", "a")
+```
+
+    ##      start end
+    ## [1,]    NA  NA
+
+``` r
+superlatives <- c("great", "fantastic", "super")
+res <- str_locate(superlatives, "a")
+str(res) # matrix
+```
+
+    ##  int [1:3, 1:2] 4 2 NA 4 2 NA
+    ##  - attr(*, "dimnames")=List of 2
+    ##   ..$ : NULL
+    ##   ..$ : chr [1:2] "start" "end"
+
+``` r
+str(str_locate_all(superlatives, "a")) # list
+```
+
+    ## List of 3
+    ##  $ : int [1, 1:2] 4 4
+    ##   ..- attr(*, "dimnames")=List of 2
+    ##   .. ..$ : NULL
+    ##   .. ..$ : chr [1:2] "start" "end"
+    ##  $ : int [1:2, 1:2] 2 5 2 5
+    ##   ..- attr(*, "dimnames")=List of 2
+    ##   .. ..$ : NULL
+    ##   .. ..$ : chr [1:2] "start" "end"
+    ##  $ : int[0 , 1:2] 
+    ##   ..- attr(*, "dimnames")=List of 2
+    ##   .. ..$ : NULL
+    ##   .. ..$ : chr [1:2] "start" "end"
+
+``` r
+str_sub("testing", 1, 3)
+```
+
+    ## [1] "tes"
+
+``` r
+str_sub("testing", start = 4) # by default goes to end
+```
+
+    ## [1] "ting"
+
+``` r
+str_sub("testing", end = 4) # by default starts at 1
+```
+
+    ## [1] "test"
+
+``` r
+input <- c("abc", "defg")
+str_sub(input, c(2, 3)) # item 1 - start at 2, item 2 - start at 3
+```
+
+    ## [1] "bc" "fg"
+
+### Exercise
+
+Use str\_locate() to identify the location of the blank line. (Hint: a blank line is a newline immediately followed by another newline) Split the emails into header and content with str\_sub() Make sure to check your results.
+
+``` r
+breaks <- str_locate(contents, "\n\n")
+```
+
+Extract headers and bodies
+
+``` r
+header <- str_sub(contents, end = breaks[, 1])
+body <- str_sub(contents, start = breaks[, 2])
+```
+
+Is everything ok with breaks? \#\#\# Headers Each header starts at the beginning of a new line Each header is composed of a name and contents, separated by a colon
+
+``` r
+h <- header[2]
+```
+
+Does this work?
+
+``` r
+str_split(h, "\n")[[1]]
+```
+
+    ##  [1] "Recieved: from nahou-mscnx06p.corp.enron.com ([192.168.110.237]) by NAHOU-MSMBX01V.corp.enron.com with Microsoft SMTPSVC(5.0.2195.2966);"
+    ##  [2] "\t Mon, 19 Nov 2001 23:27:31 -0600"                                                                                                       
+    ##  [3] "Received: from corp.enron.com ([192.168.110.224]) by nahou-mscnx06p.corp.enron.com with Microsoft SMTPSVC(5.0.2195.2966);"               
+    ##  [4] "\t Mon, 19 Nov 2001 23:27:31 -0600"                                                                                                       
+    ##  [5] "Received: from mailman.enron.com (unverified) by corp.enron.com"                                                                         
+    ##  [6] " (Content Technologies SMTPRS 4.2.1) with ESMTP id <T5753582523c0a86ee057c@corp.enron.com>;"                                             
+    ##  [7] " Mon, 19 Nov 2001 23:27:20 -0600"                                                                                                        
+    ##  [8] "Received: from independent.org (dnai-216-15-109-150.cust.dnai.com [216.15.109.150])"                                                     
+    ##  [9] "\tby mailman.enron.com (8.11.4/8.11.4/corp-1.06) with SMTP id fAK5REV10291;"                                                              
+    ## [10] "\tMon, 19 Nov 2001 23:27:17 -0600 (CST)"                                                                                                  
+    ## [11] "Received: from pop.independent.org by independent.org with POP3; Mon, 19"                                                                
+    ## [12] " Nov 2001 18:11:50 -0800"                                                                                                                
+    ## [13] "Delivered-To: swan001-Lighthouse@independent.org"                                                                                        
+    ## [14] "Mime-Version: 1.0"                                                                                                                       
+    ## [15] "X-Sender: swan001.mailadmin@pop.independent.org"                                                                                         
+    ## [16] "Message-Id: <a05100300b81f6c349681@[216.15.109.150]>"                                                                                    
+    ## [17] "Date: Mon, 19 Nov 2001 18:11:01 -0800"                                                                                                   
+    ## [18] "To: \"Lighthouse\" <Lighthouse@independent.org>"                                                                                         
+    ## [19] "From: \"David J. Theroux\" <DJTheroux@independent.org>"                                                                                  
+    ## [20] "Subject: THE LIGHTHOUSE: November 19, 2001"                                                                                              
+    ## [21] "Content-Type: text/plain; charset=\"iso-8859-1\" ; format=\"flowed\""                                                                    
+    ## [22] "Content-Transfer-Encoding: quoted-printable"                                                                                             
+    ## [23] "Sender: <Lighthouse@independent.org>"                                                                                                    
+    ## [24] "Precedence: Bulk"                                                                                                                        
+    ## [25] "Return-Path: Lighthouse@independent.org"                                                                                                 
+    ## [26] ""
+
+Fix the issue
+
+``` r
+lines <- str_split(h, "\n")
+```
+
+because str\_split returns a list with one element for each input string
+
+``` r
+lines <- lines[[1]]
+continued <- str_sub(lines, 1, 1) %in% c(" ", "\t")
+```
+
+This is a useful trick!
+
+``` r
+groups <- cumsum(!continued)
+fields <- rep(NA, max(groups))
+for (i in seq_along(fields)) {
+  fields[i] <- str_c(lines[groups == i], collapse = "\n")
+}
+```
+
+Or
+
+``` r
+tapply(lines, groups, str_c, collapse = "\n")
+```
+
+    ##                                                                                                                                                                                                         1 
+    ##                             "Recieved: from nahou-mscnx06p.corp.enron.com ([192.168.110.237]) by NAHOU-MSMBX01V.corp.enron.com with Microsoft SMTPSVC(5.0.2195.2966);\n\t Mon, 19 Nov 2001 23:27:31 -0600" 
+    ##                                                                                                                                                                                                         2 
+    ##                                            "Received: from corp.enron.com ([192.168.110.224]) by nahou-mscnx06p.corp.enron.com with Microsoft SMTPSVC(5.0.2195.2966);\n\t Mon, 19 Nov 2001 23:27:31 -0600" 
+    ##                                                                                                                                                                                                         3 
+    ##          "Received: from mailman.enron.com (unverified) by corp.enron.com\n (Content Technologies SMTPRS 4.2.1) with ESMTP id <T5753582523c0a86ee057c@corp.enron.com>;\n Mon, 19 Nov 2001 23:27:20 -0600" 
+    ##                                                                                                                                                                                                         4 
+    ## "Received: from independent.org (dnai-216-15-109-150.cust.dnai.com [216.15.109.150])\n\tby mailman.enron.com (8.11.4/8.11.4/corp-1.06) with SMTP id fAK5REV10291;\n\tMon, 19 Nov 2001 23:27:17 -0600 (CST)" 
+    ##                                                                                                                                                                                                         5 
+    ##                                                                                                      "Received: from pop.independent.org by independent.org with POP3; Mon, 19\n Nov 2001 18:11:50 -0800" 
+    ##                                                                                                                                                                                                         6 
+    ##                                                                                                                                                        "Delivered-To: swan001-Lighthouse@independent.org" 
+    ##                                                                                                                                                                                                         7 
+    ##                                                                                                                                                                                       "Mime-Version: 1.0" 
+    ##                                                                                                                                                                                                         8 
+    ##                                                                                                                                                         "X-Sender: swan001.mailadmin@pop.independent.org" 
+    ##                                                                                                                                                                                                         9 
+    ##                                                                                                                                                    "Message-Id: <a05100300b81f6c349681@[216.15.109.150]>" 
+    ##                                                                                                                                                                                                        10 
+    ##                                                                                                                                                                   "Date: Mon, 19 Nov 2001 18:11:01 -0800" 
+    ##                                                                                                                                                                                                        11 
+    ##                                                                                                                                                         "To: \"Lighthouse\" <Lighthouse@independent.org>" 
+    ##                                                                                                                                                                                                        12 
+    ##                                                                                                                                                  "From: \"David J. Theroux\" <DJTheroux@independent.org>" 
+    ##                                                                                                                                                                                                        13 
+    ##                                                                                                                                                              "Subject: THE LIGHTHOUSE: November 19, 2001" 
+    ##                                                                                                                                                                                                        14 
+    ##                                                                                                                                    "Content-Type: text/plain; charset=\"iso-8859-1\" ; format=\"flowed\"" 
+    ##                                                                                                                                                                                                        15 
+    ##                                                                                                                                                             "Content-Transfer-Encoding: quoted-printable" 
+    ##                                                                                                                                                                                                        16 
+    ##                                                                                                                                                                    "Sender: <Lighthouse@independent.org>" 
+    ##                                                                                                                                                                                                        17 
+    ##                                                                                                                                                                                        "Precedence: Bulk" 
+    ##                                                                                                                                                                                                        18 
+    ##                                                                                                                                                                 "Return-Path: Lighthouse@independent.org" 
+    ##                                                                                                                                                                                                        19 
+    ##                                                                                                                                                                                                        ""
