@@ -5,6 +5,9 @@
 #' output: github_document
 #' ---
 #'
+library(plyr)
+library(ggplot2)
+
 #' ## Baby names data
 #' Top 1000 male and female baby
 #' names in the US, from 1880 to 2008.  
@@ -14,13 +17,12 @@
 #' 
 file_bnames <- "http://stat405.had.co.nz/data/bnames2.csv.bz2"
 file_births <- "http://stat405.had.co.nz/data/births.csv" 
-
-library(plyr)
-library(ggplot2)
 options(stringsAsFactors = FALSE)
+
 #+ eval = FALSE
 download.file(file_bnames, destfile = "./data/bnames2.csv.bz2")
 download.file(file_births, destfile = "./data/births.csv")
+
 #+ eval = TRUE
 bnames <- read.csv("./data/bnames2.csv.bz2")
 births <- read.csv("./data/births.csv")

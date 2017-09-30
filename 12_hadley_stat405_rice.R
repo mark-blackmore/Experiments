@@ -235,3 +235,12 @@ top10 <- subset(bnames, rank <= 10)
 counts <- plyr::count(top10, c("sex", "name"))
 ddply(counts, "sex", subset, freq == max(freq))
 head(arrange(counts, desc(freq)), 10) %>% kable
+
+#' ### Challenge 4
+#' For each soundex, find the most common name in that group
+bnames2 %>% group_by(soundex, name) %>% summarise(freq = sum(n)) %>% 
+  summarise(name = name[which.max(freq)], max_freq = max(freq)) %>% head(10) %>% kable
+
+#' Or
+names <- plyr::count(bnames2, c("soundex", "name"), "n")
+ddply(names, "soundex", subset, freq == max(freq)) %>% head(10) %>% kable

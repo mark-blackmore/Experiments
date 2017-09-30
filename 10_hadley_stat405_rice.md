@@ -1,7 +1,12 @@
 Lecture 10 for Hadley Wickham's STAT 405 at Rice U. Simulation
 ================
 Mark Blackmore
-2017-09-26
+2017-09-29
+
+``` r
+library(ggplot2)
+library(plyr)
+```
 
 For Loops
 ---------
@@ -259,7 +264,7 @@ flips <- sample(coin, 10, replace = T)
 mean(flips)
 ```
 
-    ## [1] 0.4
+    ## [1] 0.5
 
 What happens to the proportion of heads as n increases?
 
@@ -268,12 +273,11 @@ flips <- sample(coin, 10000, replace = T)
 n <- seq_along(flips)
 mean <- cumsum(flips) / n
 coin_toss <- data.frame(n, flips, mean)
-library(ggplot2)
 qplot(n, mean, data = coin_toss, geom = "line") +
   geom_hline(yintercept = 0.5)
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-13-1.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-14-1.png)
 
 ### Strategy 2
 
@@ -288,7 +292,7 @@ Simulate the first window
 sample(slots$w1, 1)
 ```
 
-    ## [1] "BB"
+    ## [1] "7"
 
 Simulate the second window
 
@@ -296,7 +300,7 @@ Simulate the second window
 sample(slots$w2, 1)
 ```
 
-    ## [1] "BB"
+    ## [1] "0"
 
 Simulate the third window
 
@@ -304,7 +308,7 @@ Simulate the third window
 sample(slots$w3, 1)
 ```
 
-    ## [1] "B"
+    ## [1] "0"
 
 What is the implicit assumption here? How could we test that assumption?
 
@@ -334,7 +338,6 @@ play_n <- function(n) {
 Now we can see what happens to the mean prize as n increases
 
 ``` r
-library(plyr)
 games <- data.frame(prizes = play_n(500))
 games <- mutate(games,
                 n = seq_along(prizes),
@@ -343,7 +346,7 @@ qplot(n, avg, data = games, geom = "line") +
   geom_hline(yintercept = 0.92, color = "red")
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-19-1.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-20-1.png)
 
 ### Questions
 
@@ -354,14 +357,11 @@ system.time(play_n(5000))
 ```
 
     ##    user  system elapsed 
-    ##    0.41    0.00    0.42
+    ##    0.34    0.00    0.34
+
+I wrote a vectorised version - instead of using explicit for loops, use R functions that work with vectors. This is usually much much faster
 
 ``` r
-# I wrote a vectorised version - instead of
-# using explicit for loops, use R functions that
-# work with vectors. This is usually much much
-# faster
-
 file_source <- "http://stat405.had.co.nz/data/payoff-v.r"
 download.file(file_source, destfile = "payoff-v.r")
 file_slots <- "http://stat405.had.co.nz/data/slots.csv"
@@ -372,7 +372,7 @@ system.time(play_many(5000))
 ```
 
     ##    user  system elapsed 
-    ##       0       0       0
+    ##    0.02    0.00    0.02
 
 ### What happens if we play more games?
 
@@ -385,14 +385,14 @@ every1000 <- subset(games, n %% 1000 == 0)
 qplot(n, avg, data = every1000, geom = "line")
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-21-1.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-23-1.png)
 
 ``` r
 qplot(n, avg, data = subset(every1000, n > 10000),
       geom = "line")
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-21-2.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-23-2.png)
 
 Still seems to be quite a lot of variation even after 1,000,000 pulls
 
@@ -473,7 +473,7 @@ qplot(group_n, avg, data = every10, geom = "line",
       group = group, alpha = I(1/5))
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-24-1.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-26-1.png)
 
 Could just look at the distribution at pull 1000
 
@@ -482,6 +482,6 @@ final <- subset(many, group_n == 1000)
 qplot(avg, data = final, binwidth = 0.01)
 ```
 
-![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-25-1.png)
+![](10_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-27-1.png)
 
 What do you think the average payoff is?

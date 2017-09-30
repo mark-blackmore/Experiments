@@ -1,7 +1,12 @@
 Lecture 11 for Hadley Wickham's STAT 405 Advanced Data Manipulation
 ================
 Mark Blackmore
-2017-09-28
+2017-09-29
+
+``` r
+library(plyr)
+library(ggplot2)
+```
 
 Baby names data
 ---------------
@@ -12,9 +17,6 @@ Top 1000 male and female baby names in the US, from 1880 to 2008.
 ``` r
 file_bnames <- "http://stat405.had.co.nz/data/bnames2.csv.bz2"
 file_births <- "http://stat405.had.co.nz/data/births.csv" 
-
-library(plyr)
-library(ggplot2)
 options(stringsAsFactors = FALSE)
 ```
 
@@ -87,21 +89,21 @@ mark <- subset(bnames, name == "Mark")
 qplot(year, prop, data = mark, color = sex, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ``` r
 sheryl <- subset(bnames, name == "Sheryl")
 qplot(year, prop, data = sheryl, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-2.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
 
 ``` r
 garret <- subset(bnames, name == "Garret")
 qplot(year, prop, data = garret, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-3.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-3.png)
 
 ``` r
 hadley <- subset(bnames, name == "Hadley")
@@ -109,7 +111,7 @@ qplot(year, prop, data = hadley, color = sex,
       geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-4.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-4.png)
 
 ### Exercise:
 
@@ -120,27 +122,27 @@ mark_soundex <- subset(bnames, soundex == "M620")
 qplot(year, prop, data = mark_soundex, color = name, group = sex, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 ``` r
 glike <- subset(bnames, soundex == "G630")
 qplot(year, prop, data = glike)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-2.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line")
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-3.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-3.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
       colour = sex)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-4.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-4.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
@@ -150,14 +152,14 @@ qplot(year, prop, data = glike, geom = "line",
     ## geom_path: Each group consists of only one observation. Do you need to
     ## adjust the group aesthetic?
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-5.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-5.png)
 
 ``` r
 qplot(year, prop, data = glike, geom = "line",
       colour = sex, group = interaction(sex, name))
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-6.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-6.png)
 
 ### Exercise
 
@@ -404,7 +406,7 @@ qplot(year, births, data = births, geom = "line",
       color = sex)
 ```
 
-![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
+![](11_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-11-1.png)
 
 ### Add to Beatles data. How could we combine `what_player` & `members` now?
 

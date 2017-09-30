@@ -5,6 +5,9 @@
 #' output: github_document
 #' ---
 #'
+library(ggplot2)
+library(plyr)
+
 #' ## For Loops  
 #' Common pattern: create object for output, then fill with results
 library(ggplot2)
@@ -14,6 +17,7 @@ for(i in seq_along(cuts)) {
   sub <- diamonds[diamonds$cut == cuts[i], ]
   means[i] <- mean(sub$price)
 }
+
 #' We will learn more sophisticated ways to do this
 #' later on, but this is the most explicit
 #' 
@@ -132,7 +136,6 @@ flips <- sample(coin, 10000, replace = T)
 n <- seq_along(flips)
 mean <- cumsum(flips) / n
 coin_toss <- data.frame(n, flips, mean)
-library(ggplot2)
 qplot(n, mean, data = coin_toss, geom = "line") +
   geom_hline(yintercept = 0.5)
 
@@ -173,7 +176,6 @@ play_n <- function(n) {
 
 #' Now we can see what happens to the mean prize as
 #' n increases
-library(plyr)
 games <- data.frame(prizes = play_n(500))
 games <- mutate(games,
                 n = seq_along(prizes),
@@ -187,10 +189,11 @@ qplot(n, avg, data = games, geom = "line") +
 #' How can we do this more quickly?
 #' Current function is pretty slow
 system.time(play_n(5000))
-# I wrote a vectorised version - instead of
-# using explicit for loops, use R functions that
-# work with vectors. This is usually much much
-# faster
+
+#' I wrote a vectorised version - instead of
+#' using explicit for loops, use R functions that
+#' work with vectors. This is usually much much
+#' faster
 
 file_source <- "http://stat405.had.co.nz/data/payoff-v.r"
 download.file(file_source, destfile = "payoff-v.r")
@@ -246,4 +249,5 @@ qplot(group_n, avg, data = every10, geom = "line",
 #' Could just look at the distribution at pull 1000
 final <- subset(many, group_n == 1000)
 qplot(avg, data = final, binwidth = 0.01)
+
 #' What do you think the average payoff is?
