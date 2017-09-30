@@ -1,11 +1,12 @@
 Lecture 7 for Hadley Wickham's STAT 405 at Rice U. More About Data
 ================
 Mark Blackmore
-2017-09-26
+2017-09-29
 
 ``` r
 library(ggplot2)
 library(plyr)
+library(knitr)
 ```
 
 Tips
@@ -46,10 +47,6 @@ download.file(fileUrl_3, destfile = "./data/tricky-3.csv")
 download.file(fileUrl_4, destfile = "./data/tricky-4.csv")
 list.files("./data")
 ```
-
-    ##  [1] "mpg2.csv.bz2"  "slots-2.csv"   "slots-3.csv"   "slots.csv"    
-    ##  [5] "slots.csv.bz2" "slots.rds"     "slots.txt"     "tricky-1.csv" 
-    ##  [9] "tricky-2.csv"  "tricky-3.csv"  "tricky-4.csv"
 
 Load files into workspace
 
@@ -153,16 +150,17 @@ count.fields("./data/slots.txt", sep = "",
 ``` r
 slots <- read.delim("./data/slots.txt", sep = " ")
 slots_clean <- read.csv("./data/slots.csv")
-head(slots_clean)
+kable(head(slots_clean))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ### Variable Names
 
@@ -185,7 +183,9 @@ dput(names(slots))
 Strings and Factors
 -------------------
 
-By default, strings converted to factors when loading data frames. I think this is the wrong default - you should always explicitly convert strings to factors. Use stringsAsFactors = F to avoid this. For one data frame:
+By default, strings converted to factors when loading data frames. I think this is the wrong default - you should always explicitly convert strings to factors. Use stringsAsFactors = F to avoid this.
+
+For one data frame:
 
 ``` r
 # read.csv("mpg.csv.bz2", stringsAsFactors = F)
@@ -218,16 +218,16 @@ table(a); table(b); table(c)
 ```
 
     ## a
-    ## 1 2 3 4 5 
-    ## 5 4 3 6 2
+    ##  1  2  3  4  5 
+    ##  1  1  5 10  3
 
     ## b
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  5  4  3  6  2  0  0  0  0  0
+    ##  1  1  5 10  3  0  0  0  0  0
 
     ## c
-    ## a b c d e 
-    ## 5 4 3 6 2
+    ##  a  b  c  d  e 
+    ##  1  1  5 10  3
 
 ### Create factors on slots data
 
@@ -257,7 +257,7 @@ table(b2)
 
     ## b2
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  0  1  1  3  0  0  0  0  0  0
+    ##  0  1  0  2  2  0  0  0  0  0
 
 #### Remove extra levels
 
@@ -265,15 +265,15 @@ table(b2)
 b2[, drop = TRUE]
 ```
 
-    ## [1] 2 4 3 4 4
-    ## Levels: 2 3 4
+    ## [1] 5 2 4 5 4
+    ## Levels: 2 4 5
 
 ``` r
 factor(b2)
 ```
 
-    ## [1] 2 4 3 4 4
-    ## Levels: 2 3 4
+    ## [1] 5 2 4 5 4
+    ## Levels: 2 4 5
 
 #### But usually better to convert to character
 
@@ -283,16 +283,16 @@ table(b3)
 ```
 
     ## b3
-    ## 1 2 3 4 5 
-    ## 5 4 3 6 2
+    ##  1  2  3  4  5 
+    ##  1  1  5 10  3
 
 ``` r
 table(b3[1:5])
 ```
 
     ## 
-    ## 2 3 4 
-    ## 1 1 3
+    ## 2 4 5 
+    ## 1 2 2
 
 ### Factors behave like integers when subsetting, not characters!
 
@@ -327,20 +327,20 @@ d <- factor(x, labels = 2^(1:5))
 as.numeric(d)
 ```
 
-    ##  [1] 5 2 3 3 1 3 3 2 1 4 4 4 3 1 1 1 4 4 1 5
+    ##  [1] 2 2 1 3 2 2 5 2 4 5 3 1 1 5 4 3 4 4 5 1
 
 ``` r
 as.character(d)
 ```
 
-    ##  [1] "32" "4"  "8"  "8"  "2"  "8"  "8"  "4"  "2"  "16" "16" "16" "8"  "2" 
-    ## [15] "2"  "2"  "16" "16" "2"  "32"
+    ##  [1] "4"  "4"  "2"  "8"  "4"  "4"  "32" "4"  "16" "32" "8"  "2"  "2"  "32"
+    ## [15] "16" "8"  "16" "16" "32" "2"
 
 ``` r
 as.numeric(as.character(d))
 ```
 
-    ##  [1] 32  4  8  8  2  8  8  4  2 16 16 16  8  2  2  2 16 16  2 32
+    ##  [1]  4  4  2  8  4  4 32  4 16 32  8  2  2 32 16  8 16 16 32  2
 
 Saving Data
 -----------
@@ -350,28 +350,30 @@ Saving Data
 ``` r
 write.csv(slots, "./data/slots-2.csv")
 slots2 <- read.csv("./data/slots-2.csv")
-head(slots)
+kable(head(slots))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
-head(slots2)
+kable(head(slots2))
 ```
 
-    ##   X w1 w2 w3 prize night
-    ## 1 1 BB  0  0     0     1
-    ## 2 2  0 DD  B     0     1
-    ## 3 3  0  0  0     0     1
-    ## 4 4 BB  0  0     0     1
-    ## 5 5  0  0  0     0     1
-    ## 6 6  0  0  B     0     1
+|    X| w1  | w2  | w3  |  prize|  night|
+|----:|:----|:----|:----|------:|------:|
+|    1| BB  | 0   | 0   |      0|      1|
+|    2| 0   | DD  | B   |      0|      1|
+|    3| 0   | 0   | 0   |      0|      1|
+|    4| BB  | 0   | 0   |      0|      1|
+|    5| 0   | 0   | 0   |      0|      1|
+|    6| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots)
@@ -401,16 +403,17 @@ str(slots2)
 ``` r
 write.csv(slots, file = "./data/slots-3.csv", row.names = F)
 slots3 <- read.csv("./data/slots-3.csv")
-head(slots3)
+kable(head(slots3))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots3)
@@ -437,16 +440,17 @@ Preserves factors etc. Can be used with any R object.
 ``` r
 saveRDS(slots, "./data/slots.rds")
 slots2 <- readRDS("./data/slots.rds")
-head(slots2)
+kable(head(slots2))
 ```
 
-    ##   w1 w2 w3 prize night
-    ## 1 BB  0  0     0     1
-    ## 2  0 DD  B     0     1
-    ## 3  0  0  0     0     1
-    ## 4 BB  0  0     0     1
-    ## 5  0  0  0     0     1
-    ## 6  0  0  B     0     1
+| w1  | w2  | w3  |  prize|  night|
+|:----|:----|:----|------:|------:|
+| BB  | 0   | 0   |      0|      1|
+| 0   | DD  | B   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| BB  | 0   | 0   |      0|      1|
+| 0   | 0   | 0   |      0|      1|
+| 0   | 0   | B   |      0|      1|
 
 ``` r
 str(slots2)

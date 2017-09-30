@@ -7,24 +7,27 @@
 
 library(ggplot2)
 library(plyr)
+library(knitr)
 
-#' ## Tips
+#' ## Tips  
 #' If you know what the missing code is, use it
 # read.csv(file, na.string = ".")
 # read.csv(file, na.string = "-99")
+
 #' Use count.fields to check the number of columns in each row. The following
 #' call uses the same default as read.csv
 # count.fields(file, sep = ",",
 #             quote = "", comment.char = "")
 
 #' ## Exercise: downloading tricky files
-#' File URL's
+#' File URL's  
 fileUrl_1 <- "http://stat405.had.co.nz/data/tricky-1.csv"
 fileUrl_2 <- "http://stat405.had.co.nz/data/tricky-2.csv"
 fileUrl_3 <- "http://stat405.had.co.nz/data/tricky-3.csv"
 fileUrl_4 <- "http://stat405.had.co.nz/data/tricky-4.csv"
 
-#' Download files 
+#' Download files
+#+ eval = FALSE  
 download.file(fileUrl_1, destfile = "./data/tricky-1.csv")
 download.file(fileUrl_2, destfile = "./data/tricky-2.csv")
 download.file(fileUrl_3, destfile = "./data/tricky-3.csv")
@@ -52,6 +55,7 @@ fileUrl_6 <- "http://stat405.had.co.nz/data/slots.csv"
 #' ## Data Cleaning
 #' Goal: convert slots.txt to clean version - slots.csv 
 #' Download files
+#+ eval = FALSE
 download.file(fileUrl_5, destfile = "./data/slots.txt")
 download.file(fileUrl_6, destfile = "./data/slots.csv")
 
@@ -60,21 +64,22 @@ count.fields("./data/slots.txt", sep = "",
              quote = "", comment.char = "")
 slots <- read.delim("./data/slots.txt", sep = " ")
 slots_clean <- read.csv("./data/slots.csv")
-head(slots_clean)
+kable(head(slots_clean))
 
-#' ### Variable Names
+#' ### Variable Names  
 #' This is a very common pattern  
 names(slots)
 names(slots) <- c("w1", "w2", "w3",
                   "prize", "night")
 dput(names(slots))
 
-#' ## Strings and Factors
+#' ## Strings and Factors  
 #' By default, strings converted to factors when
 #' loading data frames. I think this is the wrong
 #' default - you should always explicitly convert
 #' strings to factors. Use stringsAsFactors = F to 
-#' avoid this.
+#' avoid this.  
+#' 
 #' For one data frame:
 # read.csv("mpg.csv.bz2", stringsAsFactors = F)
 #' For entire session:
@@ -102,9 +107,11 @@ slots$w3 <- factor(slots$w3, levels = levels, labels = labels)
 b2 <- b[1:5]
 levels(b2)
 table(b2)
+
 #' #### Remove extra levels
 b2[, drop = TRUE]
 factor(b2)
+
 #' #### But usually better to convert to character
 b3 <- as.character(b)
 table(b3)
@@ -124,34 +131,36 @@ as.numeric(d)
 as.character(d)
 as.numeric(as.character(d))
 
-#' ## Saving Data
+#' ## Saving Data  
 #' ### Examples  
 write.csv(slots, "./data/slots-2.csv")
 slots2 <- read.csv("./data/slots-2.csv")
-head(slots)
-head(slots2)
+kable(head(slots))
+kable(head(slots2))
 str(slots)
 str(slots2)
+
 #' ### Better, but still loses factor levels
 write.csv(slots, file = "./data/slots-3.csv", row.names = F)
 slots3 <- read.csv("./data/slots-3.csv")
-head(slots3)
+kable(head(slots3))
 str(slots3)
-
 
 #' ### For long-term storage
 write.csv(slots, file = "./data/slots.csv",
           row.names = FALSE)
-#' ### For short-term caching
+
+#' ### For short-term caching  
 #' Preserves factors etc. Can be used with any R object.
 saveRDS(slots, "./data/slots.rds")
 slots2 <- readRDS("./data/slots.rds")
-head(slots2)
+kable(head(slots2))
 str(slots2)
 
 #' ### Easy to store compressed files to save space:
 write.csv(slots, file = bzfile("./data/slots.csv.bz2"),
           row.names = FALSE)
+
 #' Reading is even easier:
 slots4 <- read.csv("./data/slots.csv.bz2")
 str(slots4)
