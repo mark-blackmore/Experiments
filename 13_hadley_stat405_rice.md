@@ -1,7 +1,11 @@
 Lecture 13 for Hadley Wickham's STAT 405 at Rice String Processing
 ================
 Mark Blackmore
-2017-09-30
+2017-10-01
+
+``` r
+library(knitr)
+```
 
 String Processing
 -----------------
@@ -82,7 +86,10 @@ cat(contents[1], "\n")
 
 #### Structure of an email
 
-Headers give metadata Blank line Body of email Other major complication is attachments and alternative content, but we'll ignore those for class
+-   Headers give metadata
+-   Blank line
+-   Body of email
+    Other major complication is attachments and alternative content, but we'll ignore those for class
 
 #### Tasks
 
@@ -277,17 +284,15 @@ Stringr
 
 ``` r
 # install.packages("stringr")
-
-library(stringr)
 ```
 
-    ## Warning: package 'stringr' was built under R version 3.3.3
-
 ``` r
+library(stringr)
+
 help(package = "stringr")
 ```
 
-lists all functions in a package all functions in stringr start with str\_
+The last call lists all functions in a package all functions in stringr start with str\_
 
 ``` r
 apropos("str_")
@@ -306,19 +311,23 @@ apropos("str_")
     ## [31] "str_view"        "str_view_all"    "str_which"      
     ## [34] "str_wrap"
 
-lists all functions with names containing specified characters \#\#\# Header vs. Content Need to split the string into two pieces, based on the the location of double line break: str\_locate(string, pattern) Need two substrings, one to the right and one to the left: str\_sub(string, start, end)
+The last call lists all functions with names containing specified characters
+
+### Header vs. Content
+
+Need to split the string into two pieces, based on the the location of double line break: str\_locate(string, pattern) Need two substrings, one to the right and one to the left: str\_sub(string, start, end)
 
 #### Examples
 
 ``` r
-str_locate("great", "a")
+str_locate("great", "a") # "a" starts and ends at position shown
 ```
 
     ##      start end
     ## [1,]     4   4
 
 ``` r
-str_locate("fantastic", "a")
+str_locate("fantastic", "a") # first instance
 ```
 
     ##      start end
@@ -341,6 +350,15 @@ str(res) # matrix
     ##  - attr(*, "dimnames")=List of 2
     ##   ..$ : NULL
     ##   ..$ : chr [1:2] "start" "end"
+
+``` r
+res
+```
+
+    ##      start end
+    ## [1,]     4   4
+    ## [2,]     2   2
+    ## [3,]    NA  NA
 
 ``` r
 str(str_locate_all(superlatives, "a")) # list
@@ -387,11 +405,22 @@ str_sub(input, c(2, 3)) # item 1 - start at 2, item 2 - start at 3
 
 ### Exercise
 
-Use str\_locate() to identify the location of the blank line. (Hint: a blank line is a newline immediately followed by another newline) Split the emails into header and content with str\_sub() Make sure to check your results.
+Use str\_locate() to identify the location of the blank line. (Hint: a blank line is a newline immediately followed by another newline).
+Split the emails into header and content with str\_sub() Make sure to check your results.
 
 ``` r
 breaks <- str_locate(contents, "\n\n")
+kable(head(breaks))
 ```
+
+|  start|   end|
+|------:|-----:|
+|    842|   843|
+|   1363|  1364|
+|    806|   807|
+|   1471|  1472|
+|    862|   863|
+|   1023|  1024|
 
 Extract headers and bodies
 
@@ -506,3 +535,32 @@ tapply(lines, groups, str_c, collapse = "\n")
     ##                                                                                                                                                                 "Return-Path: Lighthouse@independent.org" 
     ##                                                                                                                                                                                                        19 
     ##                                                                                                                                                                                                        ""
+
+### Exercise
+
+Write a small function that given a single header field splits it into name and contents. Do you want to use str\_split(), or str\_locate() & str\_sub()? Remember to get the algorithm working before you write the function
+
+``` r
+test1 <- "Sender: <Lighthouse@independent.org>"
+test2 <- "Subject: Alice: Where is my coffee?"
+
+f1 <- function(input) {
+  str_split(input, ": ")[[1]]
+}
+f2 <- function(input) {
+  colon <- str_locate(input, ": ")
+  c(
+    str_sub(input, end = colon[, 1] - 1),
+    str_sub(input, start = colon[, 2] + 1)
+  )
+}
+f3 <- function(input) {
+  str_split_fixed(input, ": ", 2)[1, ]
+}
+```
+
+### Next Steps
+
+We split the content into header and body. And split up the header into fields. Both of these tasks used fixed strings. What if the pattern we need to match is more complicated?
+
+See next lecture.
