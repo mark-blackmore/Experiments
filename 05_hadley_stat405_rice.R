@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 5 for Hadley Wickham's STAT 405 at Rice U. \t Working 
+#' title: "Lecture 5 for Hadley Wickham's STAT 405 at Rice U.\n Working 
 #' directories, shortcuts and iteration"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"

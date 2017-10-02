@@ -1,7 +1,7 @@
 Lecture 5 for Hadley Wickham's STAT 405 at Rice U. Working directories, shortcuts and iteration
 ================
 Mark Blackmore
-2017-09-29
+2017-10-01
 
 ``` r
 library(ggplot2)
