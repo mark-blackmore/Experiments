@@ -1,7 +1,7 @@
 Lecture 10 for Hadley Wickham's STAT 405 at Rice U. Simulation
 ================
 Mark Blackmore
-2017-09-29
+2017-10-01
 
 ``` r
 library(ggplot2)
@@ -264,7 +264,7 @@ flips <- sample(coin, 10, replace = T)
 mean(flips)
 ```
 
-    ## [1] 0.5
+    ## [1] 0.4
 
 What happens to the proportion of heads as n increases?
 
@@ -292,7 +292,7 @@ Simulate the first window
 sample(slots$w1, 1)
 ```
 
-    ## [1] "7"
+    ## [1] "B"
 
 Simulate the second window
 
@@ -300,7 +300,7 @@ Simulate the second window
 sample(slots$w2, 1)
 ```
 
-    ## [1] "0"
+    ## [1] "BB"
 
 Simulate the third window
 
@@ -357,7 +357,7 @@ system.time(play_n(5000))
 ```
 
     ##    user  system elapsed 
-    ##    0.34    0.00    0.34
+    ##    0.37    0.00    0.37
 
 I wrote a vectorised version - instead of using explicit for loops, use R functions that work with vectors. This is usually much much faster
 
@@ -372,7 +372,7 @@ system.time(play_many(5000))
 ```
 
     ##    user  system elapsed 
-    ##    0.02    0.00    0.02
+    ##       0       0       0
 
 ### What happens if we play more games?
 

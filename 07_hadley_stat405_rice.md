@@ -1,7 +1,7 @@
 Lecture 7 for Hadley Wickham's STAT 405 at Rice U. More About Data
 ================
 Mark Blackmore
-2017-09-29
+2017-10-01
 
 ``` r
 library(ggplot2)
@@ -218,16 +218,16 @@ table(a); table(b); table(c)
 ```
 
     ## a
-    ##  1  2  3  4  5 
-    ##  1  1  5 10  3
+    ## 1 2 3 4 5 
+    ## 3 5 4 7 1
 
     ## b
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  1  1  5 10  3  0  0  0  0  0
+    ##  3  5  4  7  1  0  0  0  0  0
 
     ## c
-    ##  a  b  c  d  e 
-    ##  1  1  5 10  3
+    ## a b c d e 
+    ## 3 5 4 7 1
 
 ### Create factors on slots data
 
@@ -257,7 +257,7 @@ table(b2)
 
     ## b2
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  0  1  0  2  2  0  0  0  0  0
+    ##  0  2  3  0  0  0  0  0  0  0
 
 #### Remove extra levels
 
@@ -265,15 +265,15 @@ table(b2)
 b2[, drop = TRUE]
 ```
 
-    ## [1] 5 2 4 5 4
-    ## Levels: 2 4 5
+    ## [1] 3 2 2 3 3
+    ## Levels: 2 3
 
 ``` r
 factor(b2)
 ```
 
-    ## [1] 5 2 4 5 4
-    ## Levels: 2 4 5
+    ## [1] 3 2 2 3 3
+    ## Levels: 2 3
 
 #### But usually better to convert to character
 
@@ -283,16 +283,16 @@ table(b3)
 ```
 
     ## b3
-    ##  1  2  3  4  5 
-    ##  1  1  5 10  3
+    ## 1 2 3 4 5 
+    ## 3 5 4 7 1
 
 ``` r
 table(b3[1:5])
 ```
 
     ## 
-    ## 2 4 5 
-    ## 1 2 2
+    ## 2 3 
+    ## 2 3
 
 ### Factors behave like integers when subsetting, not characters!
 
@@ -327,20 +327,20 @@ d <- factor(x, labels = 2^(1:5))
 as.numeric(d)
 ```
 
-    ##  [1] 2 2 1 3 2 2 5 2 4 5 3 1 1 5 4 3 4 4 5 1
+    ##  [1] 3 5 3 4 4 5 4 3 3 5 1 5 5 1 3 5 2 1 1 5
 
 ``` r
 as.character(d)
 ```
 
-    ##  [1] "4"  "4"  "2"  "8"  "4"  "4"  "32" "4"  "16" "32" "8"  "2"  "2"  "32"
-    ## [15] "16" "8"  "16" "16" "32" "2"
+    ##  [1] "8"  "32" "8"  "16" "16" "32" "16" "8"  "8"  "32" "2"  "32" "32" "2" 
+    ## [15] "8"  "32" "4"  "2"  "2"  "32"
 
 ``` r
 as.numeric(as.character(d))
 ```
 
-    ##  [1]  4  4  2  8  4  4 32  4 16 32  8  2  2 32 16  8 16 16 32  2
+    ##  [1]  8 32  8 16 16 32 16  8  8 32  2 32 32  2  8 32  4  2  2 32
 
 Saving Data
 -----------

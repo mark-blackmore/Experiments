@@ -1,7 +1,7 @@
 Lecture 8 for Hadley Wickham's STAT 405 at Rice U. Problem Solving
 ================
 Mark Blackmore
-2017-09-29
+2017-10-01
 
 Problem Solving
 ---------------

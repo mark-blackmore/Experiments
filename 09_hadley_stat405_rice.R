@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 9 for Hadley Wickham's STAT 405 at Rice U. \t Functions $ for loops" 
+#' title: "Lecture 9 for Hadley Wickham's STAT 405 at Rice U. \n Functions $ for loops" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
