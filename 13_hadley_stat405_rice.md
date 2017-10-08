@@ -1,7 +1,7 @@
 Lecture 13 for Hadley Wickham's STAT 405 at Rice String Processing
 ================
 Mark Blackmore
-2017-10-01
+2017-10-08
 
 ``` r
 library(knitr)
@@ -89,7 +89,8 @@ cat(contents[1], "\n")
 -   Headers give metadata
 -   Blank line
 -   Body of email
-    Other major complication is attachments and alternative content, but we'll ignore those for class
+
+Other major complication is attachments and alternative content, but we'll ignore those for class
 
 #### Tasks
 
@@ -288,11 +289,14 @@ Stringr
 
 ``` r
 library(stringr)
+```
 
+``` r
 help(package = "stringr")
 ```
 
-The last call lists all functions in a package all functions in stringr start with str\_
+The last call lists all functions in a package.
+All functions in stringr start with str\_
 
 ``` r
 apropos("str_")
@@ -315,7 +319,10 @@ The last call lists all functions with names containing specified characters
 
 ### Header vs. Content
 
-Need to split the string into two pieces, based on the the location of double line break: str\_locate(string, pattern) Need two substrings, one to the right and one to the left: str\_sub(string, start, end)
+Need to split the string into two pieces, based on the the location of double line break:
+\* str\_locate(string, pattern)
+Need two substrings, one to the right and one to the left:
+\* str\_sub(string, start, end)
 
 #### Examples
 

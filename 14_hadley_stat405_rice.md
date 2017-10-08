@@ -1,7 +1,7 @@
 Lecture 14 for Hadley Wickham's STAT 405 at Rice Regular Expressions
 ================
 Mark Blackmore
-2017-10-07
+2017-10-08
 
 ``` r
 library(stringr)
@@ -225,7 +225,7 @@ str(strsplit(headers[1], "\n")[[1]])
     ##  chr [1:17] "Received: from NAHOU-MSMBX05V.corp.enron.com ([172.24.192.109]) by NAHOU-MSMBX03V.corp.enron.com with Microsoft SMTPSVC(5.0.219"| __truncated__ ...
 
 ``` r
-str(strsplit(headers, "\n"))
+str(strsplit(headers, "\n"))[1:5]
 ```
 
     ## List of 200
@@ -330,6 +330,8 @@ str(strsplit(headers, "\n"))
     ##  $ : chr [1:18] "Received: from NAHOU-MSMBX05V.corp.enron.com ([172.24.192.109]) by NAHOU-MSMBX03V.corp.enron.com with Microsoft SMTPSVC(5.0.219"| __truncated__ "\t Mon, 3 Dec 2001 16:11:06 -0600" "X-MimeOLE: Produced By Microsoft Exchange V6.0.4712.0" "content-class: urn:content-classes:message" ...
     ##   [list output truncated]
 
+    ## NULL
+
 ### Exercise
 
 Write a small function that given a single header field splits it into name and contents. Do you want to use str\_split(), or str\_locate() & str\_sub()?
@@ -408,15 +410,18 @@ Each of these types of data have a fairly regular pattern that we can easily pic
 phone <- "[ (][0-9][0-9][0-9][- )][0-9][0-9][0-9][- ][0-9][0-9][0-9][0-9]"
 phone2 <- "[0-9]{3}[- .][0-9]{3}[- .][0-9]{4}"
 phone3 <- "[(][0-9]{3}[)][- .][0-9]{3}[- ()][0-9]{4}"
-# test <- body[10]
-# cat(test)
-# 
-# str_detect(test, phone2)
-# str_locate(test, phone2)
-# str_locate_all(test, phone2)
-# 
-# str_extract(test, phone2)
-# str_extract_all(test, phone2)
+```
+
+``` r
+test <- body[10]
+cat(test)
+  
+str_detect(test, phone2)
+str_locate(test, phone2)
+str_locate_all(test, phone2)
+ 
+str_extract(test, phone2)
+str_extract_all(test, phone2)
 ```
 
 What do these regular expression match?
@@ -429,3 +434,11 @@ mystery4 <- "https?://[a-z]+([a-z0-9-]*[a-z0-9]+)?(\\.([a-z]+([a-z0-9-]*[a-z0-9]
 ```
 
 Think about them first, then input to <http://strfriend.com/> or <http://xenon.stanford.edu/~xusch/regexp/analyzer.html> (select java for language - it's closest to R for regexps)
+
+### New features
+
+-   () group parts of a regular expression
+-   . matches any character
+-   (. specifically matches .)
+-   matches a digit, matches a space
+-   Other characters that need to be escaped: $,^

@@ -56,7 +56,7 @@ output[[1]]
 str(strsplit(headers[1], "\n"))
 str(strsplit(headers[1], "\n")[1])
 str(strsplit(headers[1], "\n")[[1]])
-str(strsplit(headers, "\n"))
+str(strsplit(headers, "\n"))[1:5]
 
 #' ### Exercise
 #' Write a small function that given a single header
@@ -121,19 +121,22 @@ f2(test1)
 #'
 #  [0-9]: matches any number between 0 and 9
 #  [- ()]: matches -, space, ( or )
-#' 
+#'
+
 phone <- "[ (][0-9][0-9][0-9][- )][0-9][0-9][0-9][- ][0-9][0-9][0-9][0-9]"
 phone2 <- "[0-9]{3}[- .][0-9]{3}[- .][0-9]{4}"
 phone3 <- "[(][0-9]{3}[)][- .][0-9]{3}[- ()][0-9]{4}"
-# test <- body[10]
-# cat(test)
-# 
-# str_detect(test, phone2)
-# str_locate(test, phone2)
-# str_locate_all(test, phone2)
-# 
-# str_extract(test, phone2)
-# str_extract_all(test, phone2)
+
+#+ eval = FALSE  
+test <- body[10]
+cat(test)
+  
+str_detect(test, phone2)
+str_locate(test, phone2)
+str_locate_all(test, phone2)
+ 
+str_extract(test, phone2)
+str_extract_all(test, phone2)
 
 #' What do these regular expression match?
 mystery1 <- "[0-9]{5}(-[0-9]{4})?"
@@ -142,5 +145,11 @@ mystery3 <- "[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}"
 mystery4 <- "https?://[a-z]+([a-z0-9-]*[a-z0-9]+)?(\\.([a-z]+([a-z0-9-]*[a-z0-9]+)?)+)*"
 #' Think about them first, then input to http://strfriend.com/
 #' or http://xenon.stanford.edu/~xusch/regexp/analyzer.html
-#' (select java for language - it's closest to R for regexps)
-
+#' (select java for language - it's closest to R for regexps)  
+#' 
+#' ### New features  
+#' * () group parts of a regular expression
+#' * . matches any character
+#' * (\. specifically matches .)
+#' * \d matches a digit, \s matches a space
+#' * Other characters that need to be escaped: $,^

@@ -23,7 +23,8 @@ cat(contents[1], "\n")
 #' #### Structure of an email
 #' * Headers give metadata 
 #' * Blank line 
-#' * Body of email  
+#' * Body of email    
+#' 
 #' Other major complication is attachments
 #' and alternative content, but we'll ignore
 #' those for class
@@ -94,10 +95,12 @@ cat(e, "\n")
 #+ warning = FALSE
 library(stringr)
 
+#+ eval = FALSE 
 help(package = "stringr")
-#' The last call lists all functions in a package
-#' all functions in stringr start with str_
+#' The last call lists all functions in a package.  
+#' All functions in stringr start with str_
 
+#+ eval = TRUE
 apropos("str_")
 #' The last call lists all functions with names containing
 #' specified characters 
@@ -105,11 +108,11 @@ apropos("str_")
 #' ### Header vs. Content
 #' Need to split the string into two pieces,
 #' based on the the location of double line
-#' break:
-#'   str_locate(string, pattern)
+#' break:  
+#' *   str_locate(string, pattern)  
 #' Need two substrings, one to the right and
-#' one to the left:
-#'   str_sub(string, start, end)
+#' one to the left:  
+#' *   str_sub(string, start, end)  
 #'   
 #' #### Examples
 str_locate("great", "a") # "a" starts and ends at position shown
