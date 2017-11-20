@@ -1,4 +1,4 @@
-# Instroduction to Data Analysis
+# Introduction to Data Analysis
 This repository contains contains code and markdown documents prepared by working throguh the lecture slides from Hadley Wickham's Rice University course, [STAT 405: Introduction to Data Analysis](http://stat405.had.co.nz/). The course was given in Fall 2012.
 
 [Lecture 1](01_hadley_stat405_rice.md)
@@ -13,6 +13,8 @@ This repository contains contains code and markdown documents prepared by workin
 [Lecture 10](10_hadley_stat405_rice.md)
 [Lecture 11](11_hadley_stat405_rice.md)
 [Lecture 12](12_hadley_stat405_rice.md)
+[Lecture 13](13_hadley_stat405_rice.md)
+[Lecture 14](14_hadley_stat405_rice.md)
 
 
 
