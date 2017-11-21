@@ -1,7 +1,7 @@
-Lecture 1 for Hadley Wickham's STAT 405 at Rice U. Introductions, R & ggplot2
+Lecture 1: Introductions, R & ggplot2
 ================
 Mark Blackmore
-2017-09-20
+2017-11-20
 
 ``` r
 library(ggplot2)
@@ -15,13 +15,16 @@ Five ways to explore the data
 head(mpg)
 ```
 
-    ##   manufacturer model displ year cyl      trans drv cty hwy fl   class
-    ## 1         audi    a4   1.8 1999   4   auto(l5)   f  18  29  p compact
-    ## 2         audi    a4   1.8 1999   4 manual(m5)   f  21  29  p compact
-    ## 3         audi    a4   2.0 2008   4 manual(m6)   f  20  31  p compact
-    ## 4         audi    a4   2.0 2008   4   auto(av)   f  21  30  p compact
-    ## 5         audi    a4   2.8 1999   6   auto(l5)   f  16  26  p compact
-    ## 6         audi    a4   2.8 1999   6 manual(m5)   f  18  26  p compact
+    ## # A tibble: 6 x 11
+    ##   manufacturer model displ  year   cyl      trans   drv   cty   hwy    fl
+    ##          <chr> <chr> <dbl> <int> <int>      <chr> <chr> <int> <int> <chr>
+    ## 1         audi    a4   1.8  1999     4   auto(l5)     f    18    29     p
+    ## 2         audi    a4   1.8  1999     4 manual(m5)     f    21    29     p
+    ## 3         audi    a4   2.0  2008     4 manual(m6)     f    20    31     p
+    ## 4         audi    a4   2.0  2008     4   auto(av)     f    21    30     p
+    ## 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p
+    ## 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p
+    ## # ... with 1 more variables: class <chr>
 
 ``` r
 str(mpg)

@@ -1,6 +1,5 @@
 #' ---
-#' title: "Lecture 1 for Hadley Wickham's STAT 405 at Rice U. \t Introductions, R & 
-#' ggplot2"
+#' title: "Lecture 1: Introductions, R & ggplot2"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
