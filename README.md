@@ -3,8 +3,8 @@ This repository contains contains code and markdown documents prepared by workin
 
 [Lecture 1: Introductions, R & ggplot2](01_hadley_stat405_rice.md)  
 [Lecture 2: Distributions](02_hadley_stat405_rice.md)  
-[Lecture 3](03_hadley_stat405_rice.md)  
-[Lecture 4](04_hadley_stat405_rice.md)  
+[Lecture 3: Scatterplots for Big Data, Subsetting](03_hadley_stat405_rice.md)  
+[Lecture 4: Subsetting](04_hadley_stat405_rice.md)  
 [Lecture 5](05_hadley_stat405_rice.md)  
 [Lecture 6](06_hadley_stat405_rice.md)  
 [Lecture 7](07_hadley_stat405_rice.md)  

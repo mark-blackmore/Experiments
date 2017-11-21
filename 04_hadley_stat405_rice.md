@@ -1,7 +1,7 @@
-Lecture 4 for Hadley Wickham's STAT 405 at Rice U. Subsetting
+Lecture 4: Subsetting
 ================
 Mark Blackmore
-2017-09-29
+2017-11-20
 
 ``` r
 library(ggplot2)
@@ -14,27 +14,31 @@ Subsetting
 diamonds[diamonds$x > 10, ]
 ```
 
-    ##       carat       cut color clarity depth table price     x     y    z
-    ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
-    ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
-    ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
-    ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
-    ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
+    ## # A tibble: 5 x 10
+    ##   carat       cut color clarity depth table price     x     y     z
+    ##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+    ## 1  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10  6.17
+    ## 2  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94  6.24
+    ## 3  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94  6.31
+    ## 4  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54  6.98
+    ## 5  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16  6.72
 
 ``` r
 diamonds[1:10, c("carat", "cut")]
 ```
 
+    ## # A tibble: 10 x 2
     ##    carat       cut
-    ## 1   0.23     Ideal
-    ## 2   0.21   Premium
-    ## 3   0.23      Good
-    ## 4   0.29   Premium
-    ## 5   0.31      Good
-    ## 6   0.24 Very Good
-    ## 7   0.24 Very Good
-    ## 8   0.26 Very Good
-    ## 9   0.22      Fair
+    ##    <dbl>     <ord>
+    ##  1  0.23     Ideal
+    ##  2  0.21   Premium
+    ##  3  0.23      Good
+    ##  4  0.29   Premium
+    ##  5  0.31      Good
+    ##  6  0.24 Very Good
+    ##  7  0.24 Very Good
+    ##  8  0.26 Very Good
+    ##  9  0.22      Fair
     ## 10  0.23 Very Good
 
 ### Blank
@@ -61,13 +65,15 @@ str(diamonds[, ])
 diamonds[1:6, ] # same as head(diamonds)
 ```
 
-    ##   carat       cut color clarity depth table price    x    y    z
-    ## 1  0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
-    ## 2  0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
-    ## 3  0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
-    ## 4  0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
-    ## 5  0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
-    ## 6  0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+    ## # A tibble: 6 x 10
+    ##   carat       cut color clarity depth table price     x     y     z
+    ##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+    ## 1  0.23     Ideal     E     SI2  61.5    55   326  3.95  3.98  2.43
+    ## 2  0.21   Premium     E     SI1  59.8    61   326  3.89  3.84  2.31
+    ## 3  0.23      Good     E     VS1  56.9    65   327  4.05  4.07  2.31
+    ## 4  0.29   Premium     I     VS2  62.4    58   334  4.20  4.23  2.63
+    ## 5  0.31      Good     J     SI2  63.3    58   335  4.34  4.35  2.75
+    ## 6  0.24 Very Good     J    VVS2  62.8    57   336  3.94  3.96  2.48
 
 ``` r
 # diamonds[, 1:4] # watch out!
@@ -79,16 +85,18 @@ diamonds[1:6, ] # same as head(diamonds)
 diamonds[1:10, 1:4]
 ```
 
+    ## # A tibble: 10 x 4
     ##    carat       cut color clarity
-    ## 1   0.23     Ideal     E     SI2
-    ## 2   0.21   Premium     E     SI1
-    ## 3   0.23      Good     E     VS1
-    ## 4   0.29   Premium     I     VS2
-    ## 5   0.31      Good     J     SI2
-    ## 6   0.24 Very Good     J    VVS2
-    ## 7   0.24 Very Good     I    VVS1
-    ## 8   0.26 Very Good     H     SI1
-    ## 9   0.22      Fair     E     VS2
+    ##    <dbl>     <ord> <ord>   <ord>
+    ##  1  0.23     Ideal     E     SI2
+    ##  2  0.21   Premium     E     SI1
+    ##  3  0.23      Good     E     VS1
+    ##  4  0.29   Premium     I     VS2
+    ##  5  0.31      Good     J     SI2
+    ##  6  0.24 Very Good     J    VVS2
+    ##  7  0.24 Very Good     I    VVS1
+    ##  8  0.26 Very Good     H     SI1
+    ##  9  0.22      Fair     E     VS2
     ## 10  0.23 Very Good     H     VS1
 
 ### Repeating input repeats output
@@ -97,12 +105,14 @@ diamonds[1:10, 1:4]
 diamonds[c(1,1,1,2,2), 1:4]
 ```
 
-    ##     carat     cut color clarity
-    ## 1    0.23   Ideal     E     SI2
-    ## 1.1  0.23   Ideal     E     SI2
-    ## 1.2  0.23   Ideal     E     SI2
-    ## 2    0.21 Premium     E     SI1
-    ## 2.1  0.21 Premium     E     SI1
+    ## # A tibble: 5 x 4
+    ##   carat     cut color clarity
+    ##   <dbl>   <ord> <ord>   <ord>
+    ## 1  0.23   Ideal     E     SI2
+    ## 2  0.23   Ideal     E     SI2
+    ## 3  0.23   Ideal     E     SI2
+    ## 4  0.21 Premium     E     SI1
+    ## 5  0.21 Premium     E     SI1
 
 ### Negative integers
 
@@ -110,47 +120,20 @@ diamonds[c(1,1,1,2,2), 1:4]
 diamonds[-(1:53900), -1]
 ```
 
-    ##             cut color clarity depth table price    x    y    z
-    ## 53901     Ideal     H     VS2  62.5    58  2752 5.71 5.75 3.58
-    ## 53902   Premium     E     VS1  61.6    58  2753 5.36 5.33 3.29
-    ## 53903 Very Good     E     SI2  59.9    61  2753 5.98 6.01 3.59
-    ## 53904 Very Good     E     SI1  62.9    57  2753 5.79 5.84 3.66
-    ## 53905   Premium     E     SI1  61.3    58  2753 5.68 5.71 3.49
-    ## 53906   Premium     E     SI1  60.0    59  2753 5.75 5.79 3.46
-    ## 53907 Very Good     E     SI1  63.0    55  2753 5.76 5.79 3.64
-    ## 53908 Very Good     E     SI1  61.0    57  2753 5.68 5.73 3.48
-    ## 53909 Very Good     E     SI1  61.2    57  2753 5.68 5.73 3.49
-    ## 53910 Very Good     E     SI1  62.7    59  2753 5.63 5.67 3.54
-    ## 53911   Premium     E     SI1  60.5    58  2753 5.74 5.77 3.48
-    ## 53912   Premium     E      IF  59.8    60  2753 5.43 5.38 3.23
-    ## 53913   Premium     F    VVS1  61.8    59  2753 5.48 5.40 3.36
-    ## 53914      Good     G     VS2  64.2    58  2753 5.84 5.81 3.74
-    ## 53915      Good     I     VS1  63.7    59  2753 5.94 5.90 3.77
-    ## 53916     Ideal     E     SI2  62.1    56  2753 5.84 5.86 3.63
-    ## 53917      Good     D     SI1  63.1    59  2753 5.71 5.74 3.61
-    ## 53918 Very Good     J     SI1  63.2    60  2753 6.12 6.09 3.86
-    ## 53919   Premium     I     VS1  59.3    62  2753 5.93 5.85 3.49
-    ## 53920     Ideal     I    VVS1  62.2    55  2753 5.89 5.87 3.66
-    ## 53921 Very Good     E     VS2  62.4    60  2755 5.57 5.61 3.49
-    ## 53922 Very Good     E     VS2  62.8    60  2755 5.59 5.65 3.53
-    ## 53923 Very Good     D     VS1  63.1    59  2755 5.67 5.58 3.55
-    ## 53924     Ideal     I     VS2  61.3    56  2756 5.80 5.84 3.57
-    ## 53925     Ideal     I     VS2  61.6    55  2756 5.82 5.84 3.59
-    ## 53926     Ideal     I     SI1  61.6    56  2756 5.95 5.97 3.67
-    ## 53927     Ideal     E     SI1  61.9    56  2756 5.71 5.73 3.54
-    ## 53928      Good     F     SI1  58.1    59  2756 6.06 6.13 3.54
-    ## 53929   Premium     E     SI2  61.4    58  2756 6.03 5.96 3.68
-    ## 53930     Ideal     G     VS1  61.4    56  2756 5.76 5.73 3.53
-    ## 53931   Premium     E     SI1  60.5    55  2756 5.79 5.74 3.49
-    ## 53932   Premium     F     SI1  59.8    62  2756 5.74 5.73 3.43
-    ## 53933 Very Good     E     VS2  60.5    59  2757 5.71 5.76 3.47
-    ## 53934 Very Good     E     VS2  61.2    59  2757 5.69 5.72 3.49
-    ## 53935   Premium     D     SI1  62.7    59  2757 5.69 5.73 3.58
-    ## 53936     Ideal     D     SI1  60.8    57  2757 5.75 5.76 3.50
-    ## 53937      Good     D     SI1  63.1    55  2757 5.69 5.75 3.61
-    ## 53938 Very Good     D     SI1  62.8    60  2757 5.66 5.68 3.56
-    ## 53939   Premium     H     SI2  61.0    58  2757 6.15 6.12 3.74
-    ## 53940     Ideal     D     SI2  62.2    55  2757 5.83 5.87 3.64
+    ## # A tibble: 40 x 9
+    ##          cut color clarity depth table price     x     y     z
+    ##        <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+    ##  1     Ideal     H     VS2  62.5    58  2752  5.71  5.75  3.58
+    ##  2   Premium     E     VS1  61.6    58  2753  5.36  5.33  3.29
+    ##  3 Very Good     E     SI2  59.9    61  2753  5.98  6.01  3.59
+    ##  4 Very Good     E     SI1  62.9    57  2753  5.79  5.84  3.66
+    ##  5   Premium     E     SI1  61.3    58  2753  5.68  5.71  3.49
+    ##  6   Premium     E     SI1  60.0    59  2753  5.75  5.79  3.46
+    ##  7 Very Good     E     SI1  63.0    55  2753  5.76  5.79  3.64
+    ##  8 Very Good     E     SI1  61.0    57  2753  5.68  5.73  3.48
+    ##  9 Very Good     E     SI1  61.2    57  2753  5.68  5.73  3.49
+    ## 10 Very Good     E     SI1  62.7    59  2753  5.63  5.67  3.54
+    ## # ... with 30 more rows
 
 ### Logical
 
@@ -191,12 +174,14 @@ diamonds$x[x_big]
 diamonds[x_big, ]
 ```
 
-    ##       carat       cut color clarity depth table price     x     y    z
-    ## 25999  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10 6.17
-    ## 26000  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94 6.24
-    ## 26445  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94 6.31
-    ## 27416  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54 6.98
-    ## 27631  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16 6.72
+    ## # A tibble: 5 x 10
+    ##   carat       cut color clarity depth table price     x     y     z
+    ##   <dbl>     <ord> <ord>   <ord> <dbl> <dbl> <int> <dbl> <dbl> <dbl>
+    ## 1  4.01   Premium     I      I1  61.0    61 15223 10.14 10.10  6.17
+    ## 2  4.01   Premium     J      I1  62.5    62 15223 10.02  9.94  6.24
+    ## 3  4.00 Very Good     I      I1  63.3    58 15984 10.01  9.94  6.31
+    ## 4  5.01      Fair     J      I1  65.5    59 18018 10.74 10.54  6.98
+    ## 5  4.50      Fair     J      I1  65.8    58 18531 10.23 10.16  6.72
 
 ### Logical vectors
 
@@ -220,7 +205,9 @@ notcolor <- diamonds[!diamonds$color %in% c("D", "E", "F"), ]
 diamonds[1:5, c("carat", "cut", "color")]
 ```
 
+    ## # A tibble: 5 x 3
     ##   carat     cut color
+    ##   <dbl>   <ord> <ord>
     ## 1  0.23   Ideal     E
     ## 2  0.21 Premium     E
     ## 3  0.23    Good     E
@@ -231,12 +218,14 @@ diamonds[1:5, c("carat", "cut", "color")]
 diamonds[1:5, c(4, 9, 3)]
 ```
 
-    ##   clarity    y color
-    ## 1     SI2 3.98     E
-    ## 2     SI1 3.84     E
-    ## 3     VS1 4.07     E
-    ## 4     VS2 4.23     I
-    ## 5     SI2 4.35     J
+    ## # A tibble: 5 x 3
+    ##   clarity     y color
+    ##     <ord> <dbl> <ord>
+    ## 1     SI2  3.98     E
+    ## 2     SI1  3.84     E
+    ## 3     VS1  4.07     E
+    ## 4     VS2  4.23     I
+    ## 5     SI2  4.35     J
 
 ### Useful technique: change labelling
 
@@ -346,13 +335,16 @@ table(grades[cuts])
 head(mpg)
 ```
 
-    ##   manufacturer model displ year cyl      trans drv cty hwy fl   class
-    ## 1         audi    a4   1.8 1999   4   auto(l5)   f  18  29  p compact
-    ## 2         audi    a4   1.8 1999   4 manual(m5)   f  21  29  p compact
-    ## 3         audi    a4   2.0 2008   4 manual(m6)   f  20  31  p compact
-    ## 4         audi    a4   2.0 2008   4   auto(av)   f  21  30  p compact
-    ## 5         audi    a4   2.8 1999   6   auto(l5)   f  16  26  p compact
-    ## 6         audi    a4   2.8 1999   6 manual(m5)   f  18  26  p compact
+    ## # A tibble: 6 x 11
+    ##   manufacturer model displ  year   cyl      trans   drv   cty   hwy    fl
+    ##          <chr> <chr> <dbl> <int> <int>      <chr> <chr> <int> <int> <chr>
+    ## 1         audi    a4   1.8  1999     4   auto(l5)     f    18    29     p
+    ## 2         audi    a4   1.8  1999     4 manual(m5)     f    21    29     p
+    ## 3         audi    a4   2.0  2008     4 manual(m6)     f    20    31     p
+    ## 4         audi    a4   2.0  2008     4   auto(av)     f    21    30     p
+    ## 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p
+    ## 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p
+    ## # ... with 1 more variables: class <chr>
 
 ``` r
 str(mpg)

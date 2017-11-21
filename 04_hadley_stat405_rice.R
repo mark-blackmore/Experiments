@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 4 for Hadley Wickham's STAT 405 at Rice U. \t Subsetting"
+#' title: "Lecture 4: Subsetting"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document

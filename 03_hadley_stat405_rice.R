@@ -1,6 +1,5 @@
 #' ---
-#' title: "Lecture 3 for Hadley Wickham's STAT 405 at Rice U. \t Scatterplots for Big 
-#' Data, Subsetting"
+#' title: "Lecture 3: Scatterplots for Big Data, Subsetting"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
