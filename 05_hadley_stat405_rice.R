@@ -1,6 +1,5 @@
 #' ---
-#' title: "Lecture 5 for Hadley Wickham's STAT 405 at Rice U.\n Working 
-#' directories, shortcuts and iteration"
+#' title: "Lecture 5: Working directories, shortcuts and iteration"
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
@@ -10,11 +9,11 @@ library(ggplot2)
 library(plyr)
 library(knitr)
 
-#' ## Working Directories
-#' Never use setwd() in a scirpt
-#' Find out what directory you're in with getwd()
-#' List files in that directory with dir()
-
+#' ## Working Directories  
+#' Never use setwd() in a scirpt  
+#' Find out what directory you're in with getwd()  
+#' List files in that directory with dir()  
+#' 
 #' ### Exercise
 #' Check for data directory; Create one if not found
 if (!file.exists("data")) {
@@ -23,9 +22,9 @@ if (!file.exists("data")) {
 
 #' Source URL
 #+ eval = FALSE
-fileUrl <- "http://stat405.had.co.nz/project/mpg2.csv.bz2"
-download.file(fileUrl, destfile = "./data/mpg2.csv.bz2")
-list.files("./data")
+# fileUrl <- "http://stat405.had.co.nz/project/mpg2.csv.bz2"
+# download.file(fileUrl, destfile = "./data/mpg2.csv.bz2")
+# list.files("./data")
 
 #' Load file into workspace
 mpg2 <- read.csv("./data/mpg2.csv.bz2", stringsAsFactors = FALSE)

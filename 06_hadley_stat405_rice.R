@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 6 for Hadley Wickham's STAT 405 at Rice U. \t Statistical Reports" 
+#' title: "Lecture 6: Statistical Reports" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document
