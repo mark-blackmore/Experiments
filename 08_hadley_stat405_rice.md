@@ -1,7 +1,7 @@
-Lecture 8 for Hadley Wickham's STAT 405 at Rice U. Problem Solving
+Lecture 8: Problem Solving
 ================
 Mark Blackmore
-2017-10-01
+2017-11-20
 
 Problem Solving
 ---------------
@@ -22,6 +22,8 @@ qplot(year, cty, data = recent, colour = fueltype,
       geom = "smooth")
 ```
 
+    ## `geom_smooth()` using method = 'gam'
+
 ![](08_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
 
 ``` r
@@ -38,6 +40,8 @@ qplot(year, cty, data = recent, geom = "boxplot", group = year) +
   facet_wrap(~ fueltype) +
   geom_smooth(colour = "red")
 ```
+
+    ## `geom_smooth()` using method = 'loess'
 
 ![](08_hadley_stat405_rice_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 

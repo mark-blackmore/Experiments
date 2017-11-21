@@ -1,7 +1,7 @@
-Lecture 7 for Hadley Wickham's STAT 405 at Rice U. More About Data
+Lecture 7: More About Data
 ================
 Mark Blackmore
-2017-10-01
+2017-11-20
 
 ``` r
 library(ggplot2)
@@ -219,15 +219,15 @@ table(a); table(b); table(c)
 
     ## a
     ## 1 2 3 4 5 
-    ## 3 5 4 7 1
+    ## 5 3 4 4 4
 
     ## b
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  3  5  4  7  1  0  0  0  0  0
+    ##  5  3  4  4  4  0  0  0  0  0
 
     ## c
     ## a b c d e 
-    ## 3 5 4 7 1
+    ## 5 3 4 4 4
 
 ### Create factors on slots data
 
@@ -257,7 +257,7 @@ table(b2)
 
     ## b2
     ##  1  2  3  4  5  6  7  8  9 10 
-    ##  0  2  3  0  0  0  0  0  0  0
+    ##  1  1  1  2  0  0  0  0  0  0
 
 #### Remove extra levels
 
@@ -265,15 +265,15 @@ table(b2)
 b2[, drop = TRUE]
 ```
 
-    ## [1] 3 2 2 3 3
-    ## Levels: 2 3
+    ## [1] 4 2 1 3 4
+    ## Levels: 1 2 3 4
 
 ``` r
 factor(b2)
 ```
 
-    ## [1] 3 2 2 3 3
-    ## Levels: 2 3
+    ## [1] 4 2 1 3 4
+    ## Levels: 1 2 3 4
 
 #### But usually better to convert to character
 
@@ -284,15 +284,15 @@ table(b3)
 
     ## b3
     ## 1 2 3 4 5 
-    ## 3 5 4 7 1
+    ## 5 3 4 4 4
 
 ``` r
 table(b3[1:5])
 ```
 
     ## 
-    ## 2 3 
-    ## 2 3
+    ## 1 2 3 4 
+    ## 1 1 1 2
 
 ### Factors behave like integers when subsetting, not characters!
 
@@ -327,20 +327,20 @@ d <- factor(x, labels = 2^(1:5))
 as.numeric(d)
 ```
 
-    ##  [1] 3 5 3 4 4 5 4 3 3 5 1 5 5 1 3 5 2 1 1 5
+    ##  [1] 5 5 1 5 2 1 3 5 1 2 3 4 5 2 1 5 1 4 3 3
 
 ``` r
 as.character(d)
 ```
 
-    ##  [1] "8"  "32" "8"  "16" "16" "32" "16" "8"  "8"  "32" "2"  "32" "32" "2" 
-    ## [15] "8"  "32" "4"  "2"  "2"  "32"
+    ##  [1] "32" "32" "2"  "32" "4"  "2"  "8"  "32" "2"  "4"  "8"  "16" "32" "4" 
+    ## [15] "2"  "32" "2"  "16" "8"  "8"
 
 ``` r
 as.numeric(as.character(d))
 ```
 
-    ##  [1]  8 32  8 16 16 32 16  8  8 32  2 32 32  2  8 32  4  2  2 32
+    ##  [1] 32 32  2 32  4  2  8 32  2  4  8 16 32  4  2 32  2 16  8  8
 
 Saving Data
 -----------
