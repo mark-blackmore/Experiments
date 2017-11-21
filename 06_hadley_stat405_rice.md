@@ -1,7 +1,7 @@
-Lecture 6 for Hadley Wickham's STAT 405 at Rice U. Statistical Reports
+Lecture 6: Statistical Reports
 ================
 Mark Blackmore
-2017-09-29
+2017-11-20
 
 ``` r
 library(ggplot2)
