@@ -1,7 +1,7 @@
-Lecture 12 for Hadley Wickham's STAT 405 at Rice Groupwise Operation
+Lecture 12: Groupwise Operation
 ================
 Mark Blackmore
-2017-09-29
+2017-11-20
 
 Getting started
 ---------------

@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 10 for Hadley Wickham's STAT 405 at Rice U. \n Simulation" 
+#' title: "Lecture 10: Simulation" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document

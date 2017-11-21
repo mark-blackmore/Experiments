@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 14 for Hadley Wickham's STAT 405 at Rice \n Regular Expressions" 
+#' title: "Lecture 14: Regular Expressions" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document

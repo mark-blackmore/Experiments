@@ -10,11 +10,11 @@ This repository contains contains code and markdown documents prepared by workin
 [Lecture 7: More About Data](07_hadley_stat405_rice.md)  
 [Lecture 8: Problem Solving](08_hadley_stat405_rice.md)  
 [Lecture 9: Functions & for loops](09_hadley_stat405_rice.md)  
-[Lecture 10](10_hadley_stat405_rice.md)  
-[Lecture 11](11_hadley_stat405_rice.md)  
-[Lecture 12](12_hadley_stat405_rice.md)  
-[Lecture 13](13_hadley_stat405_rice.md)  
-[Lecture 14](14_hadley_stat405_rice.md)  
+[Lecture 10: Simulation](10_hadley_stat405_rice.md)  
+[Lecture 11: Advanced Data Manipulation](11_hadley_stat405_rice.md)  
+[Lecture 12: Groupwise Operation](12_hadley_stat405_rice.md)  
+[Lecture 13: String Processing](13_hadley_stat405_rice.md)  
+[Lecture 14: Regular Expressions](14_hadley_stat405_rice.md)  
 
 
 

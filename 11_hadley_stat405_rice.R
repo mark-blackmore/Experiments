@@ -1,5 +1,5 @@
 #' ---
-#' title: "Lecture 11 for Hadley Wickham's STAT 405 \t Advanced Data Manipulation" 
+#' title: "Lecture 11: Advanced Data Manipulation" 
 #' author: "Mark Blackmore"
 #' date: "`r format(Sys.Date())`"
 #' output: github_document

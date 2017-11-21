@@ -1,7 +1,7 @@
-Lecture 13 for Hadley Wickham's STAT 405 at Rice String Processing
+Lecture 13: String Processing
 ================
 Mark Blackmore
-2017-10-08
+2017-11-20
 
 ``` r
 library(knitr)
@@ -24,7 +24,7 @@ contents <- readRDS(gzcon(url(file_URL)))
 str(contents)
 ```
 
-    ##  chr [1:200] "Received: from NAHOU-MSMBX05V.corp.enron.com ([172.24.192.109]) by NAHOU-MSMBX03V.corp.enron.com with Microsoft SMTPSVC(5.0.219"| __truncated__ ...
+    ##  chr [1:200] "Received: from NAHOU-MSMBX05V.corp.enron.com ([172.24.192.109]) by NAHOU-MSMBX03V.corp.enron.com with Microsoft"| __truncated__ ...
 
 ``` r
 head(contents)

@@ -1,7 +1,7 @@
-Lecture 11 for Hadley Wickham's STAT 405 Advanced Data Manipulation
+Lecture 11: Advanced Data Manipulation
 ================
 Mark Blackmore
-2017-09-29
+2017-11-20
 
 ``` r
 library(plyr)
